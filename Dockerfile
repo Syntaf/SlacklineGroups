@@ -5,7 +5,7 @@ ARG USER_ID
 ARG GROUP_ID
 
 RUN addgroup --gid $GROUP_ID user
-RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+RUN adduser --disabled-password --gecos "" --uid $USER_ID --gid $GROUP_ID user
 
 ENV INSTALL_PATH /opt/app
 RUN mkdir -p $INSTALL_PATH
@@ -26,5 +26,5 @@ RUN chown -R user:user /opt/app
 USER $USER_ID
 VOLUME ["$INSTALL_PATH/public"]
 
-CMD ["/bin/sh"]
-# CMD bundle exec rails server -b 0.0.0.0
+EXPOSE 3000
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: slg
+      POSTGRES_PASSWORD: dev
+    ports:
+      - '5432:5432'
+    volumes:
+      - slacklinegroups-postgres:/var/lib/postgresql/data
+
+  slacklinegroups:
+    build:
+      context: .
+      args:
+        USER_ID: "${USER_ID:-1000}"
+        GROUP_ID: "${GROUP_ID:-1000}"
+    depends_on:
+      - postgres
+    volumes:
+      - type: bind
+        source: ./slacklinegroups
+        target: /opt/app/slacklinegroups
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+
+volumes:
+  slacklinegroups-postgres:
