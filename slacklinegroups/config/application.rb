@@ -16,7 +16,7 @@ module Slacklinegroups
     # Configure a custom logger which logs to STDOUT for Docker compatibility
     config.log_level = :debug
     config.log_tags = %i[subdomain uuid]
-    config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+    config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT))
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
