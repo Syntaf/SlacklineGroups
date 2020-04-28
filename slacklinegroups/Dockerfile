@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
 
 # rails
 RUN gem install rails bundler
-COPY slacklinegroups/Gemfile Gemfile
-COPY slacklinegroups/Gemfile.lock Gemfile.lock
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 WORKDIR /opt/app/slacklinegroups
 RUN bundle install
 
