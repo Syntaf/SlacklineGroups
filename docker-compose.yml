@@ -11,6 +11,13 @@ services:
     volumes:
       - slacklinegroups-postgres:/var/lib/postgresql/data
 
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - slacklinegroups-redis:/var/lib/redis/data
+
   slacklinegroups:
     build:
       context: slacklinegroups/.
@@ -23,6 +30,7 @@ services:
       - type: bind
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
+      - /opt/app/tmp
     ports:
       - '3000:3000'
     env_file:
@@ -36,5 +44,24 @@ services:
     ports:
       - '8020:8020'
 
+  sidekiq:
+    build:
+      context: slacklinegroups/.
+      args:
+        USER_ID: "${USER_ID:-1000}"
+        GROUP_ID: "${GROUP_ID:-1000}"
+    command: bundle exec sidekiq
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - type: bind
+        source: ./slacklinegroups
+        target: /opt/app/slacklinegroups
+      - /opt/app/tmp
+    env_file:
+      - .env
+
 volumes:
   slacklinegroups-postgres:
+  slacklinegroups-redis:
