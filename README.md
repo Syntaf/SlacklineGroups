@@ -1,6 +1,12 @@
 # vigilant-broccoli
 Future home of slacklinegroups.com - Rails 6 + React + ElasticSearch
 
+## To-Do
+----
+- Write some example tests
+- Configure CI/CD
+- Production
+
 ## Getting Started
 ----
 
