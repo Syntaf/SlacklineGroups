@@ -13,7 +13,7 @@ services:
 
   slacklinegroups:
     build:
-      context: .
+      context: slacklinegroups/.
       args:
         USER_ID: "${USER_ID:-1000}"
         GROUP_ID: "${GROUP_ID:-1000}"
@@ -27,6 +27,14 @@ services:
       - '3000:3000'
     env_file:
       - .env
+
+  nginx:
+    build:
+      context: nginx/.
+    depends_on:
+      - slacklinegroups
+    ports:
+      - '8020:8020'
 
 volumes:
   slacklinegroups-postgres:
