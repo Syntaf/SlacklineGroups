@@ -22,7 +22,7 @@ Future home of slacklinegroups.com - Rails 6 + React + ElasticSearch
    $ docker volume create slacklinegroups-redis
    ```
 
-3. Build the development image
+3. Build docker images
    ```
    $ docker-compose build
    ```
@@ -38,4 +38,4 @@ Future home of slacklinegroups.com - Rails 6 + React + ElasticSearch
    $ docker-compose up
    ```
 
-Once running you can visit the app at https://localhost:3000
+Once running you can visit the app at https://localhost:8020
