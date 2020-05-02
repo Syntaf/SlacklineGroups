@@ -31,7 +31,6 @@ services:
       - type: bind
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
-      - /opt/app/slacklinegroups/tmp/
     ports:
       - '3000:3000'
     env_file:
@@ -62,7 +61,6 @@ services:
       - type: bind
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
-      - /opt/app/slacklinegroups/tmp/
     env_file:
       - .env
 
