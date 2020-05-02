@@ -13,6 +13,11 @@ blocks:
             - 'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
             - 'docker build -t $DOCKER_USERNAME/slacklinegroups:latest --cache-from=$DOCKER_USERNAME/slacklinegroups:latest --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
             - 'docker push $DOCKER_USERNAME/slacklinegroups:latest'
+        - name: 'Job #2'
+          commands:
+            - 'docker pull $DOCKER_USERNAME/slacklinegroups-nginx:latest || true'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups-nginx:latest --cache-from=$DOCKER_USERNAME/slacklinegroups-nginx:latest --build-arg MODE=production ./nginx'
+            - 'docker push $DOCKER_USERNAME/slacklinegroups-nginx:latest'
       secrets:
         - name: dockerhub
       prologue:
