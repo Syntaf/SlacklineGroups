@@ -11,7 +11,7 @@ blocks:
         - name: Build slacklinegroups
           commands:
             - 'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
-            - 'docker build -t $DOCKER_USERNAME/slacklinegroups:latest --cache-from=$DOCKER_USERNAME/slacklinegroups:latest --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups:latest --cache-from=$DOCKER_USERNAME/slacklinegroups:latest --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production .'
             - 'docker push $DOCKER_USERNAME/slacklinegroups:latest'
       secrets:
         - name: dockerhub
