@@ -1,4 +1,5 @@
-# vigilant-broccoli
+# vigilant-broccoli ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg)
+
 Future home of slacklinegroups.com - Rails 6 + React + ElasticSearch
 
 ## To-Do
