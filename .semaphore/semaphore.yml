@@ -1,0 +1,26 @@
+version: v1.0
+name: Docker
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build
+    task:
+      jobs:
+        - name: Build slacklinegroups
+          commands:
+            - 'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups:latest --cache-from=$DOCKER_USERNAME/slacklinegroups:latest --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
+            - 'docker push $DOCKER_USERNAME/slacklinegroups:latest'
+        - name: Build nginx
+          commands:
+            - 'docker pull $DOCKER_USERNAME/slacklinegroups-nginx:latest || true'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups-nginx:latest --cache-from=$DOCKER_USERNAME/slacklinegroups-nginx:latest --build-arg MODE=production ./nginx'
+            - 'docker push $DOCKER_USERNAME/slacklinegroups-nginx:latest'
+      secrets:
+        - name: dockerhub
+      prologue:
+        commands:
+          - checkout
+          - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
