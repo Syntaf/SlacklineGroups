@@ -11,12 +11,12 @@ blocks:
         - name: Build slacklinegroups
           commands:
             - 'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
-            - 'docker build -t $DOCKER_USERNAME/slacklinegroups:latest --cache-from=$DOCKER_USERNAME/slacklinegroups:latest --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
-            - 'docker push $DOCKER_USERNAME/slacklinegroups:latest'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups_test:latest --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
+            - 'docker push $DOCKER_USERNAME/slacklinegroups_test:latest'
         - name: Build nginx
           commands:
-            - 'docker pull $DOCKER_USERNAME/slacklinegroups-nginx:latest || true'
-            - 'docker build -t $DOCKER_USERNAME/slacklinegroups-nginx:latest --cache-from=$DOCKER_USERNAME/slacklinegroups-nginx:latest --build-arg MODE=production ./nginx'
+            - 'docker pull $DOCKER_USERNAME/slacklinegroups-nginx_test:latest || true'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups-nginx_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups-nginx:latest --build-arg MODE=production ./nginx'
             - 'docker push $DOCKER_USERNAME/slacklinegroups-nginx:latest'
       secrets:
         - name: dockerhub
@@ -24,3 +24,18 @@ blocks:
         commands:
           - checkout
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+      env_vars:
+        - name: ''
+          value: ''
+  - name: Test
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cp .env-example .env
+          - 'echo "${DOCKER_PASSWORD}" | docker login -u "{DOCKER_USERNAME}" --password-stdin'
+          - 'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
+          - docker-compose
+      jobs:
+        - name: Rails Test
+          commands: []
