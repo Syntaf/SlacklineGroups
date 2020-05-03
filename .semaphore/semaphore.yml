@@ -30,11 +30,11 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cp .env-example .env
+          - cp .env.example .env
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "{DOCKER_USERNAME}" --password-stdin'
-          - docker-compose -f docker-compose.test.yml run slacklinegroups rails test
       jobs:
         - name: Slacklinegroups
-          commands: []
+          commands:
+            - docker-compose -f docker-compose.test.yml run slacklinegroups rails test
       secrets:
         - name: dockerhub
