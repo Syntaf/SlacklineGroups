@@ -27,20 +27,19 @@ services:
         GROUP_ID: "${GROUP_ID:-1000}"
     depends_on:
       - postgres
+      - sidekiq
     volumes:
       - type: bind
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
-    ports:
-      - '3000:3000'
     env_file:
       - .env
 
   nginx:
     build:
       context: nginx/.
-      args:
-        MODE: development
+    environment:
+      DOMAIN: localhost
     depends_on:
       - slacklinegroups
     ports:
