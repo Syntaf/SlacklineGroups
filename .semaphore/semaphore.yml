@@ -25,15 +25,16 @@ blocks:
           - checkout
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
       env_vars: []
-  - name: Test
+  - name: Run Tests
     task:
       prologue:
         commands:
           - checkout
           - cp .env-example .env
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "{DOCKER_USERNAME}" --password-stdin'
-          - 'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
-          - docker-compose
+          - docker-compose -f docker-compose.test.yml run slacklinegroups rails test
       jobs:
-        - name: Rails Test
+        - name: Slacklinegroups
           commands: []
+      secrets:
+        - name: dockerhub
