@@ -1,8 +1,10 @@
 FROM nginx:latest
 
-ARG MODE=production
+COPY entrypoint.sh /
+COPY reverse-proxy.conf.template /etc/nginx/conf.d/reverse-proxy.conf.template
 
-COPY reverse-proxy.conf.$MODE /etc/nginx/conf.d/reverse-proxy.conf
 EXPOSE 8020
 STOPSIGNAL SIGTERM
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]

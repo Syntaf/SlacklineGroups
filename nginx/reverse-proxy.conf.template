@@ -1,6 +1,6 @@
 server {
     listen 8020;
-    server_name localhost;
+    server_name ${DOMAIN};
 
     location / {
         proxy_pass http://slacklinegroups:3000;
