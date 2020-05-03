@@ -24,9 +24,7 @@ blocks:
         commands:
           - checkout
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
-      env_vars:
-        - name: ''
-          value: ''
+      env_vars: []
   - name: Test
     task:
       prologue:
