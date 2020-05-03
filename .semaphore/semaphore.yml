@@ -16,8 +16,8 @@ blocks:
         - name: Build nginx
           commands:
             - 'docker pull $DOCKER_USERNAME/slacklinegroups-nginx_test:latest || true'
-            - 'docker build -t $DOCKER_USERNAME/slacklinegroups-nginx_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups-nginx:latest --build-arg MODE=production ./nginx'
-            - 'docker push $DOCKER_USERNAME/slacklinegroups-nginx:latest'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups-nginx_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups-nginx_test:latest ./nginx'
+            - 'docker push $DOCKER_USERNAME/slacklinegroups-nginx_test:latest'
       secrets:
         - name: dockerhub
       prologue:
