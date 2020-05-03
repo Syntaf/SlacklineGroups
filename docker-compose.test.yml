@@ -1,11 +1,31 @@
 version: '3.7'
 
 services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: slg
+      POSTGRES_PASSWORD: dev
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+
   slacklinegroups:
-    image: syntaf/slacklinegroups_test:latest
+    image: syntaf/slacklinegroups_test:latest 
+    depends_on:
+      - postgres
+      - redis
+      - nginx
+    env_file:
+      - .env
 
   nginx:
     image: syntaf/slacklinegroups-nginx_test:latest
-
-  sidekiq:
-    image: syntaf/slacklinegroups_test:latest
+    environment:
+      DOMAIN: localhost
+    ports:
+      - '8020:8020'
