@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'test_helper'
 
-class InfoTest < ActiveSupport::TestCase
+class LocationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
