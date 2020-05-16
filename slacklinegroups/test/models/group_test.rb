@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class GroupTest < ActiveSupport::TestCase
@@ -5,13 +7,13 @@ class GroupTest < ActiveSupport::TestCase
     group = Group.new
     group.type = :facebook_group
 
-    group.save
+    assert group.valid?
   end
 
   test 'unsupported_group' do
     group = Group.new
     group.type = :invalid
 
-    group.save
+    assert_not group.valid?
   end
 end
