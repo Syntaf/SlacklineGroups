@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  group: one
   lat: 9.99
   lon: 9.99
 
 two:
+  group: two
   lat: 9.99
   lon: 9.99

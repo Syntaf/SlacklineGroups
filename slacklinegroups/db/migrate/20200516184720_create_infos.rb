@@ -4,6 +4,7 @@ class CreateInfos < ActiveRecord::Migration[6.0]
       t.string :link
       t.integer :members
       t.boolean :is_regional
+      t.references :group, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  group: one
   link: MyString
   members: 1
   is_regional: false
 
 two:
+  group: two
   link: MyString
   members: 1
   is_regional: false
