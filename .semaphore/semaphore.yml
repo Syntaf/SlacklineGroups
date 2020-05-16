@@ -35,6 +35,9 @@ blocks:
       jobs:
         - name: Slacklinegroups
           commands:
+            - 'docker-compose -f docker-compose.test.yml run slacklinegroups rails db:drop'
+            - 'docker-compose -f docker-compose.test.yml run slacklinegroups rails db:create'
+            - 'docker-compose -f docker-compose.test.yml run slacklinegroups rails db:migrate'
             - docker-compose -f docker-compose.test.yml run slacklinegroups rails test
       secrets:
         - name: dockerhub
