@@ -1,56 +1,53 @@
 import React from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+
 import Divider from '@material-ui/core/Divider';
 
-import HelpIcon from '@material-ui/icons/Help';
-import MailIcon from '@material-ui/icons/Mail';
-import PublicIcon from '@material-ui/icons/Public';
 import ChatIcon from '@material-ui/icons/Chat';
+import PublicIcon from '@material-ui/icons/Public';
+import MailIcon from '@material-ui/icons/Mail';
+import HelpIcon from '@material-ui/icons/Help';
 import CodeIcon from '@material-ui/icons/Code';
 
-import VerticalDrawer from './VerticalDrawer';
+import VerticalDrawer from './components/VerticalDrawer';
+import MenuLinks from './components/MenuLinks';
 
 const Menu = props => {
+  const aboveDividerLinks = [
+    {
+      'text': 'Slackchat',
+      'icon': <ChatIcon fontSize='small'/>,
+      'link': 'https://www.facebook.com/groups/slackchat?src=slacklinegroups'
+    },
+    {
+      'text': 'Find slackline spots',
+      'icon': <PublicIcon fontSize='small'/>,
+      'link': 'https://slackmap.com/?src=slacklinegroups'
+    }
+  ];
+
+  const belowDividerLinks = [
+    {
+      'text': 'Submit new group',
+      'icon': <MailIcon fontSize='small'/>,
+      'link': '/groups/new'
+    },
+    {
+      'text': "What's slacklining?",
+      'icon': <HelpIcon fontSize='small'/>,
+      'link': 'https://slackline.us/what-is-slacklining/?src=slacklinegroups'
+    },
+    {
+      'text': 'About this site',
+      'icon': <CodeIcon fontSize='small'/>,
+      'link': '/about'
+    }
+  ];
+
   return (
     <VerticalDrawer>
-      <List className='menuList'>
-        <ListItem className='menuListItem' button>
-          <ListItemIcon>
-            <ChatIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary='Slackchat' />
-        </ListItem>
-        <ListItem className='menuListItem' button>
-          <ListItemIcon>
-            <PublicIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary='Find slackline spots' />
-        </ListItem>
-      </List>
+      <MenuLinks links={aboveDividerLinks} className='aboveDividerList'/>
       <Divider />
-      <List className='menuList'>
-        <ListItem className='menuListItem' button>
-          <ListItemIcon>
-            <MailIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary='Submit a new group' />
-        </ListItem>
-        <ListItem className='menuListItem' button>
-          <ListItemIcon>
-            <HelpIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary="What's slacklining?" />
-        </ListItem>
-        <ListItem className='menuListItem' button>
-          <ListItemIcon>
-            <CodeIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary="About this site" />
-        </ListItem> 
-      </List>
+      <MenuLinks links={belowDividerLinks} className='belowDividerList'/>
     </VerticalDrawer>
   );
 };
