@@ -32,6 +32,7 @@ services:
       - type: bind
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
+      - /opt/app/slacklinegroups/tmp
     env_file:
       - .env
 
@@ -45,6 +46,24 @@ services:
     ports:
       - '8020:8020'
 
+  webpacker:
+    build:
+      context: slacklinegroups/.
+      dockerfile: Dockerfile.development
+      args:
+        USER_ID: "${USER_ID:-1000}"
+        GROUP_ID: "${GROUP_ID:-1000}"
+    volumes:
+      - type: bind
+        source: ./slacklinegroups
+        target: /opt/app/slacklinegroups
+      - /opt/app/slacklinegroups/tmp
+    command: bin/webpack-dev-server
+    env_file:
+      - .env
+    ports:
+      - 3035:3035
+
   sidekiq:
     build:
       context: slacklinegroups/.
@@ -56,10 +75,12 @@ services:
     depends_on:
       - postgres
       - redis
+      - webpacker
     volumes:
       - type: bind
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
+      - /opt/app/slacklinegroups/tmp
     env_file:
       - .env
 

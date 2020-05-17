@@ -22,6 +22,11 @@ COPY Gemfile.lock Gemfile.lock
 WORKDIR /opt/app/slacklinegroups
 RUN bundle install
 
+# create tmp directory with user permissions to avoid it being created by root during
+# volume mounting. Each compose service receives it's own tmp directory to write to.
+RUN mkdir tmp
+RUN chown user:user tmp
+
 # start server
 RUN chown -R user:user /opt/app
 USER $USER_ID
