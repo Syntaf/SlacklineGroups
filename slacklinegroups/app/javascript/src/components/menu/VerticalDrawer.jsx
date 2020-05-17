@@ -1,15 +1,14 @@
 import React from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 
-const HorizontalDrawer = props => {
+const VerticalDrawer = props => {
   const ANCHOR = 'left';
 
   const [menuVisible, setMenuVisibility] = React.useState(false);
 
   const openMenu = (event) => {
-    // if (event && event.type === 'keydown' && )
-
     setMenuVisibility(true);
   }
 
@@ -19,8 +18,11 @@ const HorizontalDrawer = props => {
 
   return (
     <React.Fragment>
-      <Button onClick={openMenu}>MENU</Button>
+      <Button onClick={openMenu}>
+        <MenuIcon />
+      </Button>
       <SwipeableDrawer
+        className='menu'
         anchor={ANCHOR}
         open={menuVisible}
         onClose={closeMenu}
@@ -31,4 +33,4 @@ const HorizontalDrawer = props => {
     </React.Fragment>)
 }
 
-export default HorizontalDrawer;
+export default VerticalDrawer;
