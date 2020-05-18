@@ -10,7 +10,7 @@ import {
 const MenuLinks = props => {
   const buildLink = (item, idx) => (
     <ListItem key={idx} className='listItem' href={item.link} button>
-      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemIcon className='listIcon'>{item.icon}</ListItemIcon>
       <ListItemText primary={item.text}/>
     </ListItem>
   );

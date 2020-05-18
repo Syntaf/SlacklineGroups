@@ -1,4 +1,8 @@
 #menu {
+    .MuiDrawer-paper {
+        width: 300px;
+    }
+
     .header {
         height: 90px;
         display: flex;
@@ -7,7 +11,8 @@
         background-image: linear-gradient(
             to top,
             transparentize(rgb(83, 188, 226), 0.5),
-            transparentize(rgb(83, 188, 226), 0.5)), image-url('menu-header.png');
+            transparentize(rgb(83, 188, 226), 0.5)
+        ), image-url('menu-header.png');
 
         h3 {
             color: #fff;
@@ -16,10 +21,12 @@
     }
 
     .list {
-        padding: 0 32px;
-
-        .menuListItem {
+        .listItem {
             padding: 8px 32px;
+
+            .listIcon {
+                min-width: 35px;
+            }
         }
     }
 } 

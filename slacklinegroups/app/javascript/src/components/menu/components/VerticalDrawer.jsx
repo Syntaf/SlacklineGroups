@@ -23,6 +23,7 @@ const VerticalDrawer = props => {
       </Button>
       <SwipeableDrawer
         id='menu'
+        className='menu'
         anchor={ANCHOR}
         open={menuVisible}
         onClose={closeMenu}
