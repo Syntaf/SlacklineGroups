@@ -10,6 +10,7 @@ import CodeIcon from '@material-ui/icons/Code';
 
 import VerticalDrawer from './components/VerticalDrawer';
 import MenuLinks from './components/MenuLinks';
+import MenuHeader from './components/MenuHeader';
 
 const Menu = props => {
   const aboveDividerLinks = [
@@ -45,6 +46,7 @@ const Menu = props => {
 
   return (
     <VerticalDrawer>
+      <MenuHeader />
       <MenuLinks links={aboveDividerLinks} className='aboveDividerList'/>
       <Divider />
       <MenuLinks links={belowDividerLinks} className='belowDividerList'/>

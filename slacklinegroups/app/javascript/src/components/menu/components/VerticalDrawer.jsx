@@ -22,12 +22,11 @@ const VerticalDrawer = props => {
         <MenuIcon />
       </Button>
       <SwipeableDrawer
-        className='menu'
+        id='menu'
         anchor={ANCHOR}
         open={menuVisible}
         onClose={closeMenu}
-        onOpen={openMenu}
-      >
+        onOpen={openMenu}>
         {props.children}
       </SwipeableDrawer>
     </React.Fragment>)

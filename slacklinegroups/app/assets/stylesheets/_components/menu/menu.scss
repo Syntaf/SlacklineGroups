@@ -1,7 +1,25 @@
-.menu .menuList {
-  width: 300px;
+#menu {
+    .header {
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(
+            to top,
+            transparentize(rgb(83, 188, 226), 0.5),
+            transparentize(rgb(83, 188, 226), 0.5)), image-url('menu-header.png');
 
-  .menuListItem {
-    padding: 8px 32px;
-  }
-}
+        h3 {
+            color: #fff;
+            font-size: 26px;
+        }
+    }
+
+    .list {
+        padding: 0 32px;
+
+        .menuListItem {
+            padding: 8px 32px;
+        }
+    }
+} 
