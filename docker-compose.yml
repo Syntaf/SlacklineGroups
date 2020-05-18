@@ -1,6 +1,16 @@
 version: '3.7'
 
 services:
+  nginx:
+    build:
+      context: nginx/.
+    environment:
+      DOMAIN: localhost
+    depends_on:
+      - slacklinegroups
+    ports:
+      - '8020:8020'
+
   postgres:
     image: postgres
     environment:
@@ -27,7 +37,6 @@ services:
         GROUP_ID: "${GROUP_ID:-1000}"
     depends_on:
       - postgres
-      - sidekiq
     volumes:
       - type: bind
         source: ./slacklinegroups
@@ -36,15 +45,24 @@ services:
     env_file:
       - .env
 
-  nginx:
+  sidekiq:
     build:
-      context: nginx/.
-    environment:
-      DOMAIN: localhost
+      context: slacklinegroups/.
+      dockerfile: Dockerfile.development
+      args:
+        USER_ID: "${USER_ID:-1000}"
+        GROUP_ID: "${GROUP_ID:-1000}"
+    command: bundle exec sidekiq
     depends_on:
-      - slacklinegroups
-    ports:
-      - '8020:8020'
+      - postgres
+      - redis
+    volumes:
+      - type: bind
+        source: ./slacklinegroups
+        target: /opt/app/slacklinegroups
+      - /opt/app/slacklinegroups/tmp
+    env_file:
+      - .env
 
   webpacker:
     build:
@@ -63,26 +81,6 @@ services:
       - .env
     ports:
       - 3035:3035
-
-  sidekiq:
-    build:
-      context: slacklinegroups/.
-      dockerfile: Dockerfile.development
-      args:
-        USER_ID: "${USER_ID:-1000}"
-        GROUP_ID: "${GROUP_ID:-1000}"
-    command: bundle exec sidekiq
-    depends_on:
-      - postgres
-      - redis
-      - webpacker
-    volumes:
-      - type: bind
-        source: ./slacklinegroups
-        target: /opt/app/slacklinegroups
-      - /opt/app/slacklinegroups/tmp
-    env_file:
-      - .env
 
 volumes:
   slacklinegroups-postgres:
