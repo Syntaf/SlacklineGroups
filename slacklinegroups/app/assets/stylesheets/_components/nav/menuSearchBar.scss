@@ -1,0 +1,22 @@
+#MenuSearchBar {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 15px 10px 10px;
+    top: 10px;
+    left: calc(20px + 0.5rem);
+
+    button {
+        min-width: 40px;
+        margin-right: 10px;
+    }
+
+    .searchBar {
+        width: 350px;
+
+        input {
+            padding: 0;
+        }
+    }
+}
