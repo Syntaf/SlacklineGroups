@@ -1,12 +1,12 @@
 import React from 'react'
-import Menu from '../components/menu/Menu';
+
+import MenuSearchBar from '../components/nav/MenuSearchBar';
 
 const Home = props => {
     return (
-      <div className='home'>
-        <Menu />
-        <p>This is outside the menu</p>
-      </div>
+      <React.Fragment>
+        <MenuSearchBar />
+      </React.Fragment>
     );
 };
 

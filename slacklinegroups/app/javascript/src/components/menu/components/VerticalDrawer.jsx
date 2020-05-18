@@ -18,7 +18,7 @@ const VerticalDrawer = props => {
 
   return (
     <React.Fragment>
-      <Button onClick={openMenu}>
+      <Button onClick={openMenu} size='small'>
         <MenuIcon />
       </Button>
       <SwipeableDrawer
