@@ -1,11 +1,14 @@
+@import '../../vars';
+
 #MenuSearchBar {
     position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 10px 15px 10px 10px;
-    top: 10px;
-    left: calc(20px + 0.5rem);
+    top: 25px;
+    left: 25px;
+    width: 350px;
 
     button {
         min-width: 40px;
@@ -13,10 +16,14 @@
     }
 
     .searchBar {
-        width: 350px;
+        width: 100%;
 
         input {
             padding: 0;
         }
+    }
+
+    @media screen and (max-width: $mobileBreakpoint) {
+        width: 250px;
     }
 }
