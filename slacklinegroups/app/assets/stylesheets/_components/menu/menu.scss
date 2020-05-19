@@ -1,6 +1,7 @@
 #menu {
     .MuiDrawer-paper {
         width: 300px;
+        overflow: hidden;
     }
 
     .header {
@@ -27,6 +28,18 @@
             .listIcon {
                 min-width: 35px;
             }
+        }
+
+        &.belowDividerList {
+            flex-grow: 1;
+        }
+    }
+
+    .footer {
+        padding-bottom: 10px;
+
+        & > div {
+            text-align: center;
         }
     }
 } 
