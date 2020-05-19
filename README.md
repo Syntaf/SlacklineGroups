@@ -2,13 +2,7 @@
 
 Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch
 
-<img src="docs/img/rails.png" width="150">
-<img src="docs/img/react.png" width="50">
-<img src="docs/img/sidekiq.png" width="50">
-<img src="docs/img/redis.png" width="140">
-<img src="docs/img/sass.png" width="50">
-<img src="docs/img/psql.png" width="50">
-<img src="docs/img/elasticsearch.png" width="50">
+<img src="docs/img/rails.png" width="150"><img src="docs/img/react.png" width="50"><img src="docs/img/sidekiq.png" width="50"><img src="docs/img/redis.png" width="140"><img src="docs/img/sass.png" width="50"><img src="docs/img/psql.png" width="50"><img src="docs/img/elasticsearch.png" width="50">
 
 Table of contents:
   - [Getting Started](#Getting-Started)
