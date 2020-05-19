@@ -1,11 +1,20 @@
 # vigilant-broccoli ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg)
 
-Future home of slacklinegroups.com - Rails 6 + React + ElasticSearch
+Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch
 
-## To-Do
-----
-- Configure CI/CD
-- Production
+<img src="docs/img/rails.png" width="150">
+<img src="docs/img/react.png" width="50">
+<img src="docs/img/sidekiq.png" width="50">
+<img src="docs/img/redis.png" width="140">
+<img src="docs/img/sass.png" width="50">
+<img src="docs/img/psql.png" width="50">
+<img src="docs/img/elasticsearch.png" width="50">
+
+Table of contents:
+  - [Getting Started](#Getting-Started)
+  - [Contributing](#Contributing)
+    - [Coding Guidelines](#Coding-Guidelines)
+    - [Installing New Dependencies](#Installing-new-dependencies)
 
 ## Getting Started
 ----
@@ -39,3 +48,28 @@ Future home of slacklinegroups.com - Rails 6 + React + ElasticSearch
    ```
 
 Once running you can visit the app at https://localhost:8020
+
+## Contributing
+----
+
+If you're interested in helping out with the project, visit the [issues](https://github.com/Syntaf/vigilant-broccoli/issues) tab for some ideas on where to contribute first. When you're ready to start developing, create a fork and a branch on your fork which describes the work you'll be doing.
+
+### Coding Guidelines
+
+It's highly recommended that you have [Rubocop](https://github.com/rubocop-hq/rubocop) linting your code as you develop, as this project is based on those guidelines. The following rules are disabled on this projects linting spec:
+
+- `Style/HashSyntax` (Recommended but not required)
+- `Style/Documentation`
+- `Metrics/ClassLength`
+- `Metrics/AbcSize`
+- `Metrics/MethodLength`
+
+If you're using Visual Studio Code, you can get Rubocop by installing the [Ruby Solargraph](https://marketplace.visualstudio.com/items?itemName=castwide.solargraph) extension and enabling linting.
+
+### Installing New Dependencies
+
+If you're adding a new JS dependency to the project, you need to perform the following steps for it to install properly:
+
+  - Bring down all running containers
+  - On your host machine delete `node_modules` inside the `slacklinegroups` directory
+  - Run `docker-compose run slacklinegroups yarn add <dependency>`
