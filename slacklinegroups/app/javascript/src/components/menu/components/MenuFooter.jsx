@@ -3,23 +3,29 @@ import React from 'react';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 
+import GithubButton from 'react-github-btn';
+
 import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const MenuFooter = props => {
   return (
     <Grid className='footer' container spacing={3}>
       <Grid item xs>
-        <Link href="#">
+        <Link href="https://www.facebook.com/slacklinegroups" target="_blank" className="facebookLink">
           <FacebookIcon />
         </Link>
       </Grid>
       <Grid item xs>
-<a className="github-button" href="https://github.com/ntkme/github-buttons" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+        <GithubButton
+          href="https://github.com/Syntaf/vigilant-broccoli"
+          data-size="large"
+          data-icon="octicon-star"
+          aria-label="Star Syntaf/Slacklinegroups on Github"
+          data-show-count="true">Star</GithubButton>
       </Grid>
       <Grid item xs>
-        <Link href="#" color='inherit'>
+        <Link href="https://www.linkedin.com/in/grant-mercer-82a52097/" target="_blank" className="linkedinLink">
           <LinkedInIcon />
         </Link>
       </Grid>

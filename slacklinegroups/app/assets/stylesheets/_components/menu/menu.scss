@@ -36,10 +36,19 @@
     }
 
     .footer {
+        align-items: center;
         padding-bottom: 10px;
 
         & > div {
             text-align: center;
+
+            .facebookLink {
+                color: #1877F2;
+            }
+
+            .linkedinLink {
+                color: #0077B5;
+            }
         }
     }
 } 
