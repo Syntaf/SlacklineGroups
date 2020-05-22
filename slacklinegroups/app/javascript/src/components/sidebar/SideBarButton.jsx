@@ -8,12 +8,12 @@ import MailIcon from '@material-ui/icons/Mail';
 import HelpIcon from '@material-ui/icons/Help';
 import CodeIcon from '@material-ui/icons/Code';
 
-import VerticalDrawer from './components/VerticalDrawer';
-import MenuLinks from './components/MenuLinks';
-import MenuHeader from './components/MenuHeader';
-import MenuFooter from './components/MenuFooter';
+import SideBarDrawer from './SideBarDrawer';
+import SideBarLinks from './SideBarLinks';
+import SideBarHeader from './SideBarHeader';
+import SideBarFooter from './SideBarFooter';
 
-const Menu = props => {
+const SideBarButton = props => {
   const aboveDividerLinks = [
     {
       'text': 'Slackchat',
@@ -46,14 +46,16 @@ const Menu = props => {
   ];
 
   return (
-    <VerticalDrawer>
-      <MenuHeader />
-      <MenuLinks links={aboveDividerLinks} className='aboveDividerList'/>
+    <SideBarDrawer>
+      <SideBarHeader />
+
+      <SideBarLinks links={aboveDividerLinks} className='aboveDividerList'/>
       <Divider />
-      <MenuLinks links={belowDividerLinks} className='belowDividerList'/>
-      <MenuFooter />
-    </VerticalDrawer>
+      <SideBarLinks links={belowDividerLinks} className='belowDividerList'/>
+
+      <SideBarFooter />
+    </SideBarDrawer>
   );
 };
 
-export default Menu;
+export default SideBarButton;

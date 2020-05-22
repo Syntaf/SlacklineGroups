@@ -3,7 +3,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 
-const VerticalDrawer = props => {
+const SideBarDrawer = props => {
   const ANCHOR = 'left';
 
   const [menuVisible, setMenuVisibility] = React.useState(false);
@@ -22,8 +22,7 @@ const VerticalDrawer = props => {
         <MenuIcon />
       </Button>
       <SwipeableDrawer
-        id='menu'
-        className='menu'
+        className='sidebar'
         anchor={ANCHOR}
         open={menuVisible}
         onClose={closeMenu}
@@ -33,4 +32,4 @@ const VerticalDrawer = props => {
     </React.Fragment>)
 }
 
-export default VerticalDrawer;
+export default SideBarDrawer;

@@ -1,11 +1,11 @@
 import React from 'react'
 
-import MenuSearchBar from '../components/nav/MenuSearchBar';
+import MapNavigationBar from '../components/navigation/MapNavigationBar';
 
 const Home = props => {
     return (
       <React.Fragment>
-        <MenuSearchBar />
+        <MapNavigationBar />
       </React.Fragment>
     );
 };

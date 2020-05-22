@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MenuHeader = props => {
+const SideBarHeader = props => {
   return (
     <div className='header'>
       <h3>SlacklineGroups</h3>
@@ -8,4 +8,4 @@ const MenuHeader = props => {
   );
 };
 
-export default MenuHeader;
+export default SideBarHeader;

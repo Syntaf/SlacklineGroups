@@ -8,7 +8,7 @@ import GithubButton from 'react-github-btn';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
-const MenuFooter = props => {
+const SideBarFooter = props => {
   return (
     <Grid className='footer' container spacing={3}>
       <Grid item xs>
@@ -33,4 +33,4 @@ const MenuFooter = props => {
   )
 };
 
-export default MenuFooter;
+export default SideBarFooter;

@@ -3,11 +3,10 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
-  Divider
+  ListItemText
 } from '@material-ui/core';
 
-const MenuLinks = props => {
+const SideBarLinks = props => {
   const buildLink = (item, idx) => (
     <ListItem key={idx} className='listItem' href={item.link} button>
       <ListItemIcon className='listIcon'>{item.icon}</ListItemIcon>
@@ -24,4 +23,4 @@ const MenuLinks = props => {
   );
 };
 
-export default MenuLinks;
+export default SideBarLinks;
