@@ -25,21 +25,33 @@ Table of contents:
    $ docker volume create slacklinegroups-redis
    ```
 
-3. Build docker images
+3. Copy the example env file to create a default `.env`
+   ```bash
+   $ cp .env.example .env
+   ```
+
+4. Build docker images
    ```
    $ docker-compose build
    ```
 
-4. Create and migrate the database
-   ```bash
+5. Install javascript dependencies
+   ```
+   $ docker-compose run slacklinegroups yarn install --check-files
+   ```
+
+6. Create and migrate the database
+   ```
    $ docker-compose run slacklinegroups rails db:create
    $ docker-compose run slacklinegroups rails db:migrate
    ```
 
-5. Spin up the server and start contributing
+7. Spin up the server and start contributing
    ```
    $ docker-compose up
    ```
+
+   _Note:_ If you encounter a "permission denied" error while attempting to bring the webpacker container up, run `chmox +x slacklinegroups/bin/webpack-dev-server` and try again.
 
 Once running you can visit the app at https://localhost:8020
 
