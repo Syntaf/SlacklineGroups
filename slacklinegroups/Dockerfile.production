@@ -28,7 +28,10 @@ COPY . .
 RUN chown -R user:user /opt/app
 USER $USER_ID
 RUN yarn install --check-files
-RUN rails assets:precompile
+
+# Workaround to allow assets to be precompiled during build
+RUN SECRET_KEY_BASE=dummy rails assets:precompile
+
 VOLUME ["$INSTALL_PATH/public"]
 
 EXPOSE 3000
