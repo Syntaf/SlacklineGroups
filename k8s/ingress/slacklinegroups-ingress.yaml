@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: slacklinegroups-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - backend:
+          serviceName: slacklinegroups-1590440495
+          servicePort: 3000 
