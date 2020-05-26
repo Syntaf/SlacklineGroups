@@ -2,5 +2,8 @@ dependencies:
 - name: nginx-ingress
   repository: https://helm.nginx.com/stable
   version: 0.5.0
-digest: sha256:653ea925a7b413b7c832d3c65042fb725eba4d307d3c781f0198b92962566274
-generated: "2020-05-26T10:21:38.759553-07:00"
+- name: external-dns
+  repository: https://charts.bitnami.com/bitnami
+  version: 3.0.2
+digest: sha256:4c68ad1a80aa6598621df2e9e77890516eeffa517e6a512d1145365f8286a4cb
+generated: "2020-05-26T11:02:17.732813-07:00"

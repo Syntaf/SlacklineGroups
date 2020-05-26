@@ -78,3 +78,18 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+external-dns:
+  rbac:
+    create: true
+  
+  provider: digitalocean
+  
+  digitalocean:
+    apiToken: my-api-token
+  
+  interval: "1m"
+  
+  policy: sync
+  
+  domainFilters: [ 'gstwwtm.com' ]
