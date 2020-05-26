@@ -2,6 +2,11 @@ apiVersion: v2
 name: slacklinegroups
 description: A Helm chart for Kubernetes
 
+dependencies:
+  - name: nginx-ingress
+    version: "0.5.0"
+    repository: "https://helm.nginx.com/stable"
+
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives
