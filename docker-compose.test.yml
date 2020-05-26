@@ -22,10 +22,3 @@ services:
       - nginx
     env_file:
       - .env
-
-  nginx:
-    image: syntaf/slacklinegroups-nginx_test:latest
-    environment:
-      DOMAIN: localhost
-    ports:
-      - '8020:8020'

@@ -1,16 +1,6 @@
 version: '3.7'
 
 services:
-  nginx:
-    build:
-      context: nginx/.
-    environment:
-      DOMAIN: localhost
-    depends_on:
-      - slacklinegroups
-    ports:
-      - '8020:8020'
-
   postgres:
     image: postgres
     environment:
@@ -42,6 +32,8 @@ services:
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
       - /opt/app/slacklinegroups/tmp
+    ports:
+      - '3000:3000'
     env_file:
       - .env
 

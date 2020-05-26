@@ -53,7 +53,7 @@ Table of contents:
 
    _Note:_ If you encounter a "permission denied" error while attempting to bring the webpacker container up, run `chmox +x slacklinegroups/bin/webpack-dev-server` and try again.
 
-Once running you can visit the app at https://localhost:8020
+Once running you can visit the app at https://localhost:3000
 
 ## Contributing
 ----

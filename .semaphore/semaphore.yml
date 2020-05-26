@@ -13,11 +13,6 @@ blocks:
             - 'docker pull $DOCKER_USERNAME/slacklinegroups_test:latest || true'
             - 'docker build -t $DOCKER_USERNAME/slacklinegroups_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups_test:latest --build-arg RAILS_ENV=test --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
             - 'docker push $DOCKER_USERNAME/slacklinegroups_test:latest'
-        - name: Build nginx
-          commands:
-            - 'docker pull $DOCKER_USERNAME/slacklinegroups-nginx_test:latest || true'
-            - 'docker build -t $DOCKER_USERNAME/slacklinegroups-nginx_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups-nginx_test:latest ./nginx'
-            - 'docker push $DOCKER_USERNAME/slacklinegroups-nginx_test:latest'
       secrets:
         - name: dockerhub
       prologue:
