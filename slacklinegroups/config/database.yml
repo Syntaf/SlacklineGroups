@@ -83,4 +83,5 @@ production:
   <<: *default
   database: slacklinegroups_production
   username: slacklinegroups
+  host: <%= ENV['SLACKLINEGROUPS_DATABASE_HOST'] %>
   password: <%= ENV['SLACKLINEGROUPS_DATABASE_PASSWORD'] %>

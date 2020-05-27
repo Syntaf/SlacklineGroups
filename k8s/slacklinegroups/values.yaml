@@ -92,3 +92,6 @@ external-dns:
   policy: sync
   
   domainFilters: [ 'gstwwtm.com' ]
+
+postgresql:
+  postgresqlUsername: slacklinegroups
