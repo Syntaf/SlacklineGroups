@@ -8,7 +8,7 @@ image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1"
+  tag: "v2"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -95,3 +95,4 @@ external-dns:
 
 postgresql:
   postgresqlUsername: slacklinegroups
+  postgresqlDatabase: slacklinegroups-production
