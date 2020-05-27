@@ -34,13 +34,27 @@ $ docker push syntaf/slacklinegroups:vX
 
 ## Initial deployment to K8s
 
-If you're hosting this project on a brand new cluster, run the following command to install the project on the cluster:
+The steps below assume your `kubectl` tool is current set to your cluster context, and not the default local context. If you aren't sure what context you're in, run `kubectl config current-context`.
+
+If you're hosting this project on a brand new cluster, you'll want to first start with installing cert-manager for https support:
+
+```
+# Create custom resource definitions for certificate management
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.0/cert-manager.crds.yaml
+
+# Install cert-manager under a separate namespace
+# feature gate: https://github.com/jetstack/cert-manager/issues/2712
+$ helm install --set featureGates=ExperimentalCertificateControllers=true cert-manager --namespace cert-manager jetstack/cert-manager
+
+# Create issuers for cert challengers & management
+$ kubectl apply -f k8s/issuers
+```
+
+Afterwards, you can install the helm chart for slacklinegroups
 
 ```
 $ helm install -f secrets.yaml slacklinegroups k8s/slacklinegroups
 ```
-
-The above command assumes your `kubectl` tool is current set to your cluster context, and not the default local context. Run `kubectl config current-context` to verify, otherwise set the context correctly before running the above command.
 
 ## Upgrading previous deployments on K8s
 
