@@ -9,6 +9,9 @@ dependencies:
   - name: external-dns
     version: "3.0.2"
     repository: "https://charts.bitnami.com/bitnami"
+  - name: cert-manager
+    version: "0.15.0"
+    repository: "https://charts.jetstack.io"
 
 # A chart can be either an 'application' or a 'library' chart.
 #
