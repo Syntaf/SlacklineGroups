@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_190524) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "slug"
-    t.string "type"
+    t.string "gtype"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["slug"], name: "index_groups_on_slug", unique: true
