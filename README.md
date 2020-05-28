@@ -9,6 +9,8 @@ Table of contents:
   - [Contributing](#Contributing)
     - [Coding Guidelines](#Coding-Guidelines)
     - [Installing New Dependencies](#Installing-new-dependencies)
+  - [Deploying to K8s](/docs/DEPLOYING.md)
+  - [Monitoring Logs](/docs/LOGS.md)
 
 ## Getting Started
 ----
