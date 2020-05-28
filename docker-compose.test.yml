@@ -19,6 +19,5 @@ services:
     depends_on:
       - postgres
       - redis
-      - nginx
     env_file:
       - .env
