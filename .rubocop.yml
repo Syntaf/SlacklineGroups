@@ -9,6 +9,7 @@ AllCops:
     - 'script/**/*'
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - '**/Gemfile.lock'
   Include:
     - '**/*.rb'
     - '**/Gemfile'
