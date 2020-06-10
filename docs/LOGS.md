@@ -6,7 +6,12 @@ This project uses the [Loki](https://marketplace.digitalocean.com/apps/grafana-l
 To start, fetch the admin password needed for the grafana instance:
 
 ```
-kubectl get secret --namespace loki loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode
+# Linux
+$: kubectl get secret --namespace loki loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode
+
+# Windows
+PS C:\> kubectl get secret --namespace loki loki-grafana -o jsonpath="{.data.admin-password}"
+PS C:\> [Text.Encoding]::Utf8.GetString([Convert]::FromBase64String(<output-above>))
 ```
 
 Then, find the pod responsible for hosting the grafana instance
