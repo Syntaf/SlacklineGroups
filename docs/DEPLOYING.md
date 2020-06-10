@@ -36,7 +36,7 @@ $ docker push syntaf/slacklinegroups:vX
 
 The steps below assume your `kubectl` tool is current set to your cluster context, and not the default local context. If you aren't sure what context you're in, run `kubectl config current-context`.
 
-If you're hosting this project on a brand new cluster, you'll want to first start with installing cert-manager for https support:
+If you're hosting this project on a brand new cluster (digital ocean), you'll want to first start with installing cert-manager for https support:
 
 ```zsh
 # Create custom resource definitions for certificate management
