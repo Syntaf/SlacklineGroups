@@ -15,7 +15,7 @@ Before building a production image, determine a tag version to use. Ideally, you
 
 Once you know your tag version, run the following command to build a production image for slacklinegroups:
 
-```
+```zsh
 # replace vX with your version tag
 
 $ docker build -t syntaf/slacklinegroups:v2 \
@@ -38,9 +38,12 @@ The steps below assume your `kubectl` tool is current set to your cluster contex
 
 If you're hosting this project on a brand new cluster, you'll want to first start with installing cert-manager for https support:
 
-```
+```zsh
 # Create custom resource definitions for certificate management
 $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.0/cert-manager.crds.yaml
+
+# Add jetstack repository
+helm repo add jetstack https://charts.jetstack.io
 
 # Install cert-manager under a separate namespace
 # feature gate: https://github.com/jetstack/cert-manager/issues/2712
@@ -52,7 +55,7 @@ $ kubectl apply -f k8s/issuers
 
 Afterwards, you can install the helm chart for slacklinegroups
 
-```
+```zsh
 $ helm install -f secrets.yaml slacklinegroups k8s/slacklinegroups
 ```
 
@@ -60,6 +63,6 @@ $ helm install -f secrets.yaml slacklinegroups k8s/slacklinegroups
 
 Assuming you've named your release `slacklinegroups` like above, and that you've incremented the chart version in `slacklinegroups/Chart.yaml`, run the following command to rollout a new deployment:
 
-```
+```zsh
 $ helm upgrade -f secrets.yaml slacklinegroups k8s/slacklinegroups
 ```
