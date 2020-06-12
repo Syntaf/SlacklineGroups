@@ -21,8 +21,13 @@ ActiveRecord::Schema.define(version: 2020_05_31_175013) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -30,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_175013) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "slug"
-    t.string "type"
+    t.string "gtype"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["slug"], name: "index_groups_on_slug", unique: true
