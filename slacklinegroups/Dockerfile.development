@@ -15,10 +15,11 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg &
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
 
-# rails
+# bundler
 RUN gem install rails bundler
 WORKDIR /opt/app/slacklinegroups
 
+# gems & node_modules
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 COPY package.json package.json
@@ -34,7 +35,6 @@ RUN chown user:user tmp
 
 # start server
 RUN chown -R user:user /opt/app
-VOLUME ["$INSTALL_PATH/public"]
 USER $USER_ID
 
 EXPOSE 3000

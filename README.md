@@ -55,7 +55,7 @@ Table of contents:
 
    _Note:_ If you encounter a "permission denied" error while attempting to bring the webpacker container up, run `chmox +x slacklinegroups/bin/webpack-dev-server` and try again.
 
-Once running you can visit the app at https://localhost:3000
+Once running you can visit the app at https://localhost:3000 and starting developing!
 
 ## Contributing
 ----
@@ -79,5 +79,4 @@ If you're using Visual Studio Code, you can get Rubocop by installing the [Ruby 
 If you're adding a new JS dependency to the project, you need to perform the following steps for it to install properly:
 
   - Bring down all running containers
-  - On your host machine delete `node_modules` inside the `slacklinegroups` directory
   - Run `docker-compose run slacklinegroups yarn add <dependency>`
