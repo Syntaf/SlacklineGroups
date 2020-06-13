@@ -1,1 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: GroupOne
+  slug: one
+  gtype: :facebook_group
+
+two:
+  name: GroupTwo
+  slug: two
+  gtype: :facebook_group
