@@ -30,7 +30,7 @@ USER $USER_ID
 RUN yarn install --check-files
 
 # Workaround to allow assets to be precompiled during build
-RUN SECRET_KEY_BASE=dummy rails assets:precompile
+RUN SECRET_KEY_BASE=dummy rails assets:precompile RAILS_ENV=production
 
 VOLUME ["$INSTALL_PATH/public"]
 
