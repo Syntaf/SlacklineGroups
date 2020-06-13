@@ -1,0 +1,22 @@
+{
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "tmp": true,
+        "bin": true
+    },
+
+    // Solargraph configuration (When installed into the container)
+    "solargraph.useBundler": true,
+    "solargraph.completion": true,
+    "solargraph.diagnostics": true,
+    "solargraph.definitions": true,
+    "solargraph.formatting": true,
+    "solargraph.hover": true,
+    "solargraph.symbols": true,
+    "solargraph.rename": true,
+    "solargraph.folding": true,
+    "solargraph.references": true,
+    "solargraph.checkGemVersion": true
+}
