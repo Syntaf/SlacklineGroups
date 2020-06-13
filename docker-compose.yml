@@ -31,6 +31,7 @@ services:
       - type: bind
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
+      - /opt/app/slacklinegroups/node_modules
       - /opt/app/slacklinegroups/tmp
     ports:
       - '3000:3000'
@@ -53,6 +54,7 @@ services:
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
       - /opt/app/slacklinegroups/tmp
+      - /opt/app/slacklinegroups/node_modules
     env_file:
       - .env
 
@@ -68,7 +70,8 @@ services:
         source: ./slacklinegroups
         target: /opt/app/slacklinegroups
       - /opt/app/slacklinegroups/tmp
-    command: bin/webpack-dev-server
+      - /opt/app/slacklinegroups/node_modules
+    command: bash -c "rm -rf /opt/app/slacklinegroups/public/packs; bin/webpack-dev-server"
     env_file:
       - .env
     ports:

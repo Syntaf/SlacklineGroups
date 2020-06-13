@@ -17,10 +17,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
 
 # rails
 RUN gem install rails bundler
+WORKDIR /opt/app/slacklinegroups
+
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
-WORKDIR /opt/app/slacklinegroups
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+COPY .yarnrc .yarnrc
 RUN bundle install
+RUN yarn install
 
 # create tmp directory with user permissions to avoid it being created by root during
 # volume mounting. Each compose service receives it's own tmp directory to write to.
@@ -29,8 +34,8 @@ RUN chown user:user tmp
 
 # start server
 RUN chown -R user:user /opt/app
-USER $USER_ID
 VOLUME ["$INSTALL_PATH/public"]
+USER $USER_ID
 
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
