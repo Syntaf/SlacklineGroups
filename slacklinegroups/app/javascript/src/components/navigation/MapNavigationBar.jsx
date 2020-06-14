@@ -9,7 +9,7 @@ const MapNavigationBar = props => {
   return (
     <Card className="mapNavigationBar">
       <SideBarButton />
-      <SearchInput />
+      <SearchInput disabled={props.disabled} />
     </Card>
   );
 };

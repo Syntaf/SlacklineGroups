@@ -10,6 +10,7 @@ const SearchInput = props => {
     <TextField
       className='searchBar'
       label=''
+      disabled={props.disabled}
       placeholder='Name or Location'
       InputProps={{
         disableUnderline: true,

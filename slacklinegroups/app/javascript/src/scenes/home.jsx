@@ -8,6 +8,7 @@ import MapNavigationBar from '../components/navigation/MapNavigationBar';
 
 const Home = props => {
 
+  // Fetch groups asynchronously on page load
   useEffect(() => {
     const { dispatch } = props;
     dispatch(fetchMapGroups());
@@ -15,7 +16,7 @@ const Home = props => {
 
   return (
     <React.Fragment>
-      <MapNavigationBar />
+      <MapNavigationBar disabled={props.isFetching} />
       <Map />
     </React.Fragment>
   );
