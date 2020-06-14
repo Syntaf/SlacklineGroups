@@ -3,9 +3,11 @@
 class GroupsController < ApplicationController
   respond_to :json
 
+  # TO-DO: Consider reworking frontend to paginate this once the response
+  # size grows too large
   def index
-    group = Group.first
-    render json: group
+    groups = Group.includes(:info, :location).limit(params[:limit])
+    render json: groups
   end
 
   def show

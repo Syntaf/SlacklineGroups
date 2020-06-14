@@ -1,9 +1,20 @@
-# frozen_string_literal=> true
+# frozen_string_literal: true
 
 require 'test_helper'
 
 class GroupControllerTest < ActionDispatch::IntegrationTest
-  test 'Group JSON response' do
+  test 'get all groups' do
+    get groups_path
+    assert_response :success
+  end
+
+  test 'get groups with limit' do
+    get groups_path limit: 1
+    assert_response :success
+    assert_equal(1, response.parsed_body.length)
+  end
+
+  test 'show action JSON format' do
     get group_path groups(:one)
     assert_response :success
     assert_equal(
