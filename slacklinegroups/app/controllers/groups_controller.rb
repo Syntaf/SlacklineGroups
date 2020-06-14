@@ -7,4 +7,10 @@ class GroupsController < ApplicationController
     group = Group.first
     render json: group
   end
+
+  def show
+    group = Group.find(params[:id])
+
+    render json: group
+  end
 end
