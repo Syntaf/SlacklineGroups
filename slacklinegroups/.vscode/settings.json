@@ -7,6 +7,10 @@
         "bin": true
     },
 
+    // General configuration
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+
     // Solargraph configuration (When installed into the container)
     "solargraph.useBundler": true,
     "solargraph.completion": true,
