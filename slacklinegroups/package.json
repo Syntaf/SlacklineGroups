@@ -15,7 +15,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-github-btn": "^1.2.0",
+    "react-redux": "^7.2.0",
     "react_ujs": "^2.6.1",
+    "redux": "^4.0.5",
+    "redux-promise": "^0.6.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
