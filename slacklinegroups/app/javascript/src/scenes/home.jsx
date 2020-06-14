@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 
-import { fetchMapGroups } from '../actions';
+import { fetchMapGroups } from '../actions/map';
 
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
