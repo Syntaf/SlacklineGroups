@@ -18,5 +18,9 @@
     "solargraph.rename": true,
     "solargraph.folding": true,
     "solargraph.references": true,
-    "solargraph.checkGemVersion": true
+    "solargraph.checkGemVersion": true,
+
+    // Ruby Test Explorer
+    "rubyTestExplorer.testFramework": "minitest",
+    "rubyTestExplorer.logpanel": true
 }
