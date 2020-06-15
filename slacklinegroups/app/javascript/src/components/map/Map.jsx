@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 
+import MapConfigFactory from './MapConfigFactory';
+
 const Map = props => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
@@ -16,14 +18,22 @@ const Map = props => {
         zoom: 5
       });
 
-      map.on('load', () => {
-        setMap(map);
-        map.resize();
-      });
+      setMap(map);
     };
 
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map]);
+
+  useEffect(() => {
+    if (map && props.groups.length) {
+      map.on('load', () => {
+        map.resize();
+
+        map.addSource('groups', MapConfigFactory.createFeatures(props.groups));
+      });
+      
+    }
+  }, [map, props.groups]);
 
   return (
     <div id='map' ref={el => (mapContainer.current = el)}></div>
