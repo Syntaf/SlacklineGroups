@@ -17,7 +17,7 @@ const Home = props => {
   return (
     <React.Fragment>
       <MapNavigationBar disabled={props.isFetching} />
-      <Map />
+      <Map groups={props.groups} />
     </React.Fragment>
   );
 };

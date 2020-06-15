@@ -12,8 +12,6 @@ const SearchInput = props => {
     </InputAdornment>
   ) : null;
 
-  console.log(startAdornment);
-
   const endAdornment = (
     <InputAdornment position='end'>
       <SearchIcon />
