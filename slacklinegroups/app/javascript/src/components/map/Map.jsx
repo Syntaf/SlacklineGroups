@@ -34,8 +34,7 @@ const Map = props => {
         map.addSource('group-clusters', {
           ...features,
           'cluster': true,
-          'clusterMaxZoom': 100,
-          'clusterRadius': 25
+          'clusterRadius': MapConfigFactory.CLUSTER_SIZE
         });
   
         map.addLayer({
@@ -45,6 +44,17 @@ const Map = props => {
           'filter': ['has', 'point_count'],
           'paint': MapConfigFactory.getClusterPaintConfig()
         });
+
+        map.addLayer({
+          'id': 'cluster-labels',
+          'type': 'symbol',
+          'source': 'group-clusters',
+          'filter': ['has', 'point_count'],
+          'layout': {
+            'text-field': '{point_count_abbreviated}',
+            'text-size': 12
+          }
+        })
 
         map.addLayer({
           'id': 'points',

@@ -1,5 +1,6 @@
 export default {
   ACCESS_TOKEN: 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA',
+  CLUSTER_SIZE: 25,
 
   /**
    * Converts an array of slackline groups to Mapbox features
@@ -48,11 +49,11 @@ export default {
         'property': 'point_count',
         'type': 'interval',
         'stops': [
-          [0, 25],
-          [5, 25],
-          [10, 25],
-          [25, 25],
-          [50, 25],
+          [0, this.CLUSTER_SIZE],
+          [5, this.CLUSTER_SIZE + 5],
+          [10, this.CLUSTER_SIZE + 10],
+          [25, this.CLUSTER_SIZE + 15],
+          [50, this.CLUSTER_SIZE + 20],
         ]
       }
     };
