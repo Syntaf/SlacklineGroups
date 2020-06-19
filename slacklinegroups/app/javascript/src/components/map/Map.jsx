@@ -30,19 +30,18 @@ const Map = props => {
         map.resize();
 
         const features = MapConfigFactory.createFeatures(groups);
-  
-        map.addSource('group-points', features);
+
         map.addSource('group-clusters', {
           ...features,
           'cluster': true,
-          'clusterMaxZoom': 5,
+          'clusterMaxZoom': 100,
           'clusterRadius': 25
         });
   
         map.addLayer({
           'id': 'clusters',
           'type': 'circle',
-          'source': 'group-points',
+          'source': 'group-clusters',
           'filter': ['has', 'point_count'],
           'paint': MapConfigFactory.getClusterPaintConfig()
         });
@@ -50,8 +49,8 @@ const Map = props => {
         map.addLayer({
           'id': 'points',
           'type': 'symbol',
-          'source': 'group-points',
-          'filter': ['all', ['!has', 'point_count'], ['==', 'is_regional', false]],
+          'source': 'group-clusters',
+          'filter': ['!', ['has', 'point_count']],
           'layout': {
             'icon-image': 'slackgroup',
             'icon-size': 1
