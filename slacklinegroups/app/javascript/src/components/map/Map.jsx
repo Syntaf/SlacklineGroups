@@ -8,14 +8,14 @@ const Map = props => {
   const mapContainer = useRef(null);
 
   useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA';
-
     const initializeMap = ({ setMap, mapContainer }) => {
+      mapboxgl.accessToken = MapConfigFactory.ACCESS_TOKEN;
+
       const map = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [0, 0],
-        zoom: 5
+        style: 'mapbox://styles/syntaf/cjcwnx5yv0dx32sry8tx10buw',
+        center: [0, 35],
+        zoom: 1.75
       });
 
       setMap(map);
@@ -25,14 +25,42 @@ const Map = props => {
   }, [map]);
 
   useEffect(() => {
-    if (map && props.groups.length) {
-      map.on('load', () => {
+    const addGroupsToMapFunctionFactory = (groups, map) => {
+      return () => {
         map.resize();
 
-        map.addSource('groups', MapConfigFactory.createFeatures(props.groups));
-      });
-      
+        const features = MapConfigFactory.createFeatures(groups);
+  
+        map.addSource('group-points', features);
+        map.addSource('group-clusters', {
+          ...features,
+          'cluster': true,
+          'clusterMaxZoom': 5,
+          'clusterRadius': 25
+        });
+  
+        map.addLayer({
+          'id': 'clusters',
+          'type': 'circle',
+          'source': 'group-points',
+          'filter': ['has', 'point_count'],
+          'paint': MapConfigFactory.getClusterPaintConfig()
+        });
+
+        map.addLayer({
+          'id': 'points',
+          'type': 'symbol',
+          'source': 'group-points',
+          'filter': ['all', ['!has', 'point_count'], ['==', 'is_regional', false]],
+          'layout': {
+            'icon-image': 'slackgroup',
+            'icon-size': 1
+          }
+        })
+      };
     }
+
+    if (map && props.groups.length) map.on('load', addGroupsToMapFunctionFactory(props.groups, map));
   }, [map, props.groups]);
 
   return (

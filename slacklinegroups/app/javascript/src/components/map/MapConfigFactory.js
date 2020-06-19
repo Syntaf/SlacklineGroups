@@ -1,4 +1,6 @@
 export default {
+  ACCESS_TOKEN: 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA',
+
   /**
    * Converts an array of slackline groups to Mapbox features
    *
@@ -8,7 +10,8 @@ export default {
     const features = groups.map((group) => ({
         'type': 'Feature',
         'properties': {
-          'title': group.name
+          'title': group.name,
+          'is_regional': group.info.is_regional
         },
         'geometry': {
           'type': 'Point',
