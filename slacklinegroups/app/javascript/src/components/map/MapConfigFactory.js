@@ -16,8 +16,8 @@ export default {
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            group.location.lat,
-            group.location.lon
+            group.location.lon,
+            group.location.lat
           ]
         }
     }));
@@ -48,11 +48,11 @@ export default {
         'property': 'point_count',
         'type': 'interval',
         'stops': [
-          [0, 15],
-          [5, 20],
-          [10, 20],
-          [25, 30],
-          [50, 30],
+          [0, 25],
+          [5, 25],
+          [10, 25],
+          [25, 25],
+          [50, 25],
         ]
       }
     };
