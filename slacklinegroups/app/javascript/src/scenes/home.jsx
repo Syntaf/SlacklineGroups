@@ -6,18 +6,20 @@ import { fetchMapGroups } from '../actions/map';
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
 
-const Home = props => {
+const Home = ({dispatch, isFetching, groups}) => {
 
-  // Fetch groups asynchronously on page load
   useEffect(() => {
-    const { dispatch } = props;
-    dispatch(fetchMapGroups());
+    function fetchGroupsForMap() {
+      dispatch(fetchMapGroups());
+    }
+
+    fetchGroupsForMap();
   }, []);
 
   return (
     <React.Fragment>
-      <MapNavigationBar disabled={props.isFetching} />
-      <Map groups={props.groups} />
+      <MapNavigationBar disabled={isFetching} />
+      <Map groups={groups} />
     </React.Fragment>
   );
 };
