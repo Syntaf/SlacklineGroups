@@ -38,8 +38,8 @@ export default {
         'property': 'point_count',
         'type': 'interval',
         'stops': [
-          [0, '#E9E308'],
-          [5, '#BD64DB'],
+          [0, '#C3C6C9'],
+          [5, '#C3C6C9'],
           [10, '#1B8328'],
           [25, '#E96619'],
           [50, '#E9160C'],
@@ -50,10 +50,10 @@ export default {
         'type': 'interval',
         'stops': [
           [0, this.CLUSTER_SIZE],
-          [5, this.CLUSTER_SIZE + 5],
-          [10, this.CLUSTER_SIZE + 10],
-          [25, this.CLUSTER_SIZE + 15],
-          [50, this.CLUSTER_SIZE + 20],
+          [5, this.CLUSTER_SIZE],
+          [10, this.CLUSTER_SIZE],
+          [25, this.CLUSTER_SIZE],
+          [50, this.CLUSTER_SIZE],
         ]
       }
     };
