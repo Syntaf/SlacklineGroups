@@ -6,10 +6,10 @@ import Home from '../scenes/home';
 
 const store = configureStore();
 
-const HomeContainer = () => {
+const HomeContainer = ({ assets }) => {
     return (
         <Provider store={store}>
-            <Home />
+            <Home assets={assets} />
         </Provider>
     );
 }

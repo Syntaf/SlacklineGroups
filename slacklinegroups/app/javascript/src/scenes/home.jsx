@@ -6,7 +6,7 @@ import { fetchMapGroups } from '../actions/map';
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
 
-const Home = ({dispatch, isFetching, groups}) => {
+const Home = ({dispatch, isFetching, groups, assets}) => {
 
   useEffect(() => {
     function fetchGroupsForMap() {
