@@ -1,7 +1,27 @@
+import mapboxgl from "mapbox-gl";
+
 export default {
   ACCESS_TOKEN: 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA',
+  STYLE_URL: 'mapbox://styles/syntaf/ckbo1tki51go31ip7wnf2t5rm',
   CLUSTER_SIZE: 35,
   SOURCE_ID: 'group-clusters',
+
+  /**
+   * Create an initial Mapbox object, passing a reference to a DOM element to be
+   * used as a container for the map
+   *
+   * @param {React.MutableRefObject} containerRef 
+   */
+  createMap (containerRef) {
+    mapboxgl.accessToken = this.ACCESS_TOKEN;
+
+    return new mapboxgl.Map({
+      container: containerRef.current,
+      style: this.STYLE_URL,
+      center: [0, 35],
+      zoom: 1.75
+    })
+  },
 
   /**
    * Initializes the map source with groups fetched during page-load. Additionally
