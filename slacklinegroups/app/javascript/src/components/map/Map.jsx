@@ -28,46 +28,13 @@ const Map = ({ groups }) => {
 
   useEffect(() => {
     const addGroupsToMap = (groups, map) => {
-      const features = MapConfigFactory.createFeatures(groups);
+      
+      MapConfigFactory
+        .initializeSource(map, groups)
+        .createClusters(map)
+        .createClusterLabels(map)
+        .createGroupPoints(map);
 
-      map.addSource('group-clusters', {
-        ...features,
-        'cluster': true,
-        'clusterRadius': MapConfigFactory.CLUSTER_SIZE
-      });
-
-      map.addLayer({
-        'id': 'clusters',
-        'type': 'circle',
-        'source': 'group-clusters',
-        'filter': ['has', 'point_count'],
-        'paint': MapConfigFactory.getClusterPaintConfig()
-      });
-
-      map.addLayer({
-        'id': 'cluster-labels',
-        'type': 'symbol',
-        'source': 'group-clusters',
-        'filter': ['has', 'point_count'],
-        'layout': {
-          'text-field': '{point_count_abbreviated}',
-          'text-size': 14
-        },
-        'paint': {
-          'text-color': '#272727'
-        }
-      })
-
-      map.addLayer({
-        'id': 'points',
-        'type': 'symbol',
-        'source': 'group-clusters',
-        'filter': ['!', ['has', 'point_count']],
-        'layout': {
-          'icon-image': 'slackgroup',
-          'icon-size': 1
-        }
-      })
     };
     if (map && groups.length) addGroupsToMap(groups, map);
   }, [map, groups]);
