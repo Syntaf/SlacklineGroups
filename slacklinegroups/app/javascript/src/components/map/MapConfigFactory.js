@@ -1,6 +1,6 @@
 export default {
   ACCESS_TOKEN: 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA',
-  CLUSTER_SIZE: 25,
+  CLUSTER_SIZE: 35,
 
   /**
    * Converts an array of slackline groups to Mapbox features
@@ -34,15 +34,18 @@ export default {
 
   getClusterPaintConfig () {
     return {
+      'circle-opacity': 0.8,
+      'circle-stroke-color': '#fff',
+      'circle-stroke-width': 2,
       'circle-color': {
         'property': 'point_count',
         'type': 'interval',
         'stops': [
-          [0, '#C3C6C9'],
-          [5, '#C3C6C9'],
-          [10, '#1B8328'],
-          [25, '#E96619'],
-          [50, '#E9160C'],
+          [0, '#D9F3EC'],
+          [5, '#E2F2DA'],
+          [10, '#E7D1CD'],
+          [25, '#D3C0DB'],
+          [50, '#B3CFCF'],
         ]
       },
       'circle-radius': {
