@@ -77,8 +77,9 @@ export default {
       'source': this.SOURCE_ID,
       'filter': ['has', 'point_count'],
       'layout': {
+        'text-font': ['League Mono Regular'],
         'text-field': '{point_count_abbreviated}',
-        'text-size': 14
+        'text-size': 16
       },
       'paint': {
         'text-color': '#272727'
