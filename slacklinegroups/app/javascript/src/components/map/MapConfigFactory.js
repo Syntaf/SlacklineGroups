@@ -5,6 +5,7 @@ export default {
   STYLE_URL: 'mapbox://styles/syntaf/ckbo1tki51go31ip7wnf2t5rm',
   CLUSTER_SIZE: 35,
   SOURCE_ID: 'group-clusters',
+  MARKER_LAYER: 'markers',
 
   /**
    * Create an initial Mapbox object, passing a reference to a DOM element to be
@@ -115,9 +116,9 @@ export default {
    *
    * @param {Object} map
    */
-  createGroupPoints (map) {
+  createGroupMarkers (map) {
     map.addLayer({
-      'id': 'points',
+      'id': 'markers',
       'type': 'symbol',
       'source': 'group-clusters',
       'filter': ['!', ['has', 'point_count']],

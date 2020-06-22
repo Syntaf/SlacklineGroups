@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import MapConfigFactory from './MapConfigFactory';
+import MapInteractions from './MapInteractions';
 
 const Map = ({ groups }) => {
   const [map, setMap] = useState(null);
@@ -26,7 +27,11 @@ const Map = ({ groups }) => {
         .initializeSource(map, groups)
         .createClusters(map)
         .createClusterLabels(map)
-        .createGroupPoints(map);
+        .createGroupMarkers(map)
+      
+      MapInteractions.with(map)
+        .handleMarkerClicks()
+        .handleClusterClicks();
     };
 
     if (map && groups.length) addGroupsToMap(groups, map);
