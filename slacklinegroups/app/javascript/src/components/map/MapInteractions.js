@@ -16,6 +16,8 @@ export default {
   handleMarkerClicks () {
     if (!this.map) throw new Error('Use with() before calling handlers');
 
+    this.map.on('mouseenter', MapConfigFactory.MARKER_LAYER, this.setCursorToPointer.bind(this));
+    this.map.on('mouseleave', MapConfigFactory.MARKER_LAYER, this.resetCursor.bind(this));
     this.map.on('click', MapConfigFactory.MARKER_LAYER, this.createPopupOnClick.bind(this));
 
     return this;
@@ -33,8 +35,8 @@ export default {
   handleClusterClicks () {
     if (!this.map) throw new Error('Use with() before calling handlers');
 
-    this.map.on('mouseenter', MapConfigFactory.CLUSTER_LAYER, () => { this.map.getCanvas().style.cursor = 'pointer'; });
-    this.map.on('mouseleave', MapConfigFactory.CLUSTER_LAYER, () => { this.map.getCanvas().style.cursor = ''; });
+    this.map.on('mouseenter', MapConfigFactory.CLUSTER_LAYER, this.setCursorToPointer.bind(this));
+    this.map.on('mouseleave', MapConfigFactory.CLUSTER_LAYER, this.resetCursor.bind(this));
     this.map.on('click', MapConfigFactory.CLUSTER_LAYER, this.zoomToCluster.bind(this));
 
     return this;
@@ -49,5 +51,13 @@ export default {
       center: clickEvent.lngLat,
       zoom: this.map.getZoom() + 2
     });
-  }
+  },
+
+  setCursorToPointer () {
+    this.map.getCanvas().style.cursor = 'pointer';
+  },
+
+  resetCursor () {
+    this.map.getCanvas().style.cursor = '';
+  },
 };
