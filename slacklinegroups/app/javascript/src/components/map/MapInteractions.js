@@ -31,6 +31,23 @@ export default {
   },
 
   handleClusterClicks () {
+    if (!this.map) throw new Error('Use with() before calling handlers');
+
+    this.map.on('mouseenter', MapConfigFactory.CLUSTER_LAYER, () => { this.map.getCanvas().style.cursor = 'pointer'; });
+    this.map.on('mouseleave', MapConfigFactory.CLUSTER_LAYER, () => { this.map.getCanvas().style.cursor = ''; });
+    this.map.on('click', MapConfigFactory.CLUSTER_LAYER, this.zoomToCluster.bind(this));
+
     return this;
   },
+
+  zoomToCluster (clickEvent) {
+    console.log('hm?');
+    const pointCount = clickEvent.features[0].properties.point_count;
+    const cords = clickEvent.features[0].geometry.coordinates;
+
+    this.map.flyTo({
+      center: clickEvent.lngLat,
+      zoom: this.map.getZoom() + 2
+    });
+  }
 };

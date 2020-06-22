@@ -5,6 +5,7 @@ export default {
   STYLE_URL: 'mapbox://styles/syntaf/ckbo1tki51go31ip7wnf2t5rm',
   CLUSTER_SIZE: 35,
   SOURCE_ID: 'group-clusters',
+  CLUSTER_LAYER: 'clusters',
   MARKER_LAYER: 'markers',
 
   /**
