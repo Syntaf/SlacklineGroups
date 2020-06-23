@@ -142,6 +142,8 @@ export default {
         'type': 'Feature',
         'properties': {
           'title': group.name,
+          'type': this.formatGroupType(group.type),
+          'link': group.info.link,
           'is_regional': group.info.is_regional
         },
         'geometry': {
@@ -160,5 +162,9 @@ export default {
         'features': features
       }
     }
+  },
+
+  formatGroupType (type) {
+    return type.replace('_', ' ');
   }
 };

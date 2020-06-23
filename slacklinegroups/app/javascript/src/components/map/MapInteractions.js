@@ -24,11 +24,12 @@ export default {
   },
 
   createPopupOnClick(clickEvent) {
-    const cords = clickEvent.features[0].geometry.coordinates;
+    const cords = clickEvent.features[0].geometry.coordinates; 
+    const {title, type, link} = clickEvent.features[0].properties;
 
-    new mapboxGl.Popup()
+    new mapboxGl.Popup({ offset: 25, maxWidth: '440px' })
       .setLngLat(cords)
-      .setHTML(ReactDOMServer.renderToString(< GroupTile />))
+      .setHTML(ReactDOMServer.renderToString(< GroupTile groupName={title} groupType={type} link={link} />))
       .addTo(this.map);
   },
 
@@ -43,7 +44,6 @@ export default {
   },
 
   zoomToCluster (clickEvent) {
-    console.log('hm?');
     const pointCount = clickEvent.features[0].properties.point_count;
     const cords = clickEvent.features[0].geometry.coordinates;
 
