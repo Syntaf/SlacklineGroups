@@ -18,7 +18,7 @@ const GroupTile = ({ groupName, groupType, link}) => {
           <p>Images coming soon</p>
         </div>
         <div className="links">
-          <a className="groupLink" href={link}>Go to Group</a>
+          <a className="groupLink" target="_blank" href={link}>Go to Group</a>
           <a href="">Report an issue</a>
         </div>
       </div>

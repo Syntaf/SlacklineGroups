@@ -27,7 +27,7 @@ export default {
     const cords = clickEvent.features[0].geometry.coordinates; 
     const {title, type, link} = clickEvent.features[0].properties;
 
-    new mapboxGl.Popup({ offset: 25, maxWidth: '440px' })
+    new mapboxGl.Popup({ offset: 15, maxWidth: '440px' })
       .setLngLat(cords)
       .setHTML(ReactDOMServer.renderToString(< GroupTile groupName={title} groupType={type} link={link} />))
       .addTo(this.map);
@@ -60,4 +60,6 @@ export default {
   resetCursor () {
     this.map.getCanvas().style.cursor = '';
   },
+
+  
 };
