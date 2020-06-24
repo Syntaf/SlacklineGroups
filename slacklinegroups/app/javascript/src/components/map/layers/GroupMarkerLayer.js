@@ -6,7 +6,7 @@ class GroupMarkerLayer extends Layer
 
   config (sourceId) {
     return {
-      'id': 'markers',
+      'id': this.layerId,
       'type': 'symbol',
       'source': sourceId,
       'filter': ['!', ['has', 'point_count']],

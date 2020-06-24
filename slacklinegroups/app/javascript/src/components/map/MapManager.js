@@ -1,5 +1,3 @@
-import mapboxgl from 'mapbox-gl';
-
 import ClusterLayer from './layers/ClusterLayer';
 import ClusterLabelLayer from './layers/ClusterLabelLayer';
 import GroupMarkerLayer from './layers/GroupMarkerLayer';
@@ -10,8 +8,6 @@ import GroupMarkerLayer from './layers/GroupMarkerLayer';
  */
 class MapManager
 {
-  get ACCESS_TOKEN() { return 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA'; }
-  get STYLE_URL() { return 'mapbox://styles/syntaf/ckbo1tki51go31ip7wnf2t5rm'; }
   get SOURCE_ID() { return 'group-clusters'; }
 
   /**
@@ -36,8 +32,8 @@ class MapManager
     this.sourceManager.createSource(this.SOURCE_ID, groups);
 
     this.layerManager.addLayer(this.SOURCE_ID, new ClusterLayer());
-    this.layerManager.addLayer(this.SOURCE_ID, new ClusterLabelLayer());
-    this.layerManager.addLayer(this.SOURCE_ID, new GroupMarkerLayer());
+    // this.layerManager.addLayer(this.SOURCE_ID, new ClusterLabelLayer());
+    // this.layerManager.addLayer(this.SOURCE_ID, new GroupMarkerLayer());
   }
 
 

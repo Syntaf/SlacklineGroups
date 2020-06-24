@@ -4,10 +4,11 @@ import ClusterSourceManager from '../managers/ClusterSourceManager';
 class ClusterLayer extends Layer
 {
   get layerId () { return 'cluster-layer'; }
+  get subscribedEvents () { return [ Layer.CLICK, Layer.ZOOMEND ]; }
 
   config (sourceId) {
     return {
-      'id': 'clusters',
+      'id': this.layerId,
       'type': 'circle',
       'source': sourceId,
       'filter': ['has', 'point_count'],
@@ -38,6 +39,18 @@ class ClusterLayer extends Layer
           ]
         }
       }
+    }
+  }
+
+  handleClick (map, event) {
+    map.flyTo({
+      center: [0, 0]
+    }, {source: this.layerId});
+  }
+
+  handleZoomEnd(map, event) {
+    if (event.source === this.layerId) {
+      console.log('hello there!');
     }
   }
 }

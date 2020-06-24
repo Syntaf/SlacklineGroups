@@ -6,7 +6,7 @@ class ClusterLabelLayer extends Layer
 
   config(sourceId) {
     return {
-      'id': 'cluster-labels',
+      'id': this.layerId,
       'type': 'symbol',
       'source': sourceId,
       'filter': ['has', 'point_count'],
