@@ -4,6 +4,9 @@ import MapManager from './MapManager';
 import ClusterSourceManager from './managers/ClusterSourceManager';
 import LayerManager from './managers/LayerManager';
 
+/**
+ * Factory class for creating instances of MapManager to be used in a react component
+ */
 class MapManagerFactory
 {
   static get ACCESS_TOKEN() { return 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA'; }

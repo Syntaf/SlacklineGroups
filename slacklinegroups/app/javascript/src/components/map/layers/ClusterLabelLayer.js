@@ -1,5 +1,9 @@
 import Layer from './Layer';
 
+/**
+ * Layer responsible for showing the count of groups within
+ * any given cluster.
+ */
 class ClusterLabelLayer extends Layer
 {
   get layerId () { return 'cluster-label-layer'; }

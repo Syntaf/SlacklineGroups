@@ -1,11 +1,26 @@
+/**
+ * Manages the creation of any cluster sources for the map. Transforms
+ * basic group objects to map features that will belong to the source
+ * being created
+ */
 class ClusterSourceManager
 {
   static get CLUSTER_SIZE () { return 35; }
 
+  /**
+   * @param {mapboxgl.Map} map 
+   */
   constructor(map) {
     this.map = map;
   }
 
+  /**
+   * Creates a source using a collection of groups and uses sourceId as
+   * the unique identifier
+   *
+   * @param {string} sourceId 
+   * @param {Array} groups a collection of groups fetched from the /groups endpoint
+   */
   createSource(sourceId, groups) {
     this.map.addSource(sourceId, {
       type: 'geojson',

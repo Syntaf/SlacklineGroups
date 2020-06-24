@@ -2,6 +2,9 @@ import ClusterLayer from './layers/ClusterLayer';
 import ClusterLabelLayer from './layers/ClusterLabelLayer';
 import GroupMarkerLayer from './layers/GroupMarkerLayer';
 
+import ClusterSourceManager from './managers/ClusterSourceManager';
+import LayerManager from './managers/LayerManager';
+
 /**
  * Manages the creation of various visualization layers on the map as well as all
  * interactions that may occur within the map's canvas.
@@ -14,6 +17,8 @@ class MapManager
    * Initializes a map manager instance for creating group layers and handling interactions
    *
    * @param {React.MutableRefObject} mapContainer 
+   * @param {ClusterSourceManager} sourceManager
+   * @param {LayerManager} layerManager
    */
   constructor(map, sourceManager, layerManager) {
     this.map = map;
