@@ -1,12 +1,16 @@
 import Layer from "./Layer";
 import ClusterSourceManager from '../managers/ClusterSourceManager';
 
+/**
+ * Layer responsible for showing clusters of slackline groups and handling
+ * interactions made on the clusters (specifically, clicks)
+ */
 class ClusterLayer extends Layer
 {
   get layerId () { return 'cluster-layer'; }
-  get subscribedEvents () { return [ Layer.CLICK, Layer.ZOOMEND ]; }
+  get subscribedEvents () { return [ Layer.CLICK ]; }
 
-  config (sourceId) {
+  config(sourceId) {
     return {
       'id': this.layerId,
       'type': 'circle',
@@ -44,14 +48,9 @@ class ClusterLayer extends Layer
 
   handleClick (map, event) {
     map.flyTo({
-      center: [0, 0]
-    }, {source: this.layerId});
-  }
-
-  handleZoomEnd(map, event) {
-    if (event.source === this.layerId) {
-      console.log('hello there!');
-    }
+      center: event.lngLat,
+      zoom: map.getZoom() + 1.75
+    });
   }
 }
 
