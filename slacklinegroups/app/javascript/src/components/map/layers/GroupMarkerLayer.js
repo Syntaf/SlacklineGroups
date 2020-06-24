@@ -3,6 +3,7 @@ import Layer from './Layer';
 class GroupMarkerLayer extends Layer
 {
   get layerId () { return 'group-marker-layer'; }
+  get subscribedEvents () { return []; }
 
   config (sourceId) {
     return {

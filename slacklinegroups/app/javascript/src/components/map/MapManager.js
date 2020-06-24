@@ -32,8 +32,8 @@ class MapManager
     this.sourceManager.createSource(this.SOURCE_ID, groups);
 
     this.layerManager.addLayer(this.SOURCE_ID, new ClusterLayer());
-    // this.layerManager.addLayer(this.SOURCE_ID, new ClusterLabelLayer());
-    // this.layerManager.addLayer(this.SOURCE_ID, new GroupMarkerLayer());
+    this.layerManager.addLayer(this.SOURCE_ID, new ClusterLabelLayer());
+    this.layerManager.addLayer(this.SOURCE_ID, new GroupMarkerLayer());
   }
 
 

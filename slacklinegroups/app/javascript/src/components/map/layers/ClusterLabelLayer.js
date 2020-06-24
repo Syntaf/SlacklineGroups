@@ -3,6 +3,7 @@ import Layer from './Layer';
 class ClusterLabelLayer extends Layer
 {
   get layerId () { return 'cluster-label-layer'; }
+  get subscribedEvents () { return []; }
 
   config(sourceId) {
     return {
