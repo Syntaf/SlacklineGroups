@@ -1,15 +1,12 @@
 @import '../../vars';
 
 .mapNavigationBar {
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 10px 15px 10px 10px;
-    top: 25px;
-    left: 25px;
     width: 350px;
-    z-index: 2;
 
     button {
         min-width: 40px;

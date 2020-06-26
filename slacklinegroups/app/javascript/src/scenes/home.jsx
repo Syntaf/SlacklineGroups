@@ -6,6 +6,7 @@ import { fetchMapGroups } from '../actions/map';
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
 import MapManagerFactory from '../lib/map/MapManagerFactory';
+import MapControlsContainer from '../components/map/MapControlsContainer';
 
 const Home = ({dispatch, isFetching, groups, assets}) => {
   const mapContainer = useRef(null);
@@ -21,10 +22,12 @@ const Home = ({dispatch, isFetching, groups, assets}) => {
   useEffect(() => { if (mapManager && groups.length) mapManager.visualize(groups); }, [mapManager, groups]);
 
   return (
-    <React.Fragment>
-      <MapNavigationBar disabled={isFetching} />
-      <Map ref={mapContainer} />
-    </React.Fragment>
+    <Map ref={mapContainer} >
+      <MapControlsContainer>
+        <MapNavigationBar disabled={isFetching} />
+        <div class="homeButton"></div>
+      </MapControlsContainer>
+    </Map>
   );
 };
 
