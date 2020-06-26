@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux';
-
 import { fetchMapGroups } from '../actions/map';
+
+import { Zoom, Slide } from '@material-ui/core';
 
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
 import MapManagerFactory from '../lib/map/MapManagerFactory';
 import MapControlsContainer from '../components/map/MapControlsContainer';
+import MapResetButton from '../components/navigation/MapResetButton';
 
 const Home = ({dispatch, isFetching, groups, assets}) => {
   const mapContainer = useRef(null);
@@ -25,7 +27,7 @@ const Home = ({dispatch, isFetching, groups, assets}) => {
     <Map ref={mapContainer} >
       <MapControlsContainer>
         <MapNavigationBar disabled={isFetching} />
-        <div class="homeButton"></div>
+        <MapResetButton map={mapManager} />
       </MapControlsContainer>
     </Map>
   );
