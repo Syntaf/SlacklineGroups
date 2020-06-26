@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 
 import MapManager from './MapManager';
-import ClusterSourceManager from './managers/ClusterSourceManager';
-import LayerManager from './managers/LayerManager';
+import ClusterSourceManager from './ClusterSourceManager';
+import LayerManager from './LayerManager';
 
 /**
  * Factory class for creating instances of MapManager to be used in a react component

@@ -1,4 +1,4 @@
-import Layer from './../layers/Layer';
+import Layer from './layers/Layer';
 
 /**
  * Manages adding a given {Layer} instance to a map and hooking

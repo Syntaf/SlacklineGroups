@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 
 import mapboxgl from 'mapbox-gl';
-import GroupTile from '../GroupTile';
+import GroupTile from '../../../components/map/GroupTile';
 
 /**
  * Layer responsible for showing individual group markers on the map which

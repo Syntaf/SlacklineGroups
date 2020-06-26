@@ -1,5 +1,5 @@
 import Layer from "./Layer";
-import ClusterSourceManager from '../managers/ClusterSourceManager';
+import ClusterSourceManager from '../ClusterSourceManager';
 
 /**
  * Layer responsible for showing clusters of slackline groups and handling

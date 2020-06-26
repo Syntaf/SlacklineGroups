@@ -2,8 +2,8 @@ import ClusterLayer from './layers/ClusterLayer';
 import ClusterLabelLayer from './layers/ClusterLabelLayer';
 import GroupMarkerLayer from './layers/GroupMarkerLayer';
 
-import ClusterSourceManager from './managers/ClusterSourceManager';
-import LayerManager from './managers/LayerManager';
+import ClusterSourceManager from './ClusterSourceManager';
+import LayerManager from './LayerManager';
 
 /**
  * Manages the creation of various visualization layers on the map as well as all
