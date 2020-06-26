@@ -9,6 +9,7 @@ class ClusterLayer extends Layer
 {
   get layerId () { return 'cluster-layer'; }
   get subscribedEvents () { return [ Layer.CLICK ]; }
+  get transitionProperties () { return ['circle-opacity', 'circle-stroke-opacity']; }
 
   config(sourceId) {
     return {
@@ -17,9 +18,12 @@ class ClusterLayer extends Layer
       'source': sourceId,
       'filter': ['has', 'point_count'],
       'paint': {
-        'circle-opacity': 0.8,
+        'circle-opacity': 0,
+        'circle-opacity-transition': { duration: 1000 },
         'circle-stroke-color': '#fff',
         'circle-stroke-width': 2,
+        'circle-stroke-opacity': 0,
+        'circle-stroke-opacity-transition': { duration: 1000 },
         'circle-color': {
           'property': 'point_count',
           'type': 'interval',
@@ -43,6 +47,15 @@ class ClusterLayer extends Layer
           ]
         }
       }
+    }
+  }
+
+  getTransition(transitionProperty) {
+    switch (transitionProperty) {
+      case 'circle-opacity':
+        return 0.8;
+      case 'circle-stroke-opacity':
+        return 1;
     }
   }
 

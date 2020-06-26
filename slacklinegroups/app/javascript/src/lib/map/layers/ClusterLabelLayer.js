@@ -8,6 +8,7 @@ class ClusterLabelLayer extends Layer
 {
   get layerId () { return 'cluster-label-layer'; }
   get subscribedEvents () { return []; }
+  get transitionProperties () { return []; }
 
   config(sourceId) {
     return {

@@ -23,6 +23,10 @@ class LayerManager
   addLayer(sourceId, layer) {
     this.map.addLayer(layer.config(sourceId));
 
+    for (const transitionProperty of layer.transitionProperties) {
+      this.map.setPaintProperty(layer.layerId, transitionProperty, layer.getTransition(transitionProperty));
+    }
+
     for (const eventType of layer.subscribedEvents) {
       this.map.on(eventType, layer.layerId, layer.getEventHandler(eventType, this.map));
     }

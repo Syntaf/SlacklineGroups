@@ -9,6 +9,7 @@ class Layer
 
   get layerId () { throw new Error('layerId must be defined'); }
   get subscribedEvents () { throw new Error('You must define what events the layer should subscribe to. Return [] in the case of no events'); }
+  get transitionProperties () { throw new Error('You must define what properties contain transitions. Return [] in the case of no transitions'); }
 
   /**
    * Returns a configuration object to be used my mapboxgl.Map#addLayer
@@ -19,6 +20,13 @@ class Layer
    * @see https://docs.mapbox.com/mapbox-gl-js/api/map/#map#addlayer
    */
   config(sourceId) { throw new Error('config() must be implemented'); }
+
+  /**
+   * Returns the desired value of a paint property at the end of it's transition.
+   *
+   * @param {string} transitionProperty the name of the paint property
+   */
+  getTransition(transitionProperty) { throw new Error('getTransition() must be implemented when transition properties are defined'); }
 
   /**
    * Function factory for delegating events to handlers defined in a layer

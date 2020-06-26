@@ -19,6 +19,7 @@ class GroupMarkerLayer extends Layer
 
   get layerId () { return 'group-marker-layer'; }
   get subscribedEvents () { return [ Layer.CLICK, Layer.ZOOMEND ]; }
+  get transitionProperties () { return []; }
 
   config (sourceId) {
     return {
