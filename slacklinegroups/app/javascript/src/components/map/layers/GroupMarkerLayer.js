@@ -15,6 +15,8 @@ import GroupTile from '../GroupTile';
  */
 class GroupMarkerLayer extends Layer
 {
+  get GROUP_VIEW_ZOOM () { return 12; }
+
   get layerId () { return 'group-marker-layer'; }
   get subscribedEvents () { return [ Layer.CLICK, Layer.ZOOMEND ]; }
 
@@ -34,10 +36,13 @@ class GroupMarkerLayer extends Layer
   handleClick(map, event) {
     const cords = event.features[0].geometry.coordinates;
     const properties = event.features[0].properties;
+    const desiredZoom = this._calculateZoomTo(map);
 
     map.flyTo({
       center: cords,
-      offset: [0, 200]
+      offset: [0, 200],
+      speed: 2,
+      zoom: desiredZoom
     }, { source: this.layerId, cords: cords, properties: properties});
   }
 
@@ -53,6 +58,14 @@ class GroupMarkerLayer extends Layer
         <GroupTile groupName={title} groupType={type} link={link} />
       ))
       .addTo(map);
+  }
+
+  _calculateZoomTo (map) {
+    const currentZoom = map.getZoom();
+
+    if (currentZoom > 7) return currentZoom;
+
+    return this.GROUP_VIEW_ZOOM;
   }
 }
 
