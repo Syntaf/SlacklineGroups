@@ -23,8 +23,7 @@ class MapManagerFactory
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: MapManagerFactory.STYLE_URL,
-      center: [0, 35],
-      zoom: 1.75
+      ...MapManager.defaultView 
     });
 
     return new MapManager(

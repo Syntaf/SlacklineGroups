@@ -11,6 +11,7 @@ import LayerManager from './LayerManager';
  */
 class MapManager
 {
+  static get defaultView () { return { center: [0, 35], zoom: 1.75 }; }
   get SOURCE_ID() { return 'group-clusters'; }
 
   /**
@@ -41,7 +42,9 @@ class MapManager
     this.layerManager.addLayer(this.SOURCE_ID, new GroupMarkerLayer());
   }
 
-
+  resetView() {
+    this.map.flyTo({...MapManager.defaultView, speed: 2});
+  }
 }
 
 export default MapManager;
