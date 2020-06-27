@@ -43,6 +43,7 @@ class MapManager
   }
 
   resetView() {
+    this.map.fire(GroupMarkerLayer.CLEAR_GROUP_TILES);
     this.map.flyTo({...MapManager.defaultView, speed: 2});
   }
 }

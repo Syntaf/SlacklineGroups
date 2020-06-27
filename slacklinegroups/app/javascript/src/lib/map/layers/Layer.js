@@ -6,6 +6,8 @@ class Layer
   // Supported events that a layer can subscribe to by overriding 'get subscribedEvents()'
   static get CLICK () { return 'click'; }
   static get ZOOMEND () { return 'zoomend'; }
+  static get MOUSE_ENTER () { return 'mouseenter'; }
+  static get MOUSE_LEAVE () { return 'mouseleave'; }
 
   get layerId () { throw new Error('layerId must be defined'); }
   get subscribedEvents () { throw new Error('You must define what events the layer should subscribe to. Return [] in the case of no events'); }
@@ -39,16 +41,22 @@ class Layer
       throw new Error(`Layer ${this.layerId} is attempting to handle an event it does not subscribe to: ${eventType}`);
     }
 
+    console.log(eventType);
+
     switch (eventType) {
       case Layer.CLICK:
         return this.handleClick.bind(this, map);
       case Layer.ZOOMEND:
         return this.handleZoomEnd.bind(this, map);
+      case Layer.MOUSE_ENTER:
+        return this.handleMouseEnter.bind(this, map);
+      case Layer.MOUSE_LEAVE:
+        return this.handleMouseLeave.bind(this, map);
     }
   }
 
   /**
-   * Handler called when 'get subscribedEvents()' returns Layer.CLICK
+   * Handler called when 'get subscribedEvents()' contains Layer.CLICK
    *
    * @param {mapboxgl.Map} map 
    * @param {Object} event
@@ -56,12 +64,28 @@ class Layer
   handleClick(map, event) { throw new Error('handleClick() must be implemented when subscribed'); }
 
   /**
-   * Handler called when 'get subscribedEvents()' returns Layer.ZOOMEND
+   * Handler called when 'get subscribedEvents()' contains Layer.ZOOMEND
    *
    * @param {mapboxgl.Map} map 
    * @param {Object} event 
    */
   handleZoomEnd(map, event) { throw new Error('handleZoomEnd() must be implemented when subscribed'); }
+
+  /**
+   * Handler called when 'get subscribedEvents()' containers Layer.MOUSE_ENTER
+   *
+   * @param {mapboxgl.Map} map 
+   * @param {Object} event 
+   */
+  handleMouseEnter(map, event) { throw new Error('handleMouseEnter() must be implemented when subscribed'); }
+  
+  /**
+   * Handler called when 'get subscribedEvents()' containers Layer.MOUSE_LEAVE
+   *
+   * @param {mapboxgl.Map} map 
+   * @param {Object} event 
+   */
+  handleMouseLeave(map, event) { throw new Error('handleMouseLeave() must be implemented when subscribed'); }
 }
 
 export default Layer;

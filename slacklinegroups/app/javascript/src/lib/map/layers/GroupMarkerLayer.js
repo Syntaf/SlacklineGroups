@@ -15,10 +15,11 @@ import GroupTile from '../../../components/map/GroupTile';
  */
 class GroupMarkerLayer extends Layer
 {
+  static get CLEAR_GROUP_TILES () { return 'removeGroupTiles'; }
   get GROUP_VIEW_ZOOM () { return 12; }
 
   get layerId () { return 'group-marker-layer'; }
-  get subscribedEvents () { return [ Layer.CLICK, Layer.ZOOMEND ]; }
+  get subscribedEvents () { return [ Layer.CLICK, Layer.ZOOMEND, Layer.MOUSE_ENTER, Layer.MOUSE_LEAVE ]; }
   get transitionProperties () { return []; }
 
   config (sourceId) {
@@ -53,12 +54,22 @@ class GroupMarkerLayer extends Layer
     const { cords, properties } = event;
     const { title, type, link } = properties;
 
-    new mapboxgl.Popup({ offset: 15, maxWidth: '440px' })
+    const groupTile = new mapboxgl.Popup({ offset: 15, maxWidth: '440px' })
       .setLngLat(cords)
       .setHTML(ReactDOMServer.renderToString(
         <GroupTile groupName={title} groupType={type} link={link} />
       ))
       .addTo(map);
+
+    map.on(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { groupTile.remove(); });
+  }
+
+  handleMouseEnter(map, event) {
+    map.getCanvas().style.cursor = 'pointer';
+  }
+
+  handleMouseLeave(map, event) {
+    map.getCanvas().style.cursor = '';
   }
 
   _calculateZoomTo (map) {

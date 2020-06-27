@@ -8,7 +8,7 @@ import ClusterSourceManager from '../ClusterSourceManager';
 class ClusterLayer extends Layer
 {
   get layerId () { return 'cluster-layer'; }
-  get subscribedEvents () { return [ Layer.CLICK ]; }
+  get subscribedEvents () { return [ Layer.CLICK, Layer.MOUSE_ENTER, Layer.MOUSE_LEAVE ]; }
   get transitionProperties () { return ['circle-opacity', 'circle-stroke-opacity']; }
 
   config(sourceId) {
@@ -64,6 +64,14 @@ class ClusterLayer extends Layer
       center: event.lngLat,
       zoom: map.getZoom() + 1.75
     });
+  }
+
+  handleMouseEnter(map, event) {
+    map.getCanvas().style.cursor = 'pointer';
+  }
+
+  handleMouseLeave(map, event) {
+    map.getCanvas().style.cursor = '';
   }
 }
 
