@@ -22,8 +22,12 @@
     }
 
     .list {
-        .listItem {
+        .listItem a {
+            color: #272727;
             padding: 8px 32px;
+            display: flex;
+            flex: 1;
+            align-items: center;
 
             .listIcon {
                 min-width: 35px;
