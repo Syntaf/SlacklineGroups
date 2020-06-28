@@ -1,1 +1,10 @@
-<%= react_component('scenes/about') %>
+<%= react_component('scenes/about', assets: {
+  tech: [
+    asset_path('rails'),
+    asset_path('psql'),
+    asset_path('redis'),
+    asset_path('sidekiq'),
+    asset_path('elasticsearch'),
+    asset_path('react')
+  ]
+}) %>
