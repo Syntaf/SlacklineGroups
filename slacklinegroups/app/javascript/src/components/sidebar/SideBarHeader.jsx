@@ -2,7 +2,7 @@ import React from 'react'
 
 const SideBarHeader = props => {
   return (
-    <div className='header'>
+    <div className='sidebarHeader'>
       <h3>SlacklineGroups</h3>
     </div>
   );

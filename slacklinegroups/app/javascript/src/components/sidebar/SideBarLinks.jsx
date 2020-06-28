@@ -10,7 +10,7 @@ import {
 const SideBarLinks = props => {
   const buildLink = (item, idx) => (
     <ListItem key={idx} className='listItem' button>
-      <Link href={item.link} underline="none" target="_blank">
+      <Link href={item.link} underline="none" target={item.newTab ? '_blank' : ''}>
         <ListItemIcon className='listIcon'>{item.icon}</ListItemIcon>
         <ListItemText primary={item.text}/>
       </Link>

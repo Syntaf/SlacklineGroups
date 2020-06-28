@@ -18,12 +18,14 @@ const SideBarButton = props => {
     {
       'text': 'Slackchat',
       'icon': <ChatIcon fontSize='small'/>,
-      'link': 'https://www.facebook.com/groups/slackchat?src=slacklinegroups'
+      'link': 'https://www.facebook.com/groups/slackchat?src=slacklinegroups',
+      'newTab': true
     },
     {
       'text': 'Find slackline spots',
       'icon': <PublicIcon fontSize='small'/>,
-      'link': 'https://slackmap.com/?src=slacklinegroups'
+      'link': 'https://slackmap.com/?src=slacklinegroups',
+      'newTab': true
     }
   ];
 
@@ -31,17 +33,20 @@ const SideBarButton = props => {
     {
       'text': 'Submit new group',
       'icon': <MailIcon fontSize='small'/>,
-      'link': '/groups/new'
+      'link': '/groups/new',
+      'newTab': false 
     },
     {
       'text': "What's slacklining?",
       'icon': <HelpIcon fontSize='small'/>,
-      'link': 'https://slackline.us/what-is-slacklining/?src=slacklinegroups'
+      'link': 'https://slackline.us/what-is-slacklining/?src=slacklinegroups',
+      'newTab': true
     },
     {
       'text': 'About this site',
       'icon': <CodeIcon fontSize='small'/>,
-      'link': '/about'
+      'link': '/about',
+      'newTab': false
     }
   ];
 
