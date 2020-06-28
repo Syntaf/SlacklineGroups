@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  respond_to :json
+  respond_to :json, only: %i[index show]
+  respond_to :html, only: %i[new]
 
   # TO-DO: Consider reworking frontend to paginate this once the response
   # size grows too large
@@ -14,5 +15,8 @@ class GroupsController < ApplicationController
     group = Group.find(params[:id])
 
     render json: group
+  end
+
+  def new
   end
 end
