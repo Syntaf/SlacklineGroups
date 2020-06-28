@@ -4,11 +4,14 @@ import Header from '../components/header/Header';
 import Paper from '@material-ui/core/Paper';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import GitHubIcon from '@material-ui/icons/GitHub';
+
+import GitHubButton from 'react-github-btn';
 
 const About = ({ assets }) => {
   const techTiles = assets.tech.map((techAssetUrl) => (
     <GridListTile key={techAssetUrl}>
-      <img src={techAssetUrl} className="no" />
+      <img src={techAssetUrl} />
     </GridListTile>
   ));
 
@@ -56,8 +59,25 @@ const About = ({ assets }) => {
       </div>
       <div className="tech">
         <span><em>Built with</em></span>
-      <GridList spacing={0} cellHeight={50} cols={6}>
+        <GridList spacing={0} cellHeight={50} cols={assets.tech.length}>
           {techTiles}
+        </GridList>
+      </div>
+      <div className="techTwo">
+        <GridList spacing={0} cols={2} cellHeight={100}>
+          <GridListTile className="hosted">
+            <div className="imgWrapper">
+              <span><em>Hosted With </em></span>
+              <img src={assets.k8s} />
+            </div>
+          </GridListTile>
+          <GridListTile className="contribute">
+            <div className="group">
+              <GitHubIcon />
+              <GitHubButton href="https://github.com/syntaf/vigilant-brocolli/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork syntaf/vigilant-brocolli on GitHub">Contribute</GitHubButton>
+              <GitHubButton href="https://github.com/syntaf/vigilant-brocolli" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star syntaf/vigilant-brocolli on GitHub">Star</GitHubButton>
+            </div>
+          </GridListTile>
         </GridList>
       </div>
     </React.Fragment>
