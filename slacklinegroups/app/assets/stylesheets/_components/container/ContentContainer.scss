@@ -1,0 +1,15 @@
+.contentContainer {
+  margin: 0 auto;
+
+  &.small {
+    max-width: 780px;
+  }
+
+  &.medium {
+    max-width: 1000px;
+  }
+
+  &.large { 
+    max-width: 1200px;
+  }
+}
