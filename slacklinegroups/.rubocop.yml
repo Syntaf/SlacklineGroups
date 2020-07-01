@@ -18,6 +18,9 @@ AllCops:
 Layout/EndOfLine:
   EnforcedStyle: lf
 
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
 Style/AndOr:
   EnforcedStyle: conditionals
 
