@@ -1,13 +1,24 @@
 div[data-react-class="scenes/newgroup"] {
-  .mapWrapper {
+  font-family: 'Inter', sans-serif;
+
+  .belowHeaderContent {
     margin-top: 40px;
-    max-width: 1200px;
-    margin: 40px auto;
-    height: 500px;
+    
+    h1, p {
+      color: #272727;
+    }
+
+    h1 {
+      font-weight: normal;
+    }
+  }
+
+  .mapContent {
+    margin-top: 20px;
   }
 
   #map {
-      width: 100%;
-      height: 100%;
+    width: 100%;
+    height: 500px;
   }
 }

@@ -1,10 +1,12 @@
 import React from 'react';
 
+import Paper from '@material-ui/core/Paper';
+
 /**
  * @param {string} size one of 'small' (780px), 'medium' (1000px) , 'large' (1200px)
  */
-const ContentContainer = ({ size, classes, children }) => (
-  <div className={['contentContainer', size].join(' ')} className='test'>
+const ContentContainer = ({ size, className, children }) => (
+  <div className={`contentContainer ${size} ${className}`} >
     {children}
   </div>
 );
