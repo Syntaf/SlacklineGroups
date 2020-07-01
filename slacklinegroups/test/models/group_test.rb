@@ -3,15 +3,15 @@
 require 'test_helper'
 
 class GroupTest < ActiveSupport::TestCase
-  test 'supported_group' do
-    group = Group.new
+  test 'supported group' do
+    group = Group.new({ name: 'test group', slug: 'test-group' })
     group.gtype = :facebook_group
 
     assert group.valid?
   end
 
-  test 'unsupported_group' do
-    group = Group.new
+  test 'unsupported group' do
+    group = Group.new({ name: 'test group', slug: 'test-group' })
     group.gtype = :invalid
 
     assert_not group.valid?
