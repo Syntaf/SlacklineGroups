@@ -10,7 +10,9 @@ class Group < ApplicationRecord
 
   serialize :gtype, Slg::SymbolSerializer
 
-  validates :gtype, inclusion: { in: GROUP_TYPES }
+  validates :gtype,
+            presence: true,
+            inclusion: { in: GROUP_TYPES, if: proc { |g| g.gtype? } }
   validates :name, presence: true
   validates :slug, presence: true
 
