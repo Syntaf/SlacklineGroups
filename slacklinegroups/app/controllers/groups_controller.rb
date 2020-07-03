@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  respond_to :json, only: %i[index show]
+  respond_to :json, only: %i[index show create]
   respond_to :html, only: %i[new]
 
   # TO-DO: Consider reworking frontend to paginate this once the response
@@ -19,5 +19,30 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+  end
+
+  def create
+    group = Group.create(group_params)
+
+    render json: { group: group, status: :created } if group.valid?
+    render json: { errors: group.errors, status: :errors }
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(
+      :gtype,
+      :name,
+      info_attributes: %i[
+        link
+        members
+        is_regional
+      ],
+      location_attributes: %i[
+        lat
+        lon
+      ]
+    )
   end
 end

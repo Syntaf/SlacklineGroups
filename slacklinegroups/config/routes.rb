@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :admins
 
   resources :map, only: %i[index]
-  resources :groups, only: %i[index show new]
+  resources :groups, only: %i[index show new create]
   resources :about, only: %i[index]
   
   root to: 'map#index'
