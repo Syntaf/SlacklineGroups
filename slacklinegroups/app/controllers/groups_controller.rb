@@ -24,8 +24,11 @@ class GroupsController < ApplicationController
   def create
     group = Group.create(group_params)
 
-    render json: { group: group, status: :created } if group.valid?
-    render json: { errors: group.errors, status: :errors }
+    if group.valid?
+      render json: { status: :success, group: GroupSerializer.new(group) }
+    else
+      render json: { status: :error, errors: group.errors }
+    end
   end
 
   private

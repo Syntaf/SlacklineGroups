@@ -35,20 +35,22 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'create group' do
-    post groups_path, params: { group: {
-      name: 'GroupOne',
-      gtype: 'facebook_group',
-      info_attributes: {
-        members: 1,
-        link: 'https://facebook.com',
-        is_regional: false
-      },
-      location_attributes: {
-        lat: 9.99,
-        lon: 9.99
+    post groups_path, params: {
+      group: {
+        name: 'GroupOne',
+        gtype: 'facebook_group',
+        info_attributes: {
+          members: 1,
+          link: 'https://facebook.com',
+          is_regional: false
+        },
+        location_attributes: {
+          lat: 9.99,
+          lon: 9.99
+        }
       }
-    }}
+    }
 
-    assert_response :succeess
+    assert_response :success
   end
 end
