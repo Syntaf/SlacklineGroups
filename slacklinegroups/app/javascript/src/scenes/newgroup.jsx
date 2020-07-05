@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import Paper from '@material-ui/core/Paper';
 
+import FormGroup from '../components/form/GroupForm';
 import ContentContainer from '../components/container/ContentContainer';
 import Map from '../components/map/Map';
 import Header from '../components/header/Header';
@@ -14,7 +15,7 @@ const NewGroup = props => {
 
   useEffect(() => { if (!mapManager) setMapManager(MapManagerFactory.create(mapContainer)); }, [mapManager]);
 
-  useEffect(() => { console.log(props.group); }, [props.group]);
+  useEffect(() => { console.log(props.csrf); }, [props.csrf]);
 
   return (
     <React.Fragment>
@@ -32,7 +33,7 @@ const NewGroup = props => {
         </Paper>
       </ContentContainer>
       <ContentContainer size="large" className="formContent">
-        <p>Form goes here...</p>
+        <FormGroup csrf={props.csrf} />
       </ContentContainer>
     </React.Fragment>
   );
