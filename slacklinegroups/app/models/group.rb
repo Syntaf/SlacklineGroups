@@ -27,7 +27,7 @@ class Group < ApplicationRecord
   accepts_nested_attributes_for :location
 
   def to_param
-    self.slug
+    slug
   end
 
   private
