@@ -51,6 +51,29 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_equal group.type.to_s, response.parsed_body['group']['type']
   end
 
+  test 'updating name updates slug' do
+    group = groups(:one)
+    group.name = 'new group name'
+    old_slug = group.slug
+
+    patch group_path(group), params: form_submit_with(group)
+
+    assert_response :success
+    assert_not_equal old_slug, response.parsed_body['group']['slug']
+  end
+
+  test 'invalid slug on show returns 404' do
+    assert_raises ActiveRecord::RecordNotFound do
+      get group_path(slug: 'does-not-exist')
+    end
+  end
+
+  test 'invalid slug on update returns 404' do
+    assert_raises ActiveRecord::RecordNotFound do
+      patch group_path(slug: 'does-not-exist'), params: {}
+    end
+  end
+
   private
 
   # Transorms a Group instance into a form request

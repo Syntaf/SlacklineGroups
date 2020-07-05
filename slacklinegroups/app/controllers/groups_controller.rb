@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    group = Group.find_by({ slug: params[:slug] })
+    group = Group.find_by!({ slug: params[:slug] })
 
     render json: group
   end
@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
   def edit; end
 
   def update
-    group = Group.find_by({ slug: params[:slug] })
+    group = Group.find_by!({ slug: params[:slug] })
 
     if group.update(group_params)
       render json: { status: :success, group: GroupSerializer.new(group) }
