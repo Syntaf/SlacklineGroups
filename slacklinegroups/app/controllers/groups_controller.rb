@@ -11,31 +11,45 @@ class GroupsController < ApplicationController
     render json: groups
   end
 
-  def show
-    group = Group.find(params[:id])
-
-    render json: group
-  end
-
   def new
     @group = Group.new
   end
 
   def create
-    group = Group.create(group_params)
+    group = Group.new(group_params)
 
-    if group.valid?
+    if group.save
       render json: { status: :success, group: GroupSerializer.new(group) }
     else
       render json: { status: :error, errors: group.errors }
     end
   end
 
+  def show
+    group = Group.find_by({ slug: params[:slug] })
+
+    render json: group
+  end
+
+  def edit; end
+
+  def update
+    group = Group.find_by({ slug: params[:slug] })
+
+    if group.update(group_params)
+      render json: { status: :success, group: GroupSerializer.new(group) }
+    else
+      render json: { status: :error, errors: group.errors }
+    end
+  end
+
+  def destroy; end
+
   private
 
   def group_params
     params.require(:group).permit(
-      :gtype,
+      :type,
       :name,
       info_attributes: %i[
         link

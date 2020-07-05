@@ -5,20 +5,20 @@ require 'test_helper'
 class GroupTest < ActiveSupport::TestCase
   test 'supported group' do
     group = Group.new({ name: 'test group' })
-    group.gtype = :facebook_group
+    group.type = :facebook_group
 
     assert group.valid?
   end
 
   test 'unsupported group' do
     group = Group.new({ name: 'test group' })
-    group.gtype = :invalid
+    group.type = :invalid
 
     assert_not group.valid?
   end
 
   test 'generates slug on create' do
-    group = Group.new({ gtype: :facebook_group, name: 'test group' })
+    group = Group.new({ type: :facebook_group, name: 'test group' })
 
     mock = Minitest::Mock.new
     mock.expect :call, nil, ['test group']
@@ -32,7 +32,7 @@ class GroupTest < ActiveSupport::TestCase
 
   test 'maintains existing slug on update' do
     group = groups(:one)
-    group.gtype = :facebook_page
+    group.type = :facebook_page
 
     group.save
     assert_equal 'one', group.slug
@@ -56,7 +56,7 @@ class GroupTest < ActiveSupport::TestCase
     group = Group.new({
       name: 'test group',
       slug: 'test-group',
-      gtype: 'facebook_group',
+      type: 'facebook_group',
       info_attributes: {
         link: 'http://facebook.com',
         members: 2,

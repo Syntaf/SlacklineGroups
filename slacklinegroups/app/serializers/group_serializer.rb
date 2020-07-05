@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class GroupSerializer < ActiveModel::Serializer
-  attributes :name
-  attribute :gtype, key: :type
+  attributes :name, :slug, :type
+
+  def type
+    object.type.to_s
+  end
 
   has_one :info
   has_one :location

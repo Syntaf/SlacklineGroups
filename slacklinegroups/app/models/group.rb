@@ -7,6 +7,8 @@ class Group < ApplicationRecord
 
   GROUP_TYPES = %i[facebook_group facebook_page other].freeze
 
+  alias_attribute :type, :gtype
+
   has_one :info, dependent: :destroy
   has_one :location, dependent: :destroy
 
@@ -14,15 +16,19 @@ class Group < ApplicationRecord
 
   validates :name, presence: true
   validates :slug, presence: false, on: :create
-  validates :gtype,
+  validates :type,
             presence: true,
-            inclusion: { in: GROUP_TYPES, if: proc { |g| g.gtype? } }
+            inclusion: { in: GROUP_TYPES, if: proc { |g| g.type? } }
 
   before_create :assign_slug
   before_update :assign_slug, if: proc { |m| m.name_changed? }
 
   accepts_nested_attributes_for :info
   accepts_nested_attributes_for :location
+
+  def to_param
+    self.slug
+  end
 
   private
 
