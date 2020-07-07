@@ -39,8 +39,8 @@ class ClusterSourceManager
       'properties': {
         'title': group.name,
         'type': this._formatGroupType(group.type),
-        'link': group.info.link,
-        'is_regional': group.info.is_regional
+        'link': group?.info.link,
+        'is_regional': group?.info.is_regional
       },
       'geometry': {
         'type': 'Point',
