@@ -19,7 +19,6 @@ const NewGroup = props => {
     <React.Fragment>
       <Header showSiteName={true} />
       <ContentContainer size="large" className="belowHeaderContent">
-        <h1>Add a New Group For Review</h1>
         <p>
           To submit a new group for approval, fill out all fields and select a location for 
           your group on the map below.
