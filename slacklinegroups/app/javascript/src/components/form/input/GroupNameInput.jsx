@@ -7,7 +7,7 @@ const GroupNameInput = props => {
   return (
     <FormControl>
       <InputLabel>Group Name</InputLabel>
-      <Input id="group-name" onChange={props.onChange} />
+      <input id="group-name" onChange={props.onChange} />
     </FormControl>
   );
 };
