@@ -44,17 +44,7 @@ div[data-react-class="scenes/about"] {
     }
   }
 
-  .tiles {
-    max-width: 1000px;
-    margin: 30px auto 0 auto !important;
-
-    li {
-      text-align: center;
-    }
-  }
-
   .excerpt {
-    max-width: 1000px;
     margin: 0 auto;
 
     p {
@@ -81,40 +71,93 @@ div[data-react-class="scenes/about"] {
     }
   }
 
-  .tech {
-    max-width: 1000px;
-    margin: 30px auto;
+  .technology {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 30px;
 
     span {
-      margin-top: 30px;
       color: #586069;
-      margin: 0 auto 30px auto;
     }
 
-    ul {
-      width: 100%;
+    .technologyGrid {
+      margin-top: 10px;
+      justify-content: center;
+    }
+
+    .techTile {
       display: flex;
       justify-content: center;
+      margin: 10px 0;
 
-      li {
-        display: flex;
-        justify-content: center;
+      img {
+        width: 100%;
+      }
+
+      // img {
+      //   max-width: 100%;
+      //   max-height: 100%;
+      //   height: 100%;
+      // }
+
+      // @media (max-width: 960px) {
+      //   max-height: 40px;
+      // }
+
+      // @media (max-width: 600px) {
+      //   max-width: 80px;
+      //   margin: 2px;
+
+      //   div:first-of-type img {
+      //     width: 100%;
+      //     height: initial;
+      //   }
+      // }
+    }
+  }
+
+  .extra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .hostedTile {
+      display: flex;
+      margin-bottom: 30px;
+      justify-content: center;
+      align-items: center;
+
+      .imgWrapper {
+        max-width: 200px;
+
+        img {
+          max-width: 100%;
+        }
       }
     }
 
-    img {
-      max-width: 100% !important;
-      max-height: 100% !important;
-      height: initial;
-      width: initial;
+    .contributeTile {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      span, svg {
+        &:first-of-type {
+          margin: 0 2px;
+        }
+
+        & > span {
+          display: flex;
+          align-items: center;
+        }
+      }
     }
   }
 
   .techTwo {
-    max-width: 1000px;
     margin: 100px auto 30px auto;
     display: flex;
     flex-direction: column;

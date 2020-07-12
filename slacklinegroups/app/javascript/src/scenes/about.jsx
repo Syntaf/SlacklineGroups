@@ -13,21 +13,21 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 
 const About = ({ assets }) => {
   const techTiles = assets.tech.map((techAssetUrl) => (
-    <GridListTile key={techAssetUrl}>
+    <Grid item className="techTile" key={techAssetUrl} lg={2} md={3} sm={2}>
       <img src={techAssetUrl} />
-    </GridListTile>
+    </Grid>
   ));
 
   return (
     <React.Fragment>
       <Header />
-      <ContentContainer>
+      <ContentContainer size="medium">
         <div className="heroSection">
           <h1><span>SlacklineGroups</span> is making the world of slack smaller</h1>
           <h3>Serving the community since 2017, SlacklineGroups helps people find local groups and connect with other slackliners across the globe</h3>
         </div>
       </ContentContainer>
-      <ContentContainer>
+      <ContentContainer size="medium">
         <Grid className="gridContainer" container spacing={0}>
           <Grid className="gridTile" item xs={12} sm={4}>
             <Paper className="tile" variant="outlined" square>
@@ -49,7 +49,7 @@ const About = ({ assets }) => {
           </Grid>
         </Grid>
       </ContentContainer>
-      <ContentContainer>
+      <ContentContainer size="medium">
         <div className="excerpt">
           <p>
             SlacklineGroups is developed and managed by <a href="https://www.linkedin.com/in/grant-mercer-82a52097/" target="_blank">Grant Mercer</a>, an avid
@@ -66,30 +66,25 @@ const About = ({ assets }) => {
           <div className="line"></div>
         </div>
       </ContentContainer>
-      <ContentContainer>
-        <div className="tech">
-          <span><em>Built with</em></span>
-          <GridList spacing={0} cellHeight={50} cols={assets.tech.length}>
-            {techTiles}
-          </GridList>
-        </div>
-        <div className="techTwo">
-          <GridList spacing={0} cols={2} cellHeight={100}>
-            <GridListTile className="hosted">
-              <div className="imgWrapper">
-                <span><em>Hosted With </em></span>
-                <img src={assets.k8s} />
-              </div>
-            </GridListTile>
-            <GridListTile className="contribute">
-              <div className="group">
-                <GitHubIcon />
-                <GitHubButton href="https://github.com/syntaf/vigilant-broccoli/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork syntaf/vigilant-brocolli on GitHub">Contribute</GitHubButton>
-                <GitHubButton href="https://github.com/syntaf/vigilant-broccoli" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star syntaf/vigilant-brocolli on GitHub">Star</GitHubButton>
-              </div>
-            </GridListTile>
-          </GridList>
-        </div>
+      <ContentContainer className="technology" size="medium">
+        <span><em>Built with</em></span>
+        <Grid className="technologyGrid" container spacing={0}>
+          {techTiles}
+        </Grid>
+      </ContentContainer>
+      <ContentContainer className="extra" size="medium">
+        <Grid container spacing={0}>
+          <Grid className="hostedTile" item xs={12} md={6}>
+            <div className="imgWrapper">
+              <img src={assets.k8s} />
+            </div>
+          </Grid>
+          <Grid className="contributeTile" item xs={12} md={6}>
+            <GitHubIcon />
+            <GitHubButton href="https://github.com/syntaf/vigilant-broccoli/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork syntaf/vigilant-brocolli on GitHub">Contribute</GitHubButton>
+            <GitHubButton href="https://github.com/syntaf/vigilant-broccoli" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star syntaf/vigilant-brocolli on GitHub">Star</GitHubButton>
+          </Grid>
+        </Grid>
       </ContentContainer>
     </React.Fragment>
   );
