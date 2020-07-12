@@ -1,17 +1,14 @@
 .header {
-  li div {
+  padding: 15px 20px;
+
+  .buttonTile {
     display: flex;
-    align-items: center;
-    padding: 0 20px;
   }
 
-  .titleTile div {
-    justify-content: center;
-
-    h1 {
-      font-family: 'Inter', sans-serif;
-      color: #3F51B5;
-    }
+  .titleTile h1 {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    color: #3F51B5;
   }
 
   a {

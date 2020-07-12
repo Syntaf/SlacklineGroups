@@ -1,10 +1,12 @@
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Paper from '@material-ui/core/Paper';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import ContentContainer from '../container/ContentContainer';
 
 const Header = ({ showSiteName }) => {
   const title = showSiteName ? (
@@ -13,17 +15,17 @@ const Header = ({ showSiteName }) => {
 
   return (
     <Paper className="header" square={true}>
-      <GridList cellHeight={70} cols={3}>
-        <GridListTile>
+      <Grid className="headerGrid" container spacing={0}>
+        <Grid className="buttonTile" md={4} xs={12}>
           <Button href="/" underline="none" color="primary">
             <KeyboardBackspaceIcon color="primary" />
             <h4>Back to Map</h4>
           </Button>
-        </GridListTile>
-        <GridListTile className="titleTile">
+        </Grid>
+        <Grid className="titleTile" md={4} xs={12}>
           {title}
-        </GridListTile>
-      </GridList>
+        </Grid>
+      </Grid>
     </Paper>
   );
 
