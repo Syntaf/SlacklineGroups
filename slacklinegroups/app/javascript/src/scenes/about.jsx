@@ -20,7 +20,7 @@ const About = ({ assets }) => {
 
   return (
     <React.Fragment>
-      <Header />
+      <Header showSiteName={true} />
       <ContentContainer size="medium">
         <div className="heroSection">
           <h1><span>SlacklineGroups</span> is making the world of slack smaller</h1>

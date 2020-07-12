@@ -10,19 +10,19 @@ import ContentContainer from '../container/ContentContainer';
 
 const Header = ({ showSiteName }) => {
   const title = showSiteName ? (
-    <h1 className="title">SlacklineGroups</h1>
+    <a href="/"><h1 className="title">SlacklineGroups</h1></a>
   ) : null;
 
   return (
     <Paper className="header" square={true}>
       <Grid className="headerGrid" container spacing={0}>
-        <Grid item className="buttonTile" md={4} xs={12}>
+        <Grid item className="buttonTile" sm={4} xs={0}>
           <Button href="/" underline="none" color="primary">
             <KeyboardBackspaceIcon color="primary" />
             <h4>Back to Map</h4>
           </Button>
         </Grid>
-        <Grid item className="titleTile" md={4} xs={12}>
+        <Grid item className="titleTile" sm={4} xs={12}>
           {title}
         </Grid>
       </Grid>
