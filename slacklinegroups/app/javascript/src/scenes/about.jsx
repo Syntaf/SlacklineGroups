@@ -13,8 +13,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 
 const About = ({ assets }) => {
   const techTiles = assets.tech.map((techAssetUrl) => (
-    <Grid item className="techTile" key={techAssetUrl} lg={2} md={3} sm={2}>
-      <img src={techAssetUrl} />
+    <Grid item className="techTile" key={techAssetUrl} lg={2} md={3} xs={6}>
+      <img src={techAssetUrl} height="50"/>
     </Grid>
   ));
 
