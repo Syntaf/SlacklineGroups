@@ -1,13 +1,12 @@
 import React from 'react';
 
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 
 const GroupNameInput = props => {
   return (
-    <FormControl>
-      <InputLabel>Group Name</InputLabel>
-      <input id="group-name" onChange={props.onChange} />
+    <FormControl className="formControl">
+      <TextField value={props.value} onChange={props.onChange} label="Name" />
     </FormControl>
   );
 };

@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 
-import GroupNameInput from './input/GroupNameInput';
+import Grid from '@material-ui/core/Grid';
 
+import GroupNameInput from './input/GroupNameInput';
+import GroupTypeSelect from './input/GroupTypeSelect';
 import AuthenticityToken from './AuthenticityToken';
 
 const GroupForm = props => {
-  const [groupName, setGroupName] = useState(null);
+  const [groupName, setGroupName] = useState('');
+  const [groupType, setGroupType] = useState('');
 
   return (
-    <form action="/groups/new"> 
+    <form action="/groups/new" className="groupForm"> 
       <AuthenticityToken csrfToken={props.csrf} />
-      <GroupNameInput onChange={setGroupName} />
+      <Grid container spacing={5}>
+        <Grid item md={6} xs={12}>
+          <GroupNameInput value={groupName} onChange={(event) => {setGroupName(event.target.value);}} />
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <GroupTypeSelect value={groupType} onChange={(event) => {setGroupType(event.target.value);}} />
+        </Grid>
+      </Grid>
     </form>
   );
 };
