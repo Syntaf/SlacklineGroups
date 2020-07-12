@@ -12,6 +12,7 @@ div[data-react-class="scenes/about"] {
 
     h1 {
       font-weight: 200;
+      text-align: center;
 
       span {
         font-weight: 900;
@@ -24,6 +25,23 @@ div[data-react-class="scenes/about"] {
       text-align: center;
     }
 
+  }
+
+  .gridContainer {
+    margin: 30px 0;
+
+    .gridTile {
+      display: flex;
+
+      .tile {
+        flex: 1;
+        padding: 0 15px;
+    
+        p, h4 {
+          text-align: center;
+        }
+      }
+    }
   }
 
   .tiles {
