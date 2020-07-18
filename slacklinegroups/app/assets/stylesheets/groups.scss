@@ -29,5 +29,31 @@ div[data-react-class="scenes/newgroup"] {
 
   form {
     margin-top: 30px;
+
+    .formTile {
+      &:last-child {
+        margin-bottom: 20px;
+      }
+
+      &.checkboxControl {
+        display: flex;
+        align-items: flex-end;
+
+        .checkbox {
+          display: flex;
+          align-items: flex-end;
+
+          span {
+            padding-bottom: 0;
+          }
+        }
+
+        
+
+        @media (max-width: 960px) {
+          padding-bottom: 0;
+        }
+      }
+    }
   }
 }
