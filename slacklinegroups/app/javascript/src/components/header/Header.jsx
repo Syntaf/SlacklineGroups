@@ -16,7 +16,7 @@ const Header = ({ showSiteName }) => {
   return (
     <Paper className="header" square={true}>
       <Grid className="headerGrid" container spacing={0}>
-        <Grid item className="buttonTile" sm={4} xs={0}>
+        <Grid item className="buttonTile" sm={4}>
           <Button href="/" underline="none" color="primary">
             <KeyboardBackspaceIcon color="primary" />
             <h4>Back to Map</h4>
