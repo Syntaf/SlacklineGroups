@@ -21,7 +21,17 @@ class GroupsController < ApplicationController
     if group.save
       render json: { status: :success, group: GroupSerializer.new(group) }
     else
-      render json: { status: :error, errors: group.errors }
+      render json: { status: :error, errors: group.errors }, status: :bad_request
+    end
+  end
+
+  def validate
+    group = Group.new(group_params)
+
+    if group.valid?
+      render json: { status: :success }
+    else
+      render json: { status: :error, errors: group.errors }, status: :bad_request
     end
   end
 
@@ -39,7 +49,7 @@ class GroupsController < ApplicationController
     if group.update(group_params)
       render json: { status: :success, group: GroupSerializer.new(group) }
     else
-      render json: { status: :error, errors: group.errors }
+      render json: { status: :error, errors: group.errors }, status: :bad_request
     end
   end
 
@@ -59,6 +69,9 @@ class GroupsController < ApplicationController
       location_attributes: %i[
         lat
         lon
+      ],
+      submitter_attributes: %i[
+        email
       ]
     )
   end

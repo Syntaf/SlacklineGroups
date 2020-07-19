@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   devise_for :admins
 
-  resources :groups, param: :slug
+  resources :groups, param: :slug do
+    post 'validate', on: :collection
+  end
+
   resources :map, only: %i[index]
   resources :about, only: %i[index]
   
