@@ -83,7 +83,6 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     form_group = GroupSerializer.new(group).as_json
     form_group[:info_attributes] = form_group.delete :info
     form_group[:location_attributes] = form_group .delete :location
-    form_group[:author_attributes] = { email: 'admin@localhost' }
 
     {
       group: form_group

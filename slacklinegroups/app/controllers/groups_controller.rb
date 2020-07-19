@@ -51,9 +51,6 @@ class GroupsController < ApplicationController
     params.require(:group).permit(
       :type,
       :name,
-      author_attributes: %i[
-        email
-      ],
       info_attributes: %i[
         link
         members
