@@ -20,9 +20,11 @@ const GroupForm = props => {
   const [isRegional, setIsRegional] = useState(false);
 
   const submit = () => {
-    const request = new NewGroupRequest(groupName, groupType, groupLink, authorEmail, isRegional);
+    let request = new NewGroupRequest(groupName, groupType, groupLink, authorEmail, isRegional, props.csrf);
 
-    console.log(request);
+    fetch('/groups/validate', request.asRequestInit())
+      .then(response => response.json())
+      .then(json => { console.log(json); });
   };
 
   return (
