@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { connect } from 'react-redux';
+import { validateGroup } from '../actions/newgroup';
 
 import Paper from '@material-ui/core/Paper';
 
@@ -36,4 +38,15 @@ const NewGroup = props => {
   );
 };
 
-export default NewGroup;
+function mapStateToProps(state) {
+  const { newgroup } = state;
+  const { isFetching, isValid, errors } = newgroup;
+
+  return {
+    isFetching,
+    isValid,
+    errors
+  };
+}
+
+export default connect(mapStateToProps)(NewGroup);
