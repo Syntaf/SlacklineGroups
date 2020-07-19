@@ -11,6 +11,7 @@ class Group < ApplicationRecord
 
   has_one :info, dependent: :destroy
   has_one :location, dependent: :destroy
+  has_one :submitter, dependent: :destroy
 
   serialize :gtype, Slg::SymbolSerializer
 
@@ -25,6 +26,7 @@ class Group < ApplicationRecord
 
   accepts_nested_attributes_for :info
   accepts_nested_attributes_for :location
+  accepts_nested_attributes_for :submitter
 
   def to_param
     slug
