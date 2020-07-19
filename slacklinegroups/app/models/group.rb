@@ -9,7 +9,8 @@ class Group < ApplicationRecord
 
   alias_attribute :type, :gtype
 
-  has_one :author, dependent: :nullify
+  belongs_to :author, optional: true
+
   has_one :info, dependent: :destroy
   has_one :location, dependent: :destroy
 
@@ -24,6 +25,7 @@ class Group < ApplicationRecord
   before_create :assign_slug
   before_update :assign_slug, if: proc { |m| m.name_changed? }
 
+  accepts_nested_attributes_for :author
   accepts_nested_attributes_for :info
   accepts_nested_attributes_for :location
 
