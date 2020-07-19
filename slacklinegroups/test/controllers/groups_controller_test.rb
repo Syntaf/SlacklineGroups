@@ -78,6 +78,24 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_response :bad_request
   end
 
+  test 'validate submitter when present' do
+    group = groups(:one)
+    group.submitter.email = 'invalidemail'
+
+    post validate_groups_path, params: form_submit_with(group)
+
+    assert_response :bad_request
+  end
+
+  test 'skip submitter validation when missing' do
+    group = groups(:one)
+    group.submitter = nil
+
+    post validate_groups_path, params: form_submit_with(group)
+
+    assert_response :success
+  end
+
   test 'error update keeps slug' do
     group = groups(:one)
     group.type = :facebook_page
@@ -121,7 +139,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     form_group = GroupSerializer.new(group).as_json
     form_group[:info_attributes] = form_group.delete :info
     form_group[:location_attributes] = form_group .delete :location
-    form_group[:submitter_attributes] = { email: group.submitter.email }
+    form_group[:submitter_attributes] = { email: group.submitter.email } unless group.submitter.nil?
 
     {
       group: form_group
