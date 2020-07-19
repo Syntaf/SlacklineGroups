@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 const SubmitGroupButton = props => {
   return (
     <FormControl className="formControl">
-      <Button color="secondary" variant="contained">
+      <Button color="secondary" variant="contained" onClick={props.onClick}>
         Submit Group
       </Button>
     </FormControl>

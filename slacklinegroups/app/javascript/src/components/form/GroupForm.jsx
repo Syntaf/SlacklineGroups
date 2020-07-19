@@ -10,12 +10,20 @@ import GroupLinkInput from './input/GroupLinkInput';
 import SubmitGroupButton from './input/SubmitGroupButton';
 import AuthenticityToken from './AuthenticityToken';
 
+import NewGroupRequest from '../../lib/group/NewGroupRequest';
+
 const GroupForm = props => {
   const [groupName, setGroupName] = useState('');
   const [groupType, setGroupType] = useState('');
   const [groupLink, setGroupLink] = useState('');
   const [authorEmail, setAuthorEmail] = useState('');
   const [isRegional, setIsRegional] = useState(false);
+
+  const submit = () => {
+    const request = new NewGroupRequest(groupName, groupType, groupLink, authorEmail, isRegional);
+
+    console.log(request);
+  };
 
   return (
     <form action="/groups/new" className="groupForm"> 
@@ -38,7 +46,7 @@ const GroupForm = props => {
         </Grid>
         <Grid container item md={12} justify="center" className="formTile">
           <Grid item md={4} xs={12}>
-            <SubmitGroupButton />
+            <SubmitGroupButton onClick={submit} />
           </Grid>
         </Grid>
       </Grid>
