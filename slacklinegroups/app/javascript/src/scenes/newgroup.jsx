@@ -11,7 +11,7 @@ import Header from '../components/header/Header';
 
 import MapManagerFactory from '../lib/map/MapManagerFactory';
 
-const NewGroup = props => {
+const NewGroup = ({ dispatch, isFetching, isValid, errors, csrf }) => {
   const mapContainer = useRef(null);
   const [mapManager, setMapManager] = useState(null);
 
@@ -32,7 +32,7 @@ const NewGroup = props => {
         </Paper>
       </ContentContainer>
       <ContentContainer size="large" className="formContent">
-        <GroupForm csrf={props.csrf} />
+        <GroupForm csrf={csrf} />
       </ContentContainer>
     </React.Fragment>
   );
