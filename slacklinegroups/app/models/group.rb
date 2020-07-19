@@ -9,7 +9,6 @@ class Group < ApplicationRecord
 
   alias_attribute :type, :gtype
 
-  has_one :author, dependent: :nullify
   has_one :info, dependent: :destroy
   has_one :location, dependent: :destroy
 
