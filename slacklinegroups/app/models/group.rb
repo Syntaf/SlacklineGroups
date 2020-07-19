@@ -15,6 +15,11 @@ class Group < ApplicationRecord
 
   serialize :gtype, Slg::SymbolSerializer
 
+  validates :info, presence: true
+  validates :location, presence: true
+  validates_associated :info
+  validates_associated :location
+
   validates :name, presence: true
   validates :slug, presence: false, on: :create
   validates :type,

@@ -40,6 +40,44 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_equal expected_json, response.parsed_body
   end
 
+  test 'create invalid group' do
+    group = groups(:one)
+    group.location = nil
+
+    post groups_path, params: form_submit_with(group)
+
+    assert_response :bad_request
+    assert_includes response.parsed_body, 'errors'
+  end
+
+  test 'validate group' do
+    group = groups(:one)
+    group.slug = nil
+
+    post validate_groups_path, params: form_submit_with(group)
+
+    assert_response :success
+  end
+
+  test 'validate invalid group' do
+    group = groups(:one)
+    group.name = nil
+
+    post validate_groups_path, params: form_submit_with(group)
+
+    assert_response :bad_request
+    assert_includes response.parsed_body, 'errors'
+  end
+
+  test 'validate invalid assocation of group' do
+    group = groups(:one)
+    group.info.link = nil
+
+    post validate_groups_path, params: form_submit_with(group)
+
+    assert_response :bad_request
+  end
+
   test 'error update keeps slug' do
     group = groups(:one)
     group.type = :facebook_page
@@ -83,6 +121,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     form_group = GroupSerializer.new(group).as_json
     form_group[:info_attributes] = form_group.delete :info
     form_group[:location_attributes] = form_group .delete :location
+    form_group[:submitter_attributes] = { email: group.submitter.email }
 
     {
       group: form_group
