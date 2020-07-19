@@ -5,6 +5,9 @@ require 'test_helper'
 class GroupTest < ActiveSupport::TestCase
   test 'supported group' do
     group = Group.new({ name: 'test group' })
+    group.location = Location.new({ lat: 1, lon: 1 })
+    group.info = Info.new({ link: 'slacklinegroups.com' })
+
     group.type = :facebook_group
 
     assert group.valid?
@@ -12,6 +15,9 @@ class GroupTest < ActiveSupport::TestCase
 
   test 'unsupported group' do
     group = Group.new({ name: 'test group' })
+    group.location = Location.new({ lat: 1, lon: 1 })
+    group.info = Info.new({ link: 'slacklinegroups.com' })
+
     group.type = :invalid
 
     assert_not group.valid?
@@ -19,6 +25,8 @@ class GroupTest < ActiveSupport::TestCase
 
   test 'generates slug on create' do
     group = Group.new({ type: :facebook_group, name: 'test group' })
+    group.location = Location.new({ lat: 1, lon: 1 })
+    group.info = Info.new({ link: 'slacklinegroups.com' })
 
     mock = Minitest::Mock.new
     mock.expect :call, nil, ['test group']
@@ -32,6 +40,7 @@ class GroupTest < ActiveSupport::TestCase
 
   test 'maintains existing slug on update' do
     group = groups(:one)
+
     group.type = :facebook_page
 
     group.save
@@ -65,6 +74,9 @@ class GroupTest < ActiveSupport::TestCase
       location_attributes: {
         lat: 12.9,
         lon: 13.5
+      },
+      submitter_attributes: {
+        email: 'admin@localhost'
       }
     })
 

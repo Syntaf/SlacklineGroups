@@ -19,6 +19,7 @@ class Group < ApplicationRecord
   validates :location, presence: true
   validates_associated :info
   validates_associated :location
+  validates_associated :submitter
 
   validates :name, presence: true
   validates :slug, presence: false, on: :create
