@@ -4,8 +4,10 @@ one:
   name: GroupOne
   slug: one
   gtype: :facebook_group
+  approved: true
 
 two:
   name: GroupTwo
   slug: two
   gtype: :facebook_group
+  approved: false

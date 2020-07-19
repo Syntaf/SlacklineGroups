@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_175013) do
+ActiveRecord::Schema.define(version: 2020_07_19_165432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_175013) do
     t.string "gtype"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "approved", default: false
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
 
@@ -60,6 +61,15 @@ ActiveRecord::Schema.define(version: 2020_05_31_175013) do
     t.index ["group_id"], name: "index_locations_on_group_id"
   end
 
+  create_table "submitters", force: :cascade do |t|
+    t.string "email", null: false
+    t.bigint "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_submitters_on_group_id"
+  end
+
   add_foreign_key "infos", "groups"
   add_foreign_key "locations", "groups"
+  add_foreign_key "submitters", "groups"
 end
