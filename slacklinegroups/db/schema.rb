@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_175013) do
+ActiveRecord::Schema.define(version: 2020_07_19_161723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,12 +32,21 @@ ActiveRecord::Schema.define(version: 2020_05_31_175013) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "authors", force: :cascade do |t|
+    t.string "email", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.string "gtype"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "author_id"
+    t.boolean "approved", default: false
+    t.index ["author_id"], name: "index_groups_on_author_id"
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
 
@@ -60,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_175013) do
     t.index ["group_id"], name: "index_locations_on_group_id"
   end
 
+  add_foreign_key "groups", "authors"
   add_foreign_key "infos", "groups"
   add_foreign_key "locations", "groups"
 end
