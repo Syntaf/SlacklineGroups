@@ -1,7 +1,7 @@
 import { REQUEST_GROUP_VALIDATION, RECEIVE_VALIDATION_RESPONSE } from '../actions/newgroup';
 
 function newgroup(
-  state = { isFetching: false, isValid: false, validationErrors: [] },
+  state = { isFetching: false, submitted: false, validationErrors: [] },
   action
 ) {
   switch (action.type) {
@@ -12,6 +12,7 @@ function newgroup(
     case RECEIVE_VALIDATION_RESPONSE:
       return Object.assign({}, state, {
         isFetching: false,
+        submitted: action.errors.length > 0,
         validationErrors: action.errors
       });
     default:

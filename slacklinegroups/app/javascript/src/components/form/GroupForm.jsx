@@ -12,24 +12,22 @@ import AuthenticityToken from './AuthenticityToken';
 
 import NewGroupRequest from '../../lib/group/NewGroupRequest';
 
-const GroupForm = props => {
+const GroupForm = ({ csrf, submit }) => {
   const [groupName, setGroupName] = useState('');
   const [groupType, setGroupType] = useState('');
   const [groupLink, setGroupLink] = useState('');
   const [authorEmail, setAuthorEmail] = useState('');
   const [isRegional, setIsRegional] = useState(false);
 
-  const submit = () => {
-    let request = new NewGroupRequest(groupName, groupType, groupLink, authorEmail, isRegional, props.csrf);
+  const onSubmit = () => {
+    const request = new NewGroupRequest(groupName, groupType, groupLink, authorEmail, isRegional, csrf);
 
-    fetch('/groups/validate', request.asRequestInit())
-      .then(response => response.json())
-      .then(json => { console.log(json); });
+    submit(request);
   };
 
   return (
     <form action="/groups/new" className="groupForm"> 
-      <AuthenticityToken csrfToken={props.csrf} />
+      <AuthenticityToken csrfToken={csrf} />
       <Grid container spacing={5}>
         <Grid item md={6} xs={12} className="formTile">
           <GroupNameInput value={groupName} onChange={(event) => {setGroupName(event.target.value);}} />
@@ -48,7 +46,7 @@ const GroupForm = props => {
         </Grid>
         <Grid container item md={12} justify="center" className="formTile">
           <Grid item md={4} xs={12}>
-            <SubmitGroupButton onClick={submit} />
+            <SubmitGroupButton onClick={onSubmit} />
           </Grid>
         </Grid>
       </Grid>

@@ -15,6 +15,10 @@ const NewGroup = ({ dispatch, isFetching, isValid, errors, csrf }) => {
   const mapContainer = useRef(null);
   const [mapManager, setMapManager] = useState(null);
 
+  const submit = (request) => {
+    dispatch(validateGroup(request));
+  };
+
   useEffect(() => { if (!mapManager) setMapManager(MapManagerFactory.create(mapContainer)); }, [mapManager]);
 
   return (
@@ -32,7 +36,7 @@ const NewGroup = ({ dispatch, isFetching, isValid, errors, csrf }) => {
         </Paper>
       </ContentContainer>
       <ContentContainer size="large" className="formContent">
-        <GroupForm csrf={csrf} />
+        <GroupForm csrf={csrf} errors={errors} submit={submit} />
       </ContentContainer>
     </React.Fragment>
   );
