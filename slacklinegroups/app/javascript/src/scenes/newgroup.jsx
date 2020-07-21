@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
-import { validateGroup } from '../actions/newgroup';
+import { submitGroup } from '../actions/newgroup';
 
 import Paper from '@material-ui/core/Paper';
 
@@ -16,7 +16,7 @@ const NewGroup = ({ dispatch, isFetching, isValid, errors, csrf }) => {
   const [mapManager, setMapManager] = useState(null);
 
   const submit = (request) => {
-    dispatch(validateGroup(request));
+    dispatch(submitGroup(request));
   };
 
   useEffect(() => { if (!mapManager) setMapManager(MapManagerFactory.create(mapContainer)); }, [mapManager]);
