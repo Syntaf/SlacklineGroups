@@ -4,6 +4,7 @@ import { submitGroup } from '../actions/newgroup';
 
 import Paper from '@material-ui/core/Paper';
 
+import ErrorLabel from '../components/form/ErrorLabel';
 import GroupForm from '../components/form/GroupForm';
 import ContentContainer from '../components/container/ContentContainer';
 import Map from '../components/map/Map';
@@ -31,9 +32,10 @@ const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
         </p>
       </ContentContainer>
       <ContentContainer size="large" className="mapContent">
-        <Paper elevation={1}>
-          <Map ref={mapContainer} />
-        </Paper>
+      <Paper elevation={1} className={errors?.location ? 'error' : ''}>
+        <Map ref={mapContainer} />
+      </Paper>
+        { errors?.location ? <ErrorLabel text="Please select a location on the map" className="mapErrorLabel" /> : '' }
       </ContentContainer>
       <ContentContainer size="large" className="formContent">
         <GroupForm csrf={csrf} errors={errors} submitFn={submit} />

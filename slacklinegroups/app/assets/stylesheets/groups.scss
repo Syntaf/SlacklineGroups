@@ -16,6 +16,16 @@ div[data-react-class="containers/newgroupContainer"] {
 
   .mapContent {
     margin-top: 20px;
+
+    & > .error {
+      border: 1px solid #f44336;
+      border-radius: 1px;
+    }
+
+    .mapErrorLabel {
+      color: #f44336;
+      text-align: center;
+    }
   }
 
   #map {
