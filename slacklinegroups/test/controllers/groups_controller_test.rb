@@ -40,7 +40,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_equal expected_json, response.parsed_body
   end
 
-  test 'create invalid group' do
+  test 'reject invalid location' do
     group = groups(:one)
     group.location = nil
 
@@ -50,48 +50,39 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.parsed_body, 'errors'
   end
 
-  test 'validate group' do
-    group = groups(:one)
-    group.slug = nil
-
-    post validate_groups_path, params: form_submit_with(group)
-
-    assert_response :success
-  end
-
-  test 'validate invalid group' do
+  test 'reject invalid name' do
     group = groups(:one)
     group.name = nil
 
-    post validate_groups_path, params: form_submit_with(group)
+    post groups_path, params: form_submit_with(group)
 
     assert_response :bad_request
     assert_includes response.parsed_body, 'errors'
   end
 
-  test 'validate invalid assocation of group' do
+  test 'validate invalid link' do
     group = groups(:one)
     group.info.link = nil
 
-    post validate_groups_path, params: form_submit_with(group)
+    post groups_path, params: form_submit_with(group)
 
     assert_response :bad_request
   end
 
-  test 'validate submitter when present' do
+  test 'reject invalid submitter email' do
     group = groups(:one)
     group.submitter.email = 'invalidemail'
 
-    post validate_groups_path, params: form_submit_with(group)
+    post groups_path, params: form_submit_with(group)
 
     assert_response :bad_request
   end
 
-  test 'skip submitter validation when missing' do
+  test 'accept missing submitter' do
     group = groups(:one)
     group.submitter = nil
 
-    post validate_groups_path, params: form_submit_with(group)
+    post groups_path, params: form_submit_with(group)
 
     assert_response :success
   end

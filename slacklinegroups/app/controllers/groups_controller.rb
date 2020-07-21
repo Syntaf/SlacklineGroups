@@ -25,16 +25,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def validate
-    group = Group.new(group_params)
-
-    if group.valid?
-      render json: { status: :success }
-    else
-      render json: { status: :error, errors: group.errors }, status: :bad_request
-    end
-  end
-
   def show
     group = Group.find_by!({ slug: params[:slug] })
 
