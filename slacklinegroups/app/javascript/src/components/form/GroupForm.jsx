@@ -12,7 +12,7 @@ import AuthenticityToken from './AuthenticityToken';
 
 import NewGroupRequest from '../../lib/group/NewGroupRequest';
 
-const GroupForm = ({ csrf, submit }) => {
+const GroupForm = ({ csrf, errors, submitFn }) => {
   const [groupName, setGroupName] = useState('');
   const [groupType, setGroupType] = useState('');
   const [groupLink, setGroupLink] = useState('');
@@ -22,7 +22,7 @@ const GroupForm = ({ csrf, submit }) => {
   const onSubmit = () => {
     const request = new NewGroupRequest(groupName, groupType, groupLink, authorEmail, isRegional, csrf);
 
-    submit(request);
+    submitFn(request);
   };
 
   return (
@@ -30,19 +30,38 @@ const GroupForm = ({ csrf, submit }) => {
       <AuthenticityToken csrfToken={csrf} />
       <Grid container spacing={5}>
         <Grid item md={6} xs={12} className="formTile">
-          <GroupNameInput value={groupName} onChange={(event) => {setGroupName(event.target.value);}} />
+          <GroupNameInput
+            value={groupName}
+            error={'name' in errors}
+            onChange={(event) => {setGroupName(event.target.value);}}
+          />
         </Grid>
         <Grid item md={3} xs={12} className="formTile">
-          <GroupTypeSelect value={groupType} onChange={(event) => {setGroupType(event.target.value);}} />
+          <GroupTypeSelect
+            value={groupType}
+            error={'type' in errors}
+            onChange={(event) => {setGroupType(event.target.value);}}
+          />
         </Grid>
         <Grid item md={3} xs={12} className="formTile checkboxControl">
-          <GroupRegionalCheckbox checked={isRegional} onChange={(event) => {setIsRegional(event.target.checked); }} />
+          <GroupRegionalCheckbox
+            checked={isRegional}
+            onChange={(event) => {setIsRegional(event.target.checked); }}
+          />
         </Grid>
         <Grid item md={6} xs={12} className="formTile">
-          <GroupLinkInput value={groupLink} onChange={(event) => {setGroupLink(event.target.value);}} />
+          <GroupLinkInput
+            value={groupLink}
+            error={'info.link' in errors}
+            onChange={(event) => {setGroupLink(event.target.value);}}
+          />
         </Grid>
         <Grid item md={6} xs={12} className="formTile">
-          <AuthorEmailInput value={authorEmail} onChange={(event) => {setAuthorEmail(event.target.value); }} />
+          <AuthorEmailInput
+            value={authorEmail}
+            error={'submitter.email' in errors}
+            onChange={(event) => {setAuthorEmail(event.target.value); }}
+          />
         </Grid>
         <Grid container item md={12} justify="center" className="formTile">
           <Grid item md={4} xs={12}>

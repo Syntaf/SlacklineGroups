@@ -11,7 +11,7 @@ import Header from '../components/header/Header';
 
 import MapManagerFactory from '../lib/map/MapManagerFactory';
 
-const NewGroup = ({ dispatch, isFetching, isValid, errors, csrf }) => {
+const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
   const mapContainer = useRef(null);
   const [mapManager, setMapManager] = useState(null);
 
@@ -36,7 +36,7 @@ const NewGroup = ({ dispatch, isFetching, isValid, errors, csrf }) => {
         </Paper>
       </ContentContainer>
       <ContentContainer size="large" className="formContent">
-        <GroupForm csrf={csrf} errors={errors} submit={submit} />
+        <GroupForm csrf={csrf} errors={errors} submitFn={submit} />
       </ContentContainer>
     </React.Fragment>
   );
@@ -44,11 +44,11 @@ const NewGroup = ({ dispatch, isFetching, isValid, errors, csrf }) => {
 
 function mapStateToProps(state) {
   const { newgroup } = state;
-  const { isFetching, isValid, errors } = newgroup;
+  const { isFetching, submitted, errors } = newgroup;
 
   return {
     isFetching,
-    isValid,
+    submitted,
     errors
   };
 }

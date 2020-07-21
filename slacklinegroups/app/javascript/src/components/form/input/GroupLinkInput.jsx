@@ -3,10 +3,10 @@ import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 
-const GroupLinkInput = props => {
+const GroupLinkInput = ({value, onChange, error}) => {
   return (
     <FormControl className="formControl">
-      <TextField value={props.value} onChange={props.onChange} label="Link" />
+      <TextField value={value} error={error} onChange={onChange} label="Link" />
     </FormControl>
   );
 };
