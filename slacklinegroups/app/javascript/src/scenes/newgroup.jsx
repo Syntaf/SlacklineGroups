@@ -10,11 +10,10 @@ import ContentContainer from '../components/container/ContentContainer';
 import Map from '../components/map/Map';
 import Header from '../components/header/Header';
 
-import MapManagerFactory from '../lib/map/MapManagerFactory';
-import useMapManager from '../hooks/MapManagerHook';
+import useMap from '../hooks/UseMap';
 
 const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
-  const [mapRef, mapManager] = useMapManager();
+  const [mapRef, mapManager] = useMap();
 
   const submit = (request) => {
     dispatch(submitGroup(request));

@@ -8,7 +8,7 @@ import MapManagerFactory from '../lib/map/MapManagerFactory';
  * 
  * @returns {Array}
  */
-const useMapManager = () => {
+const useMap = () => {
   const mapRef = useRef(null);
   const [mapManager, setMapManager] = useState(null);
 
@@ -17,4 +17,4 @@ const useMapManager = () => {
   return [mapRef, mapManager];
 };
 
-export default useMapManager;
+export default useMap;

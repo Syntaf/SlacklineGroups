@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux';
 import { fetchMapGroups } from '../actions/map';
-import useMapManager from '../hooks/MapManagerHook';
+import useMap from '../hooks/UseMap';
 
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
@@ -12,7 +12,7 @@ import ClusterLabelLayer from '../lib/map/layers/ClusterLabelLayer';
 import GroupMarkerLayer from '../lib/map/layers/GroupMarkerLayer';
 
 const Home = ({dispatch, isFetching, groups, assets}) => {
-  const [mapRef, mapManager] = useMapManager();
+  const [mapRef, mapManager] = useMap();
 
   /** Fetch groups on initial component load */
   useEffect(() => { dispatch(fetchMapGroups()); }, []);
