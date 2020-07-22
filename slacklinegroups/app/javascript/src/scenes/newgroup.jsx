@@ -11,16 +11,14 @@ import Map from '../components/map/Map';
 import Header from '../components/header/Header';
 
 import MapManagerFactory from '../lib/map/MapManagerFactory';
+import useMapManager from '../hooks/MapManagerHook';
 
 const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
-  const mapContainer = useRef(null);
-  const [mapManager, setMapManager] = useState(null);
+  const [mapRef, mapManager] = useMapManager();
 
   const submit = (request) => {
     dispatch(submitGroup(request));
   };
-
-  useEffect(() => { if (!mapManager) setMapManager(MapManagerFactory.create(mapContainer)); }, [mapManager]);
 
   return (
     <React.Fragment>
@@ -33,7 +31,7 @@ const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
       </ContentContainer>
       <ContentContainer size="large" className="mapContent">
       <Paper elevation={1} className={errors?.location ? 'error' : ''}>
-        <Map ref={mapContainer} />
+        <Map ref={mapRef} />
       </Paper>
         { errors?.location ? <ErrorLabel text="Please select a location on the map" className="mapErrorLabel" /> : '' }
       </ContentContainer>

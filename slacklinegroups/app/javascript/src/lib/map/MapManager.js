@@ -4,6 +4,7 @@ import GroupMarkerLayer from './layers/GroupMarkerLayer';
 
 import ClusterSourceManager from './ClusterSourceManager';
 import LayerManager from './LayerManager';
+import Layer from './layers/Layer';
 
 /**
  * Manages the creation of various visualization layers on the map as well as all
@@ -32,14 +33,25 @@ class MapManager
   /**
    * Visualize and hook in all necessary UI interactions on the map
    *
-   * @param {Array} groups 
+   * @param {Array} groups
+   * @returns {MapManager}
    */
   visualize(groups) {
     this.sourceManager.createSource(this.SOURCE_ID, groups);
 
-    this.layerManager.addLayer(this.SOURCE_ID, new ClusterLayer());
-    this.layerManager.addLayer(this.SOURCE_ID, new ClusterLabelLayer());
-    this.layerManager.addLayer(this.SOURCE_ID, new GroupMarkerLayer());
+    return this;
+  }
+
+  /**
+   * Visualize the map using the given layer
+   * 
+   * @param {Layer} layer
+   * @returns {MapManager}
+   */
+  with(layer) {
+    this.layerManager.addLayer(this.SOURCE_ID, layer);
+
+    return this;
   }
 
   resetView() {

@@ -7,6 +7,9 @@ import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
 import MapControlsContainer from '../components/map/MapControlsContainer';
 import MapResetButton from '../components/navigation/MapResetButton';
+import ClusterLayer from '../lib/map/layers/ClusterLayer';
+import ClusterLabelLayer from '../lib/map/layers/ClusterLabelLayer';
+import GroupMarkerLayer from '../lib/map/layers/GroupMarkerLayer';
 
 const Home = ({dispatch, isFetching, groups, assets}) => {
   const [mapRef, mapManager] = useMapManager();
@@ -15,7 +18,15 @@ const Home = ({dispatch, isFetching, groups, assets}) => {
   useEffect(() => { dispatch(fetchMapGroups()); }, []);
 
   /** Add necessary sources, layers, and interaction handlers once groups have been received */
-  useEffect(() => { if (mapManager && groups.length) mapManager.visualize(groups); }, [mapManager, groups]);
+  useEffect(() => {
+    if (!mapManager || !groups.length) return;
+
+    mapManager.visualize(groups)
+              .with(new ClusterLayer())
+              .with(new ClusterLabelLayer())
+              .with(new GroupMarkerLayer());
+
+  }, [mapManager, groups]);
 
   return (
     <Map ref={mapRef} >
