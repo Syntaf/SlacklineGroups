@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { submitGroup } from '../actions/newgroup';
-
 import Paper from '@material-ui/core/Paper';
 
 import ErrorLabel from '../components/form/ErrorLabel';
@@ -14,6 +13,10 @@ import useMap from '../hooks/UseMap';
 
 const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
   const [mapRef, mapManager] = useMap();
+
+  useEffect(() => {
+    if (mapManager) mapManager.test();
+  }, [mapManager]);
 
   const submit = (request) => {
     dispatch(submitGroup(request));

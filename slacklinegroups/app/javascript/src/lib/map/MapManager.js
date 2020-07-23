@@ -5,6 +5,7 @@ import GroupMarkerLayer from './layers/GroupMarkerLayer';
 import ClusterSourceManager from './ClusterSourceManager';
 import LayerManager from './LayerManager';
 import Layer from './layers/Layer';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 
 /**
  * Manages the creation of various visualization layers on the map as well as all
@@ -40,6 +41,10 @@ class MapManager
     this.sourceManager.createSource(this.SOURCE_ID, groups);
 
     return this;
+  }
+
+  test() {
+    // this.map.addControl((new MapboxDraw()), 'top-left');
   }
 
   /**
