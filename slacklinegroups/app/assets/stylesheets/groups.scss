@@ -16,15 +16,16 @@ div[data-react-class="containers/newgroupContainer"] {
 
   .mapContent {
     margin-top: 20px;
-
-    & > .error {
-      border: 1px solid #f44336;
-      border-radius: 1px;
-    }
+    border-bottom: 1px solid #fff;
 
     .mapErrorLabel {
       color: #f44336;
       text-align: center;
+
+      &::before {
+        content: "error";
+        color: #fff;
+      }
     }
   }
 

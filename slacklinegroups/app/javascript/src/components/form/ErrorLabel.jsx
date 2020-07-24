@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ErrorLabel = ({ text, className }) => (
+const ErrorLabel = ({ active, className, children }) => (
   <p className={className}>
-    {text}
+    { active ? children : ''}
   </p>
 );
 

@@ -32,10 +32,12 @@ const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
         </p>
       </ContentContainer>
       <ContentContainer size="large" className="mapContent">
-      <Paper elevation={1} className={errors?.location ? 'error' : ''}>
-        <Map ref={mapRef} />
-      </Paper>
-        { errors?.location ? <ErrorLabel text="Please select a location on the map" className="mapErrorLabel" /> : '' }
+        <Paper elevation={1}>
+          <Map ref={mapRef} />
+        </Paper>
+        <ErrorLabel active={errors?.location} className="mapErrorLabel">
+          Please select a location on the map
+        </ErrorLabel>
       </ContentContainer>
       <ContentContainer size="large" className="formContent">
         <GroupForm csrf={csrf} errors={errors} submitFn={submit} />
