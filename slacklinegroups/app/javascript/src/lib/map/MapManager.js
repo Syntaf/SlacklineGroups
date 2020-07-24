@@ -44,7 +44,11 @@ class MapManager
   }
 
   test() {
-    // this.map.addControl((new MapboxDraw()), 'top-left');
+    this.map.addControl((new MapboxDraw({
+      displayControlsDefault: false,
+      defaultMode: 'draw_point',
+      controls: { point: 'point' }
+    })), 'top-left');
   }
 
   /**
