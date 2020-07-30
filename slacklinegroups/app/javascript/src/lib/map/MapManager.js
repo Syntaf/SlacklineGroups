@@ -43,12 +43,21 @@ class MapManager
     return this;
   }
 
-  test() {
+  test(setState) {
     this.map.addControl((new MapboxDraw({
       displayControlsDefault: false,
       defaultMode: 'draw_point',
       controls: { point: 'point' }
     })), 'top-left');
+
+    this.map.on('mousemove', function (e) {
+      const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
+      const coordinates = e.lngLat.wrap();
+      const lat = coordinates.lat.toString().match(regex)[1];
+      const lng = coordinates.lng.toString().match(regex)[1];
+      const formatted = `Latitude: ${lat}, Longitude: ${lng}`;
+      setState(formatted);
+    });
   }
 
   /**

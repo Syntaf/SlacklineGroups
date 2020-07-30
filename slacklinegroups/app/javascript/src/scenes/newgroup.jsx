@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { submitGroup } from '../actions/newgroup';
 import Paper from '@material-ui/core/Paper';
@@ -13,9 +13,12 @@ import useMap from '../hooks/UseMap';
 
 const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
   const [mapRef, mapManager] = useMap();
+  const [coordinates, setCoordinates] = useState();
 
   useEffect(() => {
-    if (mapManager) mapManager.test();
+    if (mapManager) {
+      mapManager.test(setCoordinates);
+    }
   }, [mapManager]);
 
   const submit = (request) => {
@@ -33,7 +36,9 @@ const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
       </ContentContainer>
       <ContentContainer size="large" className="mapContent">
         <Paper elevation={1}>
-          <Map ref={mapRef} />
+          <Map ref={mapRef} >
+            <span className="coordinates">{coordinates}</span>
+          </Map>
         </Paper>
         <ErrorLabel active={errors?.location} className="mapErrorLabel">
           Please select a location on the map
