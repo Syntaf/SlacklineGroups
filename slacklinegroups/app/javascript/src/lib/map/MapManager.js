@@ -62,51 +62,44 @@ class MapManager
    * @param {CallableFunction} callback
    * @return {MapManager}
    */
-  initializeLocationSelect(callback) {
+  initializeLocationSelect(stateCallback) {
     this.createControls();
 
-    this.map.on('click', (e) => {
-      const [lat, lng] = this.parseCoordinates(e.lngLat.wrap());
+    let previous = null;
 
-      callback(lat, lng);
-    });
-  }
-
-  test(setState) {
-
-    this.map.on('mousemove', function (e) {
-      
-      const coordinates = e.lngLat.wrap();
-      const lat = coordinates.lat.toString().match(regex)[1];
-      const lng = coordinates.lng.toString().match(regex)[1];
-      const formatted = `Latitude: ${lat}, Longitude: ${lng}`;
-      setState({lat: lat, lng: lng});
+    this.map.on('draw.modechange', _e => {
+      this.draw.changeMode('draw_point');
     });
 
-    this.map.on('touchend', function (e) {
-      const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
-      const coordinates = e.lngLat.wrap();
-      const lat = coordinates.lat.toString().match(regex)[1];
-      const lng = coordinates.lng.toString().match(regex)[1];
-      const formatted = `Latitude: ${lat}, Longitude: ${lng}`;
-      setState(formatted);
+    this.map.on('draw.create', e => {
+      if (previous) this.draw.delete(previous);
+
+      const { 0: feature } = e.features;
+      const [lng, lat] = this.parseCoordinates(...feature.geometry.coordinates);
+
+      stateCallback(lng, lat);
+
+      previous = feature.id;
     });
   }
 
   createControls() {
-    this.map.addControl((new MapboxDraw({
+    this.draw = new MapboxDraw({
       displayControlsDefault: false,
       defaultMode: 'draw_point',
       controls: { point: 'point' }
-    })), 'top-left');
+    });
+
+    this.map.addControl(this.draw, 'top-left');
   }
 
-  parseCoordinates(coordinates) {
+  parseCoordinates(lng, lat) {
     const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
-    const lat = coordinates.lat.toString().match(regex)[1];
-    const lng = coordinates.lng.toString().match(regex)[1];
 
-    return [lat, lng];
+    return [
+      lng.toString().match(regex)[1],
+      lat.toString().match(regex)[1]
+    ];
   }
 
   resetView() {

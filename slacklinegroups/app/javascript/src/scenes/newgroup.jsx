@@ -13,12 +13,12 @@ import useMap from '../hooks/UseMap';
 
 const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
   const [mapRef, mapManager] = useMap();
-  const [coordinates, setCoordinates] = useState({lat: '', lng: ''});
+  const [coordinates, setCoordinates] = useState({lng: '', lat: ''});
 
   useEffect(() => {
     if (mapManager) {
       mapManager.initializeLocationSelect((lng, lat) => {
-        setCoordinates({lat: lat, lng: lng});
+        setCoordinates({lng: lng, lat: lat});
       });
     }
   }, [mapManager]);
