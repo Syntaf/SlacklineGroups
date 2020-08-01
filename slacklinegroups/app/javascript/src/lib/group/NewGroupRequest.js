@@ -3,15 +3,20 @@
  */
 class NewGroupRequest
 {
-  constructor(gName, gType, gLink, authorEmail, isRegional, csrf) {
+  constructor(gName, gType, gLink, authorEmail, isRegional, lng, lat, csrf) {
     this.groupName = gName;
     this.groupType = gType;
     this.groupLink = gLink;
     this.authorEmail = authorEmail;
     this.isRegional = isRegional;
+    this.lng = lng;
+    this.lat = lat;
     this.csrf = csrf;
   }
 
+  /**
+   * Return a configuration object accepted by fetch()
+   */
   asRequestInit() {
     return {
       method: 'POST',
@@ -22,6 +27,9 @@ class NewGroupRequest
     }
   }
 
+  /**
+   * Convert a given instance of NewGroupRequest to JSON
+   */
   toJSON() {
     return {
       authenticity_token: this.csrf,
@@ -32,6 +40,10 @@ class NewGroupRequest
           link: this.groupLink,
           members: 0,
           is_regional: this.isRegional
+        },
+        location_attributes: {
+          latitude: this.lat,
+          longitude: this.lng
         },
         submitter_attributes: {
           email: this.authorEmail

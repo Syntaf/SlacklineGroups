@@ -22,7 +22,16 @@ const GroupForm = ({ csrf, lat, lng, errors, submitFn }) => {
   const [isRegional, setIsRegional] = useState(false);
 
   const onSubmit = () => {
-    const request = new NewGroupRequest(groupName, groupType, groupLink, authorEmail, isRegional, csrf);
+    const request = new NewGroupRequest(
+      groupName,
+      groupType,
+      groupLink,
+      authorEmail,
+      isRegional,
+      lng,
+      lat,
+      csrf
+    );
 
     submitFn(request);
   };
