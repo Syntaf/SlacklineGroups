@@ -42,8 +42,8 @@ class NewGroupRequest
           is_regional: this.isRegional
         },
         location_attributes: {
-          latitude: this.lat,
-          longitude: this.lng
+          lat: this.lat,
+          lon: this.lng
         },
         submitter_attributes: {
           email: this.authorEmail

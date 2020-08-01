@@ -48,10 +48,18 @@ const GroupForm = ({ csrf, lat, lng, errors, submitFn }) => {
           />
         </Grid>
         <Grid item md={3} xs={6}>
-          <LatitudeInput value={lat} readOnly={true} />
+          <LatitudeInput
+            value={lat}
+            readOnly={true}
+            error={'location.lat' in errors}
+          />
         </Grid>
         <Grid item md={3} xs={6}>
-          <LongitudeInput value={lng} readOnly={true} />
+          <LongitudeInput
+            value={lng}
+            readOnly={true}
+            error={'location.lon' in errors}
+          />
         </Grid>
         <Grid item md={6} xs={12} className="formTile">
           <GroupTypeSelect
