@@ -83,6 +83,9 @@ class MapManager
     });
   }
 
+  /**
+   * Initialize a MapboxDraw instance for selecting locations on the map
+   */
   createControls() {
     this.draw = new MapboxDraw({
       displayControlsDefault: false,
@@ -93,6 +96,12 @@ class MapManager
     this.map.addControl(this.draw, 'top-left');
   }
 
+  /**
+   * Truncates and formats floating point values
+   *
+   * @param {Number} lng 
+   * @param {Number} lat 
+   */
   parseCoordinates(lng, lat) {
     const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
 
