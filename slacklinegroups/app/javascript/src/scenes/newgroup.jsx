@@ -13,7 +13,7 @@ import useMap from '../hooks/UseMap';
 
 const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
   const [mapRef, mapManager] = useMap();
-  const [coordinates, setCoordinates] = useState();
+  const [coordinates, setCoordinates] = useState({lat: '', lng: ''});
 
   useEffect(() => {
     if (mapManager) {
@@ -36,16 +36,20 @@ const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
       </ContentContainer>
       <ContentContainer size="large" className="mapContent">
         <Paper elevation={1}>
-          <Map ref={mapRef} >
-            <span className="coordinates">{coordinates}</span>
-          </Map>
+          <Map ref={mapRef} />
         </Paper>
         <ErrorLabel active={errors?.location} className="mapErrorLabel">
           Please select a location on the map
         </ErrorLabel>
       </ContentContainer>
       <ContentContainer size="large" className="formContent">
-        <GroupForm csrf={csrf} errors={errors} submitFn={submit} />
+        <GroupForm
+          csrf={csrf}
+          lat={coordinates.lat}
+          lng={coordinates.lng}
+          errors={errors}
+          submitFn={submit}
+        />
       </ContentContainer>
     </React.Fragment>
   );

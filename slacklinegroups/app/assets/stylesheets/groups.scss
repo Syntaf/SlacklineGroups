@@ -14,6 +14,11 @@ div[data-react-class="containers/newgroupContainer"] {
     }
   }
 
+  .coordinates {
+    padding: 10px;
+    margin-top: 15px;
+  }
+
   .mapContent {
     margin-top: 20px;
     border-bottom: 1px solid #fff;
@@ -47,8 +52,6 @@ div[data-react-class="containers/newgroupContainer"] {
   }
 
   form {
-    margin-top: 30px;
-
     .formTile {
       &:last-child {
         margin-bottom: 20px;

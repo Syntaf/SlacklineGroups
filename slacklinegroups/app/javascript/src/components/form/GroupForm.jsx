@@ -7,12 +7,14 @@ import GroupNameInput from './input/GroupNameInput';
 import GroupRegionalCheckbox from './input/GroupRegionalCheckbox';
 import GroupTypeSelect from './input/GroupTypeSelect';
 import GroupLinkInput from './input/GroupLinkInput';
+import LatitudeInput from './input/LatitudeInput';
+import LongitudeInput from './input/LongitudeInput';
 import SubmitGroupButton from './input/SubmitGroupButton';
 import AuthenticityToken from './AuthenticityToken';
 
 import NewGroupRequest from '../../lib/group/NewGroupRequest';
 
-const GroupForm = ({ csrf, errors, submitFn }) => {
+const GroupForm = ({ csrf, lat, lng, errors, submitFn }) => {
   const [groupName, setGroupName] = useState('');
   const [groupType, setGroupType] = useState('');
   const [groupLink, setGroupLink] = useState('');
@@ -36,14 +38,20 @@ const GroupForm = ({ csrf, errors, submitFn }) => {
             onChange={(event) => {setGroupName(event.target.value);}}
           />
         </Grid>
-        <Grid item md={3} xs={12} className="formTile">
+        <Grid item md={3} xs={6}>
+          <LatitudeInput value="40&deg; 42&prime; 45.72&Prime; N" readOnly={true} />
+        </Grid>
+        <Grid item md={3} xs={6}>
+          <LongitudeInput value="72&deg; 0&prime; 21.24&Prime; W" readOnly={true} />
+        </Grid>
+        <Grid item md={6} xs={12} className="formTile">
           <GroupTypeSelect
             value={groupType}
             error={'type' in errors}
             onChange={(event) => {setGroupType(event.target.value);}}
           />
         </Grid>
-        <Grid item md={3} xs={12} className="formTile checkboxControl">
+        <Grid item md={6} xs={12} className="formTile checkboxControl">
           <GroupRegionalCheckbox
             checked={isRegional}
             onChange={(event) => {setIsRegional(event.target.checked); }}
