@@ -17,7 +17,9 @@ const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
 
   useEffect(() => {
     if (mapManager) {
-      mapManager.test(setCoordinates);
+      mapManager.initializeLocationSelect((lng, lat) => {
+        setCoordinates({lat: lat, lng: lng});
+      });
     }
   }, [mapManager]);
 

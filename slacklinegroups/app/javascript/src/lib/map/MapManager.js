@@ -43,23 +43,6 @@ class MapManager
     return this;
   }
 
-  test(setState) {
-    this.map.addControl((new MapboxDraw({
-      displayControlsDefault: false,
-      defaultMode: 'draw_point',
-      controls: { point: 'point' }
-    })), 'top-left');
-
-    this.map.on('mousemove', function (e) {
-      const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
-      const coordinates = e.lngLat.wrap();
-      const lat = coordinates.lat.toString().match(regex)[1];
-      const lng = coordinates.lng.toString().match(regex)[1];
-      const formatted = `Latitude: ${lat}, Longitude: ${lng}`;
-      setState(formatted);
-    });
-  }
-
   /**
    * Visualize the map using the given layer
    * 
@@ -70,6 +53,60 @@ class MapManager
     this.layerManager.addLayer(this.SOURCE_ID, layer);
 
     return this;
+  }
+
+  /**
+   * Allow a user to select / move a location on the map. Executes a callback
+   * on actions and passes the longitude / latitude through
+   * 
+   * @param {CallableFunction} callback
+   * @return {MapManager}
+   */
+  initializeLocationSelect(callback) {
+    this.createControls();
+
+    this.map.on('click', (e) => {
+      const [lat, lng] = this.parseCoordinates(e.lngLat.wrap());
+
+      callback(lat, lng);
+    });
+  }
+
+  test(setState) {
+
+    this.map.on('mousemove', function (e) {
+      
+      const coordinates = e.lngLat.wrap();
+      const lat = coordinates.lat.toString().match(regex)[1];
+      const lng = coordinates.lng.toString().match(regex)[1];
+      const formatted = `Latitude: ${lat}, Longitude: ${lng}`;
+      setState({lat: lat, lng: lng});
+    });
+
+    this.map.on('touchend', function (e) {
+      const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
+      const coordinates = e.lngLat.wrap();
+      const lat = coordinates.lat.toString().match(regex)[1];
+      const lng = coordinates.lng.toString().match(regex)[1];
+      const formatted = `Latitude: ${lat}, Longitude: ${lng}`;
+      setState(formatted);
+    });
+  }
+
+  createControls() {
+    this.map.addControl((new MapboxDraw({
+      displayControlsDefault: false,
+      defaultMode: 'draw_point',
+      controls: { point: 'point' }
+    })), 'top-left');
+  }
+
+  parseCoordinates(coordinates) {
+    const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
+    const lat = coordinates.lat.toString().match(regex)[1];
+    const lng = coordinates.lng.toString().match(regex)[1];
+
+    return [lat, lng];
   }
 
   resetView() {
