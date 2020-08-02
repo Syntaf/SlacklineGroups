@@ -57,6 +57,10 @@ div[data-react-class="containers/newgroupContainer"] {
         margin-bottom: 20px;
       }
 
+      .readOnlyField label {
+        color: gainsboro;
+      }
+
       &.checkboxControl {
         display: flex;
         align-items: flex-end;

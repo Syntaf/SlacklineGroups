@@ -47,14 +47,14 @@ const GroupForm = ({ csrf, lat, lng, errors, submitFn }) => {
             onChange={(event) => {setGroupName(event.target.value);}}
           />
         </Grid>
-        <Grid item md={3} xs={6}>
+        <Grid item md={3} xs={6} className="formTile">
           <LatitudeInput
             value={lat}
             readOnly={true}
             error={'location.lat' in errors}
           />
         </Grid>
-        <Grid item md={3} xs={6}>
+        <Grid item md={3} xs={6} className="formTile">
           <LongitudeInput
             value={lng}
             readOnly={true}

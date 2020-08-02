@@ -17,6 +17,7 @@ const LongitudeInput = ({value, error, readOnly}) => {
     <FormControl className="formControl">
       <TextField
         value={text}
+        className="readOnlyField"
         error={error}
         label="Longitude"
         InputProps={{
