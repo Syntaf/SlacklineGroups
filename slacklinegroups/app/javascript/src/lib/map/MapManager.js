@@ -1,10 +1,8 @@
-import ClusterLayer from './layers/ClusterLayer';
-import ClusterLabelLayer from './layers/ClusterLabelLayer';
-import GroupMarkerLayer from './layers/GroupMarkerLayer';
-
 import ClusterSourceManager from './ClusterSourceManager';
+import GroupMarkerLayer from './layers/GroupMarkerLayer';
 import LayerManager from './LayerManager';
 import Layer from './layers/Layer';
+
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 
 /**
