@@ -1,13 +1,22 @@
 import React from 'react';
 
+import { coordToDMS } from '@mapbox/sexagesimal';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 
 const LongitudeInput = ({value, error, readOnly}) => {
+  const toDMS = function (value) {
+    const DmsObject = coordToDMS(value, 'lon');
+
+    return `${DmsObject.whole}° ${DmsObject.minutes}′ ${DmsObject.seconds}″ ${DmsObject.dir}'`;
+  };
+
+  const text = value ? toDMS(value) : '';
+
   return (
     <FormControl className="formControl">
       <TextField
-        value={value}
+        value={text}
         error={error}
         label="Longitude"
         InputProps={{
