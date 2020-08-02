@@ -23,6 +23,9 @@ const LatitudeInput = ({value, error, readOnly}) => {
         InputProps={{
           readOnly: readOnly
         }}
+        inputProps={{
+          tabIndex: -1
+        }}
       />
     </FormControl>
   );
