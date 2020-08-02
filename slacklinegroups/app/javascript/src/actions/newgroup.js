@@ -10,7 +10,8 @@ export function requestGroupSubmit() {
 export function receiveGroupSubmitResponse(json) {
   return {
     type: RECEIVE_GROUP_SUBMIT_RESPONSE,
-    errors: json.errors
+    errors: json?.errors,
+    status: json.status
   };
 }
 

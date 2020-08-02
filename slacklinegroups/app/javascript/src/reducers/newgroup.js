@@ -13,8 +13,8 @@ function newgroup(
     case RECEIVE_GROUP_SUBMIT_RESPONSE:
       return Object.assign({}, state, {
         isFetching: false,
-        submitted: action.errors.length > 0,
-        errors: action.errors
+        submitted: action.status === 'success',
+        errors: action.errors ? action.errors : []
       });
     default:
       return state;
