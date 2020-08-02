@@ -7,7 +7,8 @@ function newgroup(
   switch (action.type) {
     case REQUEST_GROUP_SUBMIT:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
+        errors: []
       });
     case RECEIVE_GROUP_SUBMIT_RESPONSE:
       return Object.assign({}, state, {
