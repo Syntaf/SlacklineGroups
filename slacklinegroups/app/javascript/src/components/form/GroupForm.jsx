@@ -15,10 +15,10 @@ import AuthenticityToken from './AuthenticityToken';
 import NewGroupRequest from '../../lib/group/NewGroupRequest';
 
 const GroupForm = ({ csrf, lat, lng, errors, submitFn }) => {
-  const [groupName, setGroupName] = useState('');
-  const [groupType, setGroupType] = useState('');
-  const [groupLink, setGroupLink] = useState('');
-  const [authorEmail, setAuthorEmail] = useState('');
+  const [groupName, setGroupName] = useState('Vegas Slacklife');
+  const [groupType, setGroupType] = useState('facebook_group');
+  const [groupLink, setGroupLink] = useState('https://facebook.com');
+  const [authorEmail, setAuthorEmail] = useState('gmercer015@gmail.com');
   const [isRegional, setIsRegional] = useState(false);
 
   const onSubmit = () => {

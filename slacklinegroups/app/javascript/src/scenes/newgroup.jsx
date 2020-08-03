@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { submitGroup } from '../actions/newgroup';
 import Paper from '@material-ui/core/Paper';
+import Modal from '@material-ui/core/Modal';
 
+import SubmitSuccessDialog from '../components/dialog/SubmitSuccessDialog';
 import ErrorLabel from '../components/form/ErrorLabel';
 import GroupForm from '../components/form/GroupForm';
 import ContentContainer from '../components/container/ContentContainer';
@@ -53,6 +55,7 @@ const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
           submitFn={submit}
         />
       </ContentContainer>
+      <SubmitSuccessDialog open={submitted} />
     </React.Fragment>
   );
 };
