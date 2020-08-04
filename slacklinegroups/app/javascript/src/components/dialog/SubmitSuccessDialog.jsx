@@ -7,6 +7,9 @@ const SubmitSuccessDialog = ({open}) => (
     <DialogContent className="dialogContent">
       Thank you for your submission! We'll review your group and send you a 
       confirmation email shortly.
+      <br /><br />
+      Communities are what make slacklining awesome; your contribution will help make the
+      world of slacklining smaller for everyone.
     </DialogContent>
     <DialogActions>
       <Button href="/" color="primary">
