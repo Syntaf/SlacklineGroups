@@ -36,39 +36,34 @@ class GroupMarkerLayer extends Layer
   }
 
   handleClick(map, event) {
-    const cords = event.features[0].geometry.coordinates;
-    const properties = event.features[0].properties;
+    const feature = event.features[0];
+    const lngLat = [feature.properties.lng, feature.properties.lat];
     const desiredZoom = this._calculateZoomTo(map);
 
-    if (map.getZoom() === desiredZoom) {
-      const features = this._getFeaturesForEvent(map, event);
-      const marker = features.shift();
-      
-      this._createGroupTile(map, cords, marker.properties);
-    } else {
-      map.flyTo({
-        center: cords,
-        offset: [0, 200],
-        speed: 2,
-        zoom: desiredZoom
-      }, { source: this.layerId, cords: cords, properties: properties});
-    }
+    if (map.getZoom() === desiredZoom)
+      this._createGroupTile(map, lngLat, feature.properties);
+    else
+      map.flyTo(
+        {
+          center: lngLat,
+          offset: [0, 200],
+          speed: 2,
+          zoom: desiredZoom
+        },
+        {
+          source: this.layerId,
+          lngLat: lngLat,
+          properties: feature.properties
+        }
+      );
   }
 
   handleZoomEnd(map, event) {
     if (!('source' in event) || event.source !== this.layerId) return;
 
-    const { cords, properties } = event;
-    const { title, type, link } = properties;
+    const { lngLat, properties } = event;
 
-    const groupTile = new mapboxgl.Popup({ offset: 15, maxWidth: '440px' })
-      .setLngLat(cords)
-      .setHTML(ReactDOMServer.renderToString(
-        <GroupTile groupName={title} groupType={type} link={link} />
-      ))
-      .addTo(map);
-
-    map.on(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { groupTile.remove(); });
+    this._createGroupTile(map, lngLat, properties);
   }
 
   handleMouseEnter(map, event) {
@@ -88,6 +83,8 @@ class GroupMarkerLayer extends Layer
         <GroupTile groupName={title} groupType={type} link={link} />
       ))
       .addTo(map);
+
+    map.once(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { console.log('ok'); groupTile.remove(); });
   }
 
   _calculateZoomTo (map) {
