@@ -1,5 +1,5 @@
 RailsAdmin.config do |config|
-
+  config.parent_controller = ApplicationController.to_s
   config.main_app_name = ['Slacklinegroups', 'Moderation Panel']
 
   ## == Devise ==

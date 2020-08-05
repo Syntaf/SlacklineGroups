@@ -1,5 +1,6 @@
 include:
   - ./**/*.rb
+  - /usr/local/bundle/**/*.rb
 exclude:
   - vendor/**/*
   - test/**/*
