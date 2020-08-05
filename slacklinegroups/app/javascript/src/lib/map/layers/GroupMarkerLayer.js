@@ -40,12 +40,19 @@ class GroupMarkerLayer extends Layer
     const properties = event.features[0].properties;
     const desiredZoom = this._calculateZoomTo(map);
 
-    map.flyTo({
-      center: cords,
-      offset: [0, 200],
-      speed: 2,
-      zoom: desiredZoom
-    }, { source: this.layerId, cords: cords, properties: properties});
+    if (map.getZoom() === desiredZoom) {
+      const features = this._getFeaturesForEvent(map, event);
+      const marker = features.shift();
+      
+      this._createGroupTile(map, cords, marker.properties);
+    } else {
+      map.flyTo({
+        center: cords,
+        offset: [0, 200],
+        speed: 2,
+        zoom: desiredZoom
+      }, { source: this.layerId, cords: cords, properties: properties});
+    }
   }
 
   handleZoomEnd(map, event) {
@@ -70,6 +77,17 @@ class GroupMarkerLayer extends Layer
 
   handleMouseLeave(map, event) {
     map.getCanvas().style.cursor = '';
+  }
+
+  _createGroupTile (map, lngLat, properties) {
+    const { title, type, link } = properties;
+    
+    const groupTile = new mapboxgl.Popup({ offset: 15, maxWidth: '440px' })
+      .setLngLat(lngLat)
+      .setHTML(ReactDOMServer.renderToString(
+        <GroupTile groupName={title} groupType={type} link={link} />
+      ))
+      .addTo(map);
   }
 
   _calculateZoomTo (map) {

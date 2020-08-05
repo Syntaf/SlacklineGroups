@@ -86,6 +86,14 @@ class Layer
    * @param {Object} event 
    */
   handleMouseLeave(map, event) { throw new Error('handleMouseLeave() must be implemented when subscribed'); }
+
+  _getFeaturesForEvent(map, event) {
+    if (!('point' in event)) return null;
+
+    const features = map.queryRenderedFeatures(event.point);
+
+    return features.filter(x => x.layer.id === this.layerId);
+  }
 }
 
 export default Layer;
