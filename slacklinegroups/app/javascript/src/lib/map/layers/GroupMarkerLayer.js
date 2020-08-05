@@ -38,24 +38,22 @@ class GroupMarkerLayer extends Layer
   handleClick(map, event) {
     const feature = event.features[0];
     const lngLat = [feature.properties.lng, feature.properties.lat];
-    const desiredZoom = this._calculateZoomTo(map);
 
-    if (map.getZoom() === desiredZoom)
-      this._createGroupTile(map, lngLat, feature.properties);
-    else
-      map.flyTo(
-        {
-          center: lngLat,
-          offset: [0, 200],
-          speed: 2,
-          zoom: desiredZoom
-        },
-        {
-          source: this.layerId,
-          lngLat: lngLat,
-          properties: feature.properties
-        }
-      );
+    if (this.closeEnough(map)) return this._createGroupTile(map, lngLat, feature.properties);
+
+    map.flyTo(
+      {
+        center: lngLat,
+        offset: [0, 200],
+        speed: 2,
+        zoom: this.GROUP_VIEW_ZOOM
+      },
+      {
+        source: this.layerId,
+        lngLat: lngLat,
+        properties: feature.properties
+      }
+    );
   }
 
   handleZoomEnd(map, event) {
@@ -66,11 +64,11 @@ class GroupMarkerLayer extends Layer
     this._createGroupTile(map, lngLat, properties);
   }
 
-  handleMouseEnter(map, event) {
+  handleMouseEnter(map, _event) {
     map.getCanvas().style.cursor = 'pointer';
   }
 
-  handleMouseLeave(map, event) {
+  handleMouseLeave(map, _event) {
     map.getCanvas().style.cursor = '';
   }
 
@@ -84,15 +82,14 @@ class GroupMarkerLayer extends Layer
       ))
       .addTo(map);
 
-    map.once(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { console.log('ok'); groupTile.remove(); });
+    map.once(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { groupTile.remove(); });
   }
 
-  _calculateZoomTo (map) {
-    const currentZoom = map.getZoom();
-
-    if (currentZoom > 7) return currentZoom;
-
-    return this.GROUP_VIEW_ZOOM;
+  /**
+   * Defines whether the click event will zoom or create a popup immediately
+   */
+  closeEnough (map) {
+    return map.getZoom() >= 7;
   }
 }
 
