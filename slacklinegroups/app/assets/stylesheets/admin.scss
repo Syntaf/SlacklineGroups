@@ -1,0 +1,27 @@
+body[data-controller="sessions"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+
+  form {
+    margin-bottom: 15px;
+
+    .field {
+      margin: 5px 0;
+
+      &.rememberMeField {
+        margin: 10px 0;
+      }
+    }
+
+    input[type="submit"] {
+      width: 100%;
+    }
+  }
+
+  a {
+    margin: 4px 0;
+  }
+}
