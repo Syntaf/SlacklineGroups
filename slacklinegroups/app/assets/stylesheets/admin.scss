@@ -1,4 +1,7 @@
-body[data-controller="sessions"] {
+body[data-controller="sessions"],
+body[data-controller="registrations"],
+body[data-controller="confirmations"],
+body[data-controller="passwords"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,13 +15,24 @@ body[data-controller="sessions"] {
       margin: 5px 0;
 
       &.rememberMeField {
-        margin: 10px 0;
+        margin: 10px 0 5px 0;
       }
     }
 
-    input[type="submit"] {
+    input {
+      box-sizing: border-box;
       width: 100%;
     }
+
+    input[type="submit"] {
+      margin: 5px 0;
+      padding: 5px 0;
+    }
+
+    input[type="checkbox"] {
+      width: initial;
+    }
+
   }
 
   a {
