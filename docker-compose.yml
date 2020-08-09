@@ -27,6 +27,7 @@ services:
         GROUP_ID: "${GROUP_ID:-1000}"
     depends_on:
       - postgres
+    # command: bundle exec rdebug-ide --debug --host 0.0.0.0 --port 1234 -- bin/rails server -p 3000 -b 0.0.0.0
     volumes:
       - type: bind
         source: ./slacklinegroups
