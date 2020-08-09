@@ -6,13 +6,17 @@ class ApplicationController < ActionController::Base
   private
 
   def reload_rails_admin
-    models = %w[Admin Group Info Location Submitter]
-    models.each do |m|
-      RailsAdmin::Config.reset_model(m)
-    end
-    RailsAdmin::Config::Actions.reset
+    RailsAdmin::Config.reset
 
     load(Rails.root.join('config/initializers/rails_admin.rb'))
+
+    models = %w[Overseer Moderator Group Info Location Submitter]
+    models.each do |m|
+      Object.send(:remove_const, m)
+
+      file_path = m.to_s.underscore
+      load(Rails.root.join("app/models/#{file_path}.rb"))
+    end
   end
 
   def rails_admin_path?
