@@ -3,6 +3,7 @@
 require 'symbol_serializer'
 
 class Group < ApplicationRecord
+  include Moderate::GroupConfig
   include Sluggable
 
   GROUP_TYPES = %i[facebook_group facebook_page other].freeze
