@@ -18,7 +18,7 @@ Once you know your tag version, run the following command to build a production 
 ```zsh
 # replace vX with your version tag
 
-$ docker build -t syntaf/slacklinegroups:v7 \
+$ docker build -t syntaf/slacklinegroups:vX \
     --build-arg RAILS_ENV=production \
     --build-arg USER_ID=$(id -u) \
     --build-arg GROUP_ID=1000 \
