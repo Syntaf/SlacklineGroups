@@ -1,10 +1,19 @@
 include:
   - ./**/*.rb
-  - /usr/local/bundle/**/*.rb
 exclude:
   - vendor/**/*
   - test/**/*
   - spec/**/*
-  - .bundle/**/
+  - examples/**/*
+require:
+  - actioncable
+  - actionmailer
+  - actionpack
+  - actionview
+  - activejob
+  - activemodel
+  - activerecord
+  - activestorage
+  - activesupport
 reporters:
   - rubocop
