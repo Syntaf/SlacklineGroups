@@ -10,7 +10,7 @@ import LayerManager from './LayerManager';
 class MapManagerFactory
 {
   static get ACCESS_TOKEN() { return 'pk.eyJ1Ijoic3ludGFmIiwiYSI6ImNqM2Z2bzZhbTAxZWwycW4wcmI5cjk4MW0ifQ.YOd5yuJfLARC2oOfqY-KoA'; }
-  static get STYLE_URL() { return 'mapbox://styles/syntaf/ckbo1tki51go31ip7wnf2t5rm'; }
+  static get STYLE_URL() { return 'mapbox://styles/syntaf/ckdwal60b1odw1aqmo9e5ag0n'; }
 
   /**
    * Initializes and instance of MapManager along with it's dependencies
