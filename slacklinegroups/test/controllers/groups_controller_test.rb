@@ -3,28 +3,28 @@
 require 'test_helper'
 
 class GroupControllerTest < ActionDispatch::IntegrationTest
-  test 'get all groups' do
+  test 'gets all groups' do
     get groups_path
 
     assert_response :success
   end
 
-  test 'get groups with limit' do
+  test 'gets all groups with limit' do
     get groups_path limit: 1
 
     assert_response :success
     assert_equal(1, response.parsed_body.length)
   end
 
-  test 'show action JSON format' do
+  test 'verifies expected group format' do
     group = groups(:one)
 
     get group_path(group)
     assert_response :success
-    assert_equal group_as_json(group), response.parsed_body
+    assert_equal expected_serialization_for(group), response.parsed_body
   end
 
-  test 'create group' do
+  test 'creates group' do
     group = groups(:one)
     group.slug = nil
 
@@ -35,12 +35,12 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     response_group = response.parsed_body['group']
 
     group.slug = response_group['slug']
-    expected_json = { 'status' => 'success', 'group' => group_as_json(group) }
+    expected_json = { 'status' => 'success', 'group' => expected_serialization_for(group) }
 
     assert_equal expected_json, response.parsed_body
   end
 
-  test 'reject invalid location' do
+  test 'rejects invalid location' do
     group = groups(:one)
     group.location = nil
 
@@ -50,7 +50,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.parsed_body, 'errors'
   end
 
-  test 'reject invalid name' do
+  test 'rejects invalid name' do
     group = groups(:one)
     group.name = nil
 
@@ -60,7 +60,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.parsed_body, 'errors'
   end
 
-  test 'validate invalid link' do
+  test 'validates invalid link' do
     group = groups(:one)
     group.info.link = nil
 
@@ -69,7 +69,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_response :bad_request
   end
 
-  test 'reject invalid submitter email' do
+  test 'rejects invalid submitter email' do
     group = groups(:one)
     group.submitter.email = 'invalidemail'
 
@@ -78,7 +78,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_response :bad_request
   end
 
-  test 'accept missing submitter' do
+  test 'accepts missing submitter' do
     group = groups(:one)
     group.submitter = nil
 
@@ -87,7 +87,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'error update keeps slug' do
+  test 'updating group type maintains slug' do
     group = groups(:one)
     group.type = :facebook_page
 
@@ -98,7 +98,7 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_equal group.type.to_s, response.parsed_body['group']['type']
   end
 
-  test 'updating name updates slug' do
+  test 'updating group name updates slug' do
     group = groups(:one)
     group.name = 'new group name'
     old_slug = group.slug
@@ -137,13 +137,24 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  # Convert a Group instance into a JSON hash. Stringifys keys so it can
-  # be compared with the response body
+  # Manually defines the expected serialization format
+  # for a given group
   #
   # @param group [Group] the group to convert to JSON
-  def group_as_json(group)
-    GroupSerializer.new(group)
-                   .as_json
-                   .deep_stringify_keys
+  def expected_serialization_for(group)
+    {
+      'name' => group.name,
+      'slug' => group.slug,
+      'type' => group.type,
+      'info' => {
+        'link' => group.info.link,
+        'members' => group.info.members,
+        'is_regional' => group.info.is_regional?
+      },
+      'location' => {
+        'lat' => group.location.lat.to_s,
+        'lon' => group.location.lon.to_s
+      }
+    }
   end
 end
