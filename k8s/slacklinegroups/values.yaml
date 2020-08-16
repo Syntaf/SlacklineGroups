@@ -8,7 +8,7 @@ image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v8"
+  tag: "v9"
 
 imagePullSecrets: []
 nameOverride: ""
