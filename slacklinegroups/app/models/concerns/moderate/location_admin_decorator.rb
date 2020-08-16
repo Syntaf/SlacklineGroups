@@ -4,7 +4,7 @@ module Moderate
   module LocationAdminDecorator
     extend ActiveSupport::Concern
 
-    VISIBLE_FIELD_ORDER = %i[lat lon].freeze
+    VISIBLE_FIELD_ORDER = %i[group lat lon].freeze
 
     # Generates a custom label for location objects of the form
     # "<id> {<lat>, <lon>}". Formats lat & lon as 00.00
@@ -19,7 +19,7 @@ module Moderate
 
     included do
       rails_admin do
-        label 'Location'
+        label 'Group Locations'
         object_label_method do
           :custom_object_label
         end
