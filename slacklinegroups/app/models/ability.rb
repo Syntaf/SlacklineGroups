@@ -4,9 +4,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, :all if user.is_a?(Overseer)
+    if user.is_a?(Overseer)
+      can :manage, :all if user.is_a?(Overseer)
+    elsif user.is_a?(Moderator)
+      can :access, :rails_admin
+      can :read, :dashboard
 
-    if user.is_a?(Moderator)
+      can :create, Group
+      can :read, Group
       can :update, Group
     end
   end
