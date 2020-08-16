@@ -55,7 +55,7 @@ class ClusterSourceManager
   }
 
   _formatGroupType (type) {
-    return type.replace('_', ' ');
+    return type != null ? type.replace('_', ' ') : 'Unknown';
   }
 }
 
