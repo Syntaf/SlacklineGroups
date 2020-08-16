@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class Group < ApplicationRecord
-  include Moderate::GroupConfig
+  include Moderate::GroupAdminDecorator
   include Sluggable
 
   alias_attribute :type, :gtype
 
   enum gtype: { facebook_group: 0, facebook_page: 1, other: 2 }
 
-  has_one :info, dependent: :destroy
-  has_one :location, dependent: :destroy
-  has_one :submitter, dependent: :destroy
+  has_one :info, dependent: :destroy, inverse_of: :group
+  has_one :location, dependent: :destroy, inverse_of: :group
+  has_one :submitter, dependent: :destroy, inverse_of: :group
 
   validates :info, presence: true
   validates :location, presence: true

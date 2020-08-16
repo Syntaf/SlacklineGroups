@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Moderate
-  module GroupConfig
+  module GroupAdminDecorator
     extend ActiveSupport::Concern
 
     VISIBLE_FIELD_ORDER = %i[approved name slug gtype approved info location submitter].freeze
@@ -11,6 +11,10 @@ module Moderate
         base do
           configure :gtype, :active_record_enum do
             label 'Type'
+          end
+
+          configure :info do
+            inverse_of :group
           end
 
           fields(*VISIBLE_FIELD_ORDER)
