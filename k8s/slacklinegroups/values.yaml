@@ -8,7 +8,7 @@ image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v9"
+  tag: "v10"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -44,6 +44,7 @@ ingress:
   enabled: true 
   annotations:
     cert-manager.io/issuer: "letsencrypt-prod-slg"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
   hosts:
     - host: gstwwtm.com
       paths:
