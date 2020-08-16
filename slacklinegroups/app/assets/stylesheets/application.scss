@@ -2,6 +2,7 @@
  *= require_tree .
  *= require_self
  *= require @mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css
+ *= require mapbox-gl/dist/mapbox-gl.css
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
