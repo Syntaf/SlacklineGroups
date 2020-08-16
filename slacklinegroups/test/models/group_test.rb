@@ -13,14 +13,10 @@ class GroupTest < ActiveSupport::TestCase
     assert group.valid?
   end
 
-  test 'unsupported group' do
-    group = Group.new({ name: 'test group' })
-    group.location = Location.new({ lat: 1, lon: 1 })
-    group.info = Info.new({ link: 'slacklinegroups.com' })
-
-    group.type = :invalid
-
-    assert_not group.valid?
+  test 'unsupported group type' do
+    assert_raises ArgumentError do
+      Group.new({ type: :invalid })
+    end
   end
 
   test 'generates slug on create' do
