@@ -13,10 +13,6 @@ module Moderate
             label 'Type'
           end
 
-          configure :info do
-            inverse_of :group
-          end
-
           fields(*VISIBLE_FIELD_ORDER)
         end
 
@@ -25,6 +21,10 @@ module Moderate
             read_only true
             help ''
           end
+        end
+
+        list do
+          scopes [:pending, :approved, nil]
         end
       end
     end

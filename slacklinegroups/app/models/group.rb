@@ -4,6 +4,9 @@ class Group < ApplicationRecord
   include Moderate::GroupAdminDecorator
   include Sluggable
 
+  scope :pending, -> { where({ approved: false }) }
+  scope :approved, -> { where({ approved: true }) }
+
   alias_attribute :type, :gtype
 
   enum gtype: { facebook_group: 0, facebook_page: 1, other: 2 }
