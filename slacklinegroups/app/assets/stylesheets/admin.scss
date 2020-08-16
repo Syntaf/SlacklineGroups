@@ -33,6 +33,12 @@ body[data-controller="passwords"] {
       width: initial;
     }
 
+    .error {
+      color: red;
+      display: block;
+      margin-top: 10px;
+    }
+
   }
 
   a {

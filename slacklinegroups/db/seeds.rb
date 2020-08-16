@@ -1,7 +1,7 @@
 require 'coordinate_generator'
 
 # Start by removing all groups & admins
-Group.limit(100).destroy_all
+Group.in_batches(of: 100).destroy_all
 Admin.all.each { |admin| admin.destroy }
 
 # ----------------------------- Admin Account -----------------------------

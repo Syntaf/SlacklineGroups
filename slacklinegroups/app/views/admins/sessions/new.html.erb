@@ -21,6 +21,10 @@
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
+
+  <span class="error">
+    <%= flash[:alert] %>
+  </span>
 <% end %>
 
 <%= render "admins/shared/links" %>
