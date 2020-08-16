@@ -6,6 +6,10 @@ module Moderate
 
     VISIBLE_FIELD_ORDER = %i[lat lon].freeze
 
+    # Generates a custom label for location objects of the form
+    # "<id> {<lat>, <lon>}". Formats lat & lon as 00.00
+    #
+    # @return [String] the formatted label to use within rails_admin
     def custom_object_label
       formatted_lat = format('%05.2<lat>f', lat: lat.truncate(2))
       formatted_lon = format('%05.2<lon>f', lon: lon.truncate(2))
