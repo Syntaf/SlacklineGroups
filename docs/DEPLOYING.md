@@ -64,5 +64,5 @@ $ helm install -f secrets.yaml slacklinegroups k8s/slacklinegroups
 Assuming you've named your release `slacklinegroups` like above, and that you've incremented the chart version in `slacklinegroups/Chart.yaml`, run the following command to rollout a new deployment:
 
 ```zsh
-$ helm upgrade -f secrets.yaml slacklinegroups k8s/slacklinegroups
+$ helm upgrade -n slacklinegroups -f secrets.yaml slacklinegroups k8s/slacklinegroups
 ```
