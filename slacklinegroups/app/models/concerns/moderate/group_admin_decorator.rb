@@ -8,6 +8,8 @@ module Moderate
 
     included do
       rails_admin do
+        label 'Slackline Groups'
+
         base do
           configure :gtype, :active_record_enum do
             label 'Type'
