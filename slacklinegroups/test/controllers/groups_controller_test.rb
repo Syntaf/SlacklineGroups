@@ -3,17 +3,22 @@
 require 'test_helper'
 
 class GroupControllerTest < ActionDispatch::IntegrationTest
-  test 'gets all groups' do
+  test 'gets all approved groups' do
     get groups_path
 
     assert_response :success
+    assert_equal 1, response.parsed_body.length
+
+    group = response.parsed_body.first
+
+    assert_equal groups(:one).name, group['name']
   end
 
   test 'gets all groups with limit' do
-    get groups_path limit: 1
+    get groups_path limit: 0
 
     assert_response :success
-    assert_equal(1, response.parsed_body.length)
+    assert_empty response.parsed_body
   end
 
   test 'verifies expected group format' do
