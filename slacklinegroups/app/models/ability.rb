@@ -10,9 +10,9 @@ class Ability
       can :access, :rails_admin
       can :read, :dashboard
 
-      can :create, Group
-      can :read, Group
-      can :update, Group
+      can :create, [Group, Info, Location]
+      can :read, [Group, Info, Location]
+      can :update, [Group, Info, Location]
     end
   end
 end
