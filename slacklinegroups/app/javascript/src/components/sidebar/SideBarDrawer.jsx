@@ -18,7 +18,7 @@ const SideBarDrawer = props => {
 
   return (
     <React.Fragment>
-      <Button onClick={openMenu} size='small'>
+      <Button onClick={openMenu} size='small' aria-label="Open menu">
         <MenuIcon />
       </Button>
       <SwipeableDrawer
