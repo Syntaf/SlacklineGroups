@@ -11,7 +11,7 @@ const MapNavigationBar = props => {
     <Slide in={true} direction="right">
       <Card className="mapNavigationBar">
         <SideBarButton />
-        <SearchInput disabled={props.disabled} />
+        <SearchInput disabled={props.disabled} onQuery={props.onQuery} />
       </Card>
     </Slide>
   );

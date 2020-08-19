@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import TextField from '@material-ui/core/TextField';
 import { InputAdornment, CircularProgress } from '@material-ui/core';
@@ -29,6 +29,7 @@ const SearchInput = props => {
       className='searchBar'
       label=''
       disabled={props.disabled}
+      onChange={(e) => {props.onQuery(e.target.value)}}
       placeholder='Name or Location'
       InputProps={inputProps}/>
   )

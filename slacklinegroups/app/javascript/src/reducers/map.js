@@ -1,4 +1,9 @@
-import { REQUEST_MAP_GROUPS, RECEIVE_MAP_GROUPS } from '../actions/map';
+import {
+  REQUEST_MAP_GROUPS,
+  RECEIVE_MAP_GROUPS,
+  REQUEST_GROUP_QUERY,
+  RECEIVE_QUERIED_GROUPS
+} from '../actions/map';
 
 /**
  * Reduces actions related to map visualizations. Starts with an initial
@@ -11,7 +16,7 @@ import { REQUEST_MAP_GROUPS, RECEIVE_MAP_GROUPS } from '../actions/map';
  * @param {Object} action 
  */
 function map(
-  state = { isFetching: true, groups: [] },
+  state = { isFetching: true, groups: [], searchResults: [] },
   action
 ) {
   switch (action.type) {
@@ -23,6 +28,14 @@ function map(
       return Object.assign({}, state, {
         isFetching: false,
         groups: action.groups,
+        lastUpdated: action.receivedAt
+      });
+    case REQUEST_GROUP_QUERY:
+      return Object.assign({}, state, {});
+    case RECEIVE_QUERIED_GROUPS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        searchResults: action.groups,
         lastUpdated: action.receivedAt
       });
     default:

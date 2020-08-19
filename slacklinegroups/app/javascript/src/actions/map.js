@@ -1,6 +1,9 @@
 export const REQUEST_MAP_GROUPS = 'REQUEST_GROUPS';
 export const RECEIVE_MAP_GROUPS = 'RECEIVE_GROUPS';
 
+export const REQUEST_GROUP_QUERY = 'REQUEST_GROUP_QUERY';
+export const RECEIVE_QUERIED_GROUPS = 'RECEIVE_QUERIED_GROUPS';
+
 export function requestMapGroups() {
   return {
     type: REQUEST_MAP_GROUPS
@@ -15,11 +18,34 @@ export function receiveMapGroups(json) {
   };
 }
 
+export function requestGroupQuery() {
+  return {
+    type: REQUEST_GROUP_QUERY
+  };
+}
+
+export function receiveGroupsFromQuery(json) {
+  return {
+    type: RECEIVE_QUERIED_GROUPS,
+    groups: json,
+    receivedAt: Date.now()
+  };
+}
+
 export function fetchMapGroups() {
   return dispatch => {
     dispatch(requestMapGroups());
     return fetch('/groups')
       .then(response => response.json())
       .then(json => dispatch(receiveMapGroups(json)));
+  }
+}
+
+export function queryGroups(queryRequest) {
+  return dispatch => {
+    dispatch(requestGroupQuery(queryRequest));
+    return fetch('/groups/search', queryRequest.asRequest())
+      .then(response => response.json())
+      .then(json => dispatch(receiveGroupsFromQuery(json)));
   }
 }
