@@ -1,9 +1,10 @@
 import React, { useEffect, useCallback } from 'react'
 import { connect } from 'react-redux';
 import { fetchMapGroups, queryGroups } from '../actions/map';
-import { debounce } from 'underscore';
+import { debounce, throttle } from 'underscore';
 
 import useMap from '../hooks/UseMap';
+import useDelayedCallback from '../hooks/UseDelayedCallback';
 
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
@@ -17,8 +18,11 @@ import GroupQueryRequest from '../lib/group/GroupQueryRequest';
 const Home = ({dispatch, isFetching, groups, searchResults, _assets}) => {
   const [mapRef, mapManager] = useMap();
 
-  const delayedQuery = useCallback(
-    debounce(q => dispatch(queryGroups(new GroupQueryRequest(q)), 500))
+  /** Dispatch requests for group queries after debouncing & throttling */
+  const onQuery = useDelayedCallback(
+    q => dispatch(queryGroups(new GroupQueryRequest(q))),
+    500,
+    [dispatch]
   );
 
   /** Fetch groups on initial component load */
@@ -38,7 +42,7 @@ const Home = ({dispatch, isFetching, groups, searchResults, _assets}) => {
   return (
     <Map ref={mapRef} >
       <MapControlsContainer>
-        <MapNavigationBar disabled={isFetching} onQuery={delayedQuery} searchResults={searchResults} />
+        <MapNavigationBar disabled={isFetching} onQuery={onQuery} />
         <MapResetButton mapManager={mapManager} />
       </MapControlsContainer>
     </Map>
