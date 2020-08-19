@@ -31,7 +31,9 @@ function map(
         lastUpdated: action.receivedAt
       });
     case REQUEST_GROUP_QUERY:
-      return Object.assign({}, state, {});
+      return Object.assign({}, state, {
+        isFetching: true
+      });
     case RECEIVE_QUERIED_GROUPS:
       return Object.assign({}, state, {
         isFetching: false,
