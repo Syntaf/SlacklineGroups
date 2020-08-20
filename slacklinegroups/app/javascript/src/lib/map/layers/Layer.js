@@ -41,8 +41,6 @@ class Layer
       throw new Error(`Layer ${this.layerId} is attempting to handle an event it does not subscribe to: ${eventType}`);
     }
 
-    console.log(eventType);
-
     switch (eventType) {
       case Layer.CLICK:
         return this.handleClick.bind(this, map);

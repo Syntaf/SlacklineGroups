@@ -6,12 +6,12 @@ import Slide from '@material-ui/core/Slide';
 import SideBarButton from '../sidebar/SideBarButton';
 import SearchInput from '../search/SearchInput';
 
-const MapNavigationBar = ({ disabled, groups }) => {
+const MapNavigationBar = ({ disabled, groups, onGroupSelect }) => {
   return (
     <Slide in={true} direction="right">
       <Card className="mapNavigationBar">
         <SideBarButton />
-        <SearchInput disabled={disabled} groups={groups} />
+        <SearchInput disabled={disabled} groups={groups} onGroupSelect={onGroupSelect} />
       </Card>
     </Slide>
   );

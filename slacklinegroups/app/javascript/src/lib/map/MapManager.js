@@ -53,6 +53,10 @@ class MapManager
     return this;
   }
 
+  generateSyntheticClick(layerId, syntheticEvent) {
+    this.layerManager.getLayer(layerId).handleClick(this.map, syntheticEvent);
+  }
+
   /**
    * Allow a user to select / move a location on the map. Executes a callback
    * on actions and passes the longitude / latitude through

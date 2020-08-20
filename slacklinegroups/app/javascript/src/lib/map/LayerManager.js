@@ -7,11 +7,11 @@ import Layer from './layers/Layer';
 class LayerManager
 {
   /**
-   * 
    * @param {mapboxgl.Map} map 
    */
   constructor(map) {
     this.map = map;
+    this.layers = [];
   }
 
   /**
@@ -30,6 +30,12 @@ class LayerManager
     for (const eventType of layer.subscribedEvents) {
       this.map.on(eventType, layer.layerId, layer.getEventHandler(eventType, this.map));
     }
+
+    this.layers[layer.layerId] = layer;
+  }
+
+  getLayer(layerId) {
+    return this.layers[layerId];
   }
 }
 

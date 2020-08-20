@@ -6,7 +6,7 @@ import { InputAdornment, CircularProgress } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
 
-const SearchInput = ({ disabled, groups }) => {
+const SearchInput = ({ disabled, groups, onGroupSelect }) => {
   const endAdornment = (
     <InputAdornment position='end'>
       { disabled ? (
@@ -22,13 +22,22 @@ const SearchInput = ({ disabled, groups }) => {
     endAdornment: endAdornment,
   };
 
+  const onChange = (e) => {
+    const selectedOption = e.target.getAttribute('data-option-index');
+
+    if (selectedOption) {
+      onGroupSelect(groups[selectedOption]);
+    }
+  }
+
   return (
     <Autocomplete
       id="SearchGroupsInput"
       className='searchBar'
       freeSolo={true}
-      debug={true}
-      options={groups.map((option) => option.name)}
+      onChange={onChange}
+      options={groups}
+      getOptionLabel={g => g.name}
       renderInput={(params) => (
         <TextField
           {...params}

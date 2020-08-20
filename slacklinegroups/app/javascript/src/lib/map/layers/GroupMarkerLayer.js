@@ -16,6 +16,7 @@ import GroupTile from '../../../components/map/GroupTile';
 class GroupMarkerLayer extends Layer
 {
   static get CLEAR_GROUP_TILES () { return 'removeGroupTiles'; }
+  static get FLY_TO_GROUP () { return 'flyToGroup'; }
   get GROUP_VIEW_ZOOM () { return 12; }
 
   get layerId () { return 'group-marker-layer'; }
