@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  respond_to :json, only: %i[index show create search]
+  respond_to :json, only: %i[index show create]
   respond_to :html, only: %i[new]
 
   # TO-DO: Consider reworking frontend to paginate this once the response
@@ -31,6 +31,8 @@ class GroupsController < ApplicationController
     render json: group
   end
 
+  def edit; end
+
   def update
     group = Group.find_by!({ slug: params[:slug] })
 
@@ -40,14 +42,6 @@ class GroupsController < ApplicationController
       render json: { status: :error, errors: group.errors }, status: :bad_request
     end
   end
-
-  def search
-    groups = Group.all.limit(5)
-
-    render json: groups
-  end
-
-  def edit; end
 
   def destroy; end
 

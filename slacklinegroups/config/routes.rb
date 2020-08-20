@@ -3,12 +3,8 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :admins
-  
-  resources :groups, param: :slug do
-    collection do
-      get :search
-    end
-  end
+
+  resources :groups, param: :slug
   resources :map, only: %i[index]
   resources :about, only: %i[index]
   
