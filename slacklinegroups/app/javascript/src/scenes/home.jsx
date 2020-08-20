@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { connect } from 'react-redux';
 import { fetchMapGroups, queryGroups } from '../actions/map';
+import { debounce, throttle } from 'underscore';
 
 import useMap from '../hooks/UseMap';
 import useDelayedCallback from '../hooks/UseDelayedCallback';
 
-import ClusterLayer from '../lib/map/layers/ClusterLayer';
-import ClusterLabelLayer from '../lib/map/layers/ClusterLabelLayer';
-import GroupMarkerLayer from '../lib/map/layers/GroupMarkerLayer';
-import GroupQueryRequest from '../lib/group/GroupQueryRequest';
 import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
 import MapControlsContainer from '../components/map/MapControlsContainer';
 import MapResetButton from '../components/navigation/MapResetButton';
-import SearchResults from '../components/search/SearchResults';
+import ClusterLayer from '../lib/map/layers/ClusterLayer';
+import ClusterLabelLayer from '../lib/map/layers/ClusterLabelLayer';
+import GroupMarkerLayer from '../lib/map/layers/GroupMarkerLayer';
+import GroupQueryRequest from '../lib/group/GroupQueryRequest';
 
 const Home = ({dispatch, isFetching, groups, searchResults, _assets}) => {
   const [mapRef, mapManager] = useMap();
@@ -42,7 +42,7 @@ const Home = ({dispatch, isFetching, groups, searchResults, _assets}) => {
   return (
     <Map ref={mapRef} >
       <MapControlsContainer>
-        <MapNavigationBar isFetching={isFetching} onQuery={onQuery} searchResults={searchResults} />
+        <MapNavigationBar isFetching={isFetching} onQuery={onQuery} />
         <MapResetButton mapManager={mapManager} />
       </MapControlsContainer>
     </Map>
