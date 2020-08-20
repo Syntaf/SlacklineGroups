@@ -42,7 +42,7 @@ class GroupsController < ApplicationController
   end
 
   def search
-    groups = Group.all.limit(5)
+    groups = Group.all.limit(15)
 
     render json: groups
   end
