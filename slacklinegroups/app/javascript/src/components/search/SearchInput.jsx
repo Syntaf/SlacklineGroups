@@ -1,36 +1,42 @@
 import React from 'react';
 
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { InputAdornment, CircularProgress } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
 
-const SearchInput = props => {
-  const startAdornment = props.disabled ? (
-    <InputAdornment position='start' className='loadingContainer'>
-      <CircularProgress className='loading' size='20px' />
-    </InputAdornment>
-  ) : null;
-
+const SearchInput = ({ disabled, groups }) => {
   const endAdornment = (
     <InputAdornment position='end'>
-      <SearchIcon />
+      { disabled ? (
+        <CircularProgress className='loading' size='20px' />
+      ): (
+        <SearchIcon />
+      )}
     </InputAdornment>
   );
 
   const inputProps = {
     disableUnderline: true,
     endAdornment: endAdornment,
-    startAdornment: startAdornment
   };
 
   return (
-    <TextField
+    <Autocomplete
+      id="SearchGroupsInput"
       className='searchBar'
-      label=''
-      disabled={props.disabled}
-      placeholder='Name or Location'
-      InputProps={inputProps}/>
+      freeSolo={true}
+      debug={true}
+      options={groups.map((option) => option.name)}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          placeholder='Group Name'
+          InputProps={{...params.InputProps, ...inputProps}}
+        />
+      )}
+    />
   )
 }
 
