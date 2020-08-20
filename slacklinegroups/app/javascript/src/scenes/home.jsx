@@ -42,7 +42,7 @@ const Home = ({dispatch, isFetching, groups, searchResults, _assets}) => {
   return (
     <Map ref={mapRef} >
       <MapControlsContainer>
-        <MapNavigationBar isFetching={isFetching} onQuery={onQuery} />
+        <MapNavigationBar disabled={isFetching} onQuery={onQuery} />
         <MapResetButton mapManager={mapManager} />
       </MapControlsContainer>
     </Map>

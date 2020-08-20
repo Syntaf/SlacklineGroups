@@ -6,12 +6,12 @@ import Slide from '@material-ui/core/Slide';
 import SideBarButton from '../sidebar/SideBarButton';
 import SearchInput from '../search/SearchInput';
 
-const MapNavigationBar = ({ isFetching, onQuery }) => {
+const MapNavigationBar = props => {
   return (
     <Slide in={true} direction="right">
       <Card className="mapNavigationBar">
         <SideBarButton />
-        <SearchInput isFetching={isFetching} onQuery={onQuery} />
+        <SearchInput disabled={props.disabled} onQuery={props.onQuery} />
       </Card>
     </Slide>
   );
