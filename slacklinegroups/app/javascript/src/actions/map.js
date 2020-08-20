@@ -44,7 +44,7 @@ export function fetchMapGroups() {
 export function queryGroups(queryRequest) {
   return dispatch => {
     dispatch(requestGroupQuery(queryRequest));
-    return fetch(queryRequest.asRequest())
+    return fetch('/groups/search', queryRequest.asRequest())
       .then(response => response.json())
       .then(json => dispatch(receiveGroupsFromQuery(json)));
   }
