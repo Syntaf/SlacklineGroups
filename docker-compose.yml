@@ -72,12 +72,11 @@ services:
         target: /opt/app/slacklinegroups
       - /opt/app/slacklinegroups/tmp
       - /opt/app/slacklinegroups/node_modules
-    command: bash -c "rm -rf /opt/app/slacklinegroups/public/packs; NODE_ENV=production bin/webpack-dev-server"
+    command: bash -c "rm -rf /opt/app/slacklinegroups/public/packs; bin/webpack-dev-server"
     env_file:
       - .env
     ports:
       - 3035:3035
-      - 8888:8888
 
 volumes:
   slacklinegroups-postgres:
