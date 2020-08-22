@@ -49,6 +49,12 @@ ingress:
     nginx.org/server-snippets: |
       gzip on;
       gzip_types text/plain text/html application/json;
+
+      server_name gstwwtm.com www.gstwwtm.com;
+
+      if ($host != "gstwwtm.com") {
+        return 301 $scheme://gstwwtm.com$request_uri;
+      }
   hosts:
     - host: gstwwtm.com
       paths:
