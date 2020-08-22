@@ -37,10 +37,14 @@ class GroupMarkerLayer extends Layer
   }
 
   handleClick(map, event) {
+    if (this.groupTile) this.groupTile.remove();
+
     const feature = event.features[0];
     const lngLat = [feature.properties.lng, feature.properties.lat];
 
-    if (this.closeEnough(map)) return this._createGroupTile(map, lngLat, feature.properties);
+    if (this.isCoordinateInView(map, lngLat) && this.hasSufficientZoomLevel(map)) {
+      this._createGroupTile(map, lngLat, feature.properties);
+    }
 
     map.flyTo(
       {
@@ -76,20 +80,29 @@ class GroupMarkerLayer extends Layer
   _createGroupTile (map, lngLat, properties) {
     const { title, type, link } = properties;
     
-    const groupTile = new mapboxgl.Popup({ offset: 15, maxWidth: '440px' })
+    this.groupTile = new mapboxgl.Popup({ offset: 15, maxWidth: '440px' })
       .setLngLat(lngLat)
       .setHTML(ReactDOMServer.renderToString(
         <GroupTile groupName={title} groupType={type} link={link} />
       ))
       .addTo(map);
 
-    map.once(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { groupTile.remove(); });
+    map.once(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { this.groupTile.remove(); });
+  }
+
+  /**
+   * Determines if a LngLat pair lies within the current visual bounds of the map1
+   * @param {mapboxgl.Map} map 
+   * @param {Array} lngLat 
+   */
+  isCoordinateInView (map, lngLat) {
+    return map.getBounds().contains(lngLat);
   }
 
   /**
    * Defines whether the click event will zoom or create a popup immediately
    */
-  closeEnough (map) {
+  hasSufficientZoomLevel (map) {
     return map.getZoom() >= 7;
   }
 }

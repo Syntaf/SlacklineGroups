@@ -53,7 +53,7 @@ class MapManager
     return this;
   }
 
-  generateSyntheticClick(layerId, syntheticEvent) {
+  generateSyntheticClick(layerId, syntheticEvent) { 
     this.layerManager.getLayer(layerId).handleClick(this.map, syntheticEvent);
   }
 
