@@ -1,3 +1,5 @@
+@import '../../vars';
+
 .mapboxgl-popup-content {
   width: 440px;
   height: 340px;
@@ -5,6 +7,10 @@
   flex-direction: column;
   padding: 0 !important;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  @media (max-width: $mobileBreakpoint) {
+    width: 300px;
+  }
 
   .header {
     color: #fff;
