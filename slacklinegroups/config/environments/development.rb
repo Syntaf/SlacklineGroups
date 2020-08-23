@@ -12,6 +12,8 @@ Rails.application.configure do
   # Configure email for development
   config.action_mailer.perform_deliveries = false
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.asset_host = 'localhost'
+  config.action_mailer.default_url_options = { host: 'localhost' }
   config.action_mailer.smtp_settings = {
     user_name: 'apikey',
     password: ENV['SENDGRID_PASSWORD'],
