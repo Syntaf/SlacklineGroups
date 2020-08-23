@@ -9,6 +9,19 @@ Rails.application.configure do
   # Whitelist Docker Host on development
   config.hosts << 'slacklinegroups'
 
+  # Configure email for development
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: 'apikey',
+    password: ENV['SENDGRID_PASSWORD'],
+    domain: ENV['SENDGRID_DOMAIN'],
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
