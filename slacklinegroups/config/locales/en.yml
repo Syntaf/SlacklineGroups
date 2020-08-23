@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    actions:
+      bulk_approve:
+          title: 'Mark selected groups as approved'
+          bulk_link: 'Mark selected groups as approved'
+          breadcrump: 'Mark selected groups as approved'

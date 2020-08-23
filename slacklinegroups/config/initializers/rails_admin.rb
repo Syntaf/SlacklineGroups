@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rails_admin/bulk_approve_action'
+
 RailsAdmin.config do |config|
   config.parent_controller = 'ApplicationController'
   config.main_app_name = ['Slacklinegroups', 'Moderation Panel']
@@ -28,10 +30,13 @@ RailsAdmin.config do |config|
     new
     export
     bulk_delete
-    show
     edit
     delete
     show_in_app
+
+    bulk_approve do
+      only ['Group']
+    end
 
     ## With an audit adapter, you can add:
     # history_index
