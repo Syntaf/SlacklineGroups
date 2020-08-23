@@ -4,6 +4,10 @@
 
 replicaCount: 1
 
+sendgrid:
+  domain: 'gstwwtm.com'
+  password: ''
+
 image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent

@@ -43,6 +43,16 @@ spec:
                   key: postgresql-password
             - name: SLACKLINEGROUPS_DATABASE_HOST
               value: {{ .Release.Name }}-postgresql
+            - name: SENDGRID_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sendgrid
+                  key: password
+            - name: SENDGRID_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sendgrid
+                  key: domain
           ports:
             - name: http
               containerPort: 3000
