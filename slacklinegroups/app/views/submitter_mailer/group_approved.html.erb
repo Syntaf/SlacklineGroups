@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" type="text/css">
+  </head>
+  <body style="max-width: 680px; margin: 0 auto; font-family: 'Inter', sans-serif; background-color: #eee">
+    <div style="background-color: #fff; margin-bottom: 10px;">
+      <h1 style="font-weight: 700; text-align: center;  color: #3F51B5; margin: 10px; padding: 10px 0;">SlacklineGroups</h1>
+    </div>
+    <div style="text-align: center;">
+      <%= image_tag 'group_submitted_mail_hero.jpg', width: '680px' %>
+    </div>
+    <div style="background-color: #fff; padding: 10px; margin-top: 10px; margin-bottom: 10px;">
+      <h2>Your contribution is live!</h2>
+      <p>Hi there,</p>
+      <p>
+        This email is a notice that your submitted group, "<strong><%= @group.name %></strong>", has been reviewed
+        and accepted by the moderation team at <a href="https://gstwwtm.com" style="text-decoration: none; font-style: italic">Slacklinegroups.com</a>.
+      </p>
+      <p>
+        Thank you for your contribution to the community! Slacklinegroups relies on contributors like you to stay up to date on the newest groups.
+      </p>
+      <%= link_to 'Go to Group', group_url(@group), style: 'text-decoration: none; padding: 10px 20px; background-color: #3F51B5; color: #fff; margin-top: 10px; display: inline-block' %>
+    </div>
+  </body>
+</html>
