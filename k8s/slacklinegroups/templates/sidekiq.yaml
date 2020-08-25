@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sidekiq
+  labels:
+    {{- include "slacklinegroups.labels" . | nindex 4 }}
+spec:
+{{- if not .Values.sidekiq.autoscaling.enabled }}
+  replicas: {{ .Values.sidekiq.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "slacklinegroups.selectorLabels" . | nindex 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "slacklinegroups.selectorLabels" . | nindex 8 }}
+    spec:
+      serviceAccountName: {{ include "slacklinegroups.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindex 8 }}
+      containers:
+        - name: sidekiq
+          securityContext:
+            {{- toYaml .Values.securityContext | nindex 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: SLACKLINEGROUPS_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-postgresql
+                  key: postgresql-password
+            - name: SLACKLINEGROUPS_DATABASE_HOST
+              value: {{ .Release.Name }}-postgresql
+            - name: SENDGRID_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sendgrid
+                  key: password
+            - name: SENDGRID_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sendgrid
+                  key: domain

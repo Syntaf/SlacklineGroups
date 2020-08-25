@@ -8,6 +8,9 @@ sendgrid:
   domain: 'gstwwtm.com'
   password: ''
 
+sidekiq:
+  replicaCount: 2
+
 image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
@@ -111,3 +114,7 @@ external-dns:
 postgresql:
   postgresqlUsername: slacklinegroups
   postgresqlDatabase: slacklinegroups-production
+  postgresqlPassword: my-postgresql-password
+
+redis:
+  password: my-redis-password
