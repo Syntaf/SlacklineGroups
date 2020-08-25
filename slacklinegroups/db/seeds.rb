@@ -49,8 +49,9 @@ base_lon = 13.519466
 500.times do |n|
   cords = cord_generator.random_location(base_lon, base_lat, 1_300_000)
 
-  random_group = Group.new(name: "Random Group #{n}", slug: ('a'..'z').to_a.shuffle[0,8].join, type: :facebook_group, approved: true)
+  random_group = Group.new(name: "Random Group #{n}", slug: ('a'..'z').to_a.shuffle[0,8].join, type: :facebook_group, approved: false)
   random_group.info = Info.new(link: 'https://www.facebook.com', members: n, is_regional: false)
   random_group.location = Location.new(lon: cords.first, lat: cords.second)
+  random_group.submitter = Submitter.new(email: ('a'..'z').to_a.shuffle[0,8].join + '@gmail.com')
   random_group.save
 end
