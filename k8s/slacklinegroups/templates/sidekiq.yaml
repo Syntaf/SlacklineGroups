@@ -3,29 +3,41 @@ kind: Deployment
 metadata:
   name: sidekiq
   labels:
-    {{- include "slacklinegroups.labels" . | nindex 4 }}
+    {{- include "slacklinegroups.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.sidekiq.autoscaling.enabled }}
   replicas: {{ .Values.sidekiq.replicaCount }}
 {{- end }}
   selector:
     matchLabels:
-      {{- include "slacklinegroups.selectorLabels" . | nindex 6 }}
+      {{- include "slacklinegroups.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "slacklinegroups.selectorLabels" . | nindex 8 }}
+        {{- include "slacklinegroups.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "slacklinegroups.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindex 8 }}
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: sidekiq
           securityContext:
-            {{- toYaml .Values.securityContext | nindex 12 }}
+            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["bundle"]
+          args:
+            - "exec"
+            - "sidekiq"
+            - "-q"
+            - "mailers"
           env:
+            - name: REDIS_URL
+              value: "redis://slacklinegroups-redis-master:6379/0"
+            - name: JOB_WORKER_URL
+              value: "redis://slacklinegroups-redis-master:6379/0"
+            - name: RAILS_SERVE_STATIC_FILES
+              value: "true"
             - name: SLACKLINEGROUPS_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
