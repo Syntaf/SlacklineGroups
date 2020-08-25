@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     RailsAdmin::Config.reset
 
     load(Rails.root.join('config/initializers/rails_admin.rb'))
+    load(Rails.root.join('lib/rails_admin/bulk_approve_action.rb'))
 
     models = %w[Overseer Moderator Group Info Location Submitter]
     models.each do |m|
