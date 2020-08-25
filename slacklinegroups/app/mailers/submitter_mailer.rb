@@ -3,7 +3,7 @@
 class SubmitterMailer < ApplicationMailer
   default from: "noreply@#{ENV['SENDGRID_DOMAIN']}"
 
-  def group_approved
+  def approved_email
     @group = params[:group]
 
     mail(to: @group.submitter.email, subject: 'Group successfully submitted')

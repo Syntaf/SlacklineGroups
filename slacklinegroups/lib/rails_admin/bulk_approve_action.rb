@@ -20,9 +20,19 @@ module RailsAdmin
 
         register_instance_option :controller do
           proc do
-            list_entries(@model_config).update(approved: true)
+            groups_to_approve = list_entries(@model_config)
 
-            flash[:notice] = 'Selected groups successfully approved'
+            if groups_to_approve.update(approved: true)
+              groups_to_approve.each do |group|
+                SubmitterMailer.with(group: group)
+                               .approved_email
+                               .deliver_later
+              end
+              flash[:notice] = 'Selected groups successfully approved'
+            else
+              flash[:error] = 'Something went wrong :('
+            end
+
             redirect_to index_path
           end
         end
