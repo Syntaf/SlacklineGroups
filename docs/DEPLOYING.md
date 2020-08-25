@@ -18,12 +18,7 @@ Once you know your tag version, run the following command to build a production 
 ```zsh
 # replace vX with your version tag
 
-$ docker build -t syntaf/slacklinegroups:vX \
-    --build-arg RAILS_ENV=production \
-    --build-arg USER_ID=$(id -u) \
-    --build-arg GROUP_ID=1000 \
-    -f ./slacklinegroups/Dockerfile.production \
-    ./slacklinegroups
+$ docker build -t syntaf/slacklinegroups:vX --build-arg RAILS_ENV=production --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 -f ./slacklinegroups/Dockerfile.production ./slacklinegroups
 ```
 
 Once built, push your production image:

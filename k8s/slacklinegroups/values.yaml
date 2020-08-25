@@ -11,11 +11,14 @@ sendgrid:
 sidekiq:
   replicaCount: 2
 
+  autoscaling:
+    enabled: false
+
 image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v16"
+  tag: "v17"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -117,4 +120,4 @@ postgresql:
   postgresqlPassword: my-postgresql-password
 
 redis:
-  password: my-redis-password
+  usePassword: false
