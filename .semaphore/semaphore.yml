@@ -5,13 +5,13 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Push Test Images
+  - name: Build Test Images
     task:
       jobs:
         - name: Build slacklinegroups
           commands:
             - 'docker pull $DOCKER_USERNAME/slacklinegroups_test:latest || true'
-            - 'docker build -t $DOCKER_USERNAME/slacklinegroups_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups_test:latest --build-arg RAILS_ENV=test --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
+            - 'docker build -t $DOCKER_USERNAME/slacklinegroups_test:latest --cache-from=$DOCKER_USERNAME/slacklinegroups_test:latest --build-arg RAILS_ENV=test --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) -f ./slacklinegroups/Dockerfile.development ./slacklinegroups'
             - 'docker push $DOCKER_USERNAME/slacklinegroups_test:latest'
       secrets:
         - name: dockerhub
@@ -25,14 +25,15 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cp .env.example .env
+          - cp .env.test .env
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+          - 'docker pull $DOCKER_USERNAME/slacklinegroups_test:latest'
       jobs:
         - name: Slacklinegroups
           commands:
             - 'docker-compose -f docker-compose.test.yml run slacklinegroups rails db:drop'
             - 'docker-compose -f docker-compose.test.yml run slacklinegroups rails db:create'
             - 'docker-compose -f docker-compose.test.yml run slacklinegroups rails db:migrate'
-            - docker-compose -f docker-compose.test.yml run slacklinegroups rails test
+            - 'docker-compose -f docker-compose.test.yml run slacklinegroups rails test'
       secrets:
         - name: dockerhub

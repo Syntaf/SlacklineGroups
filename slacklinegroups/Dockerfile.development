@@ -3,6 +3,9 @@ FROM ruby:2.7
 
 ARG USER_ID
 ARG GROUP_ID
+ARG RAILS_ENV
+
+ENV RAILS_ENV=$RAILS_EN
 
 RUN addgroup --gid $GROUP_ID user
 RUN adduser --disabled-password --gecos "" --uid $USER_ID --gid $GROUP_ID user
