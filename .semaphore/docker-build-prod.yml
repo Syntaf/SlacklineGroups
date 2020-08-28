@@ -11,7 +11,7 @@ blocks:
         - name: Build slacklinegroups
           commands:
             - 'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
-            - 'docker build --cache-from="{$DOCKER_USERNAME}"/slacklinegroups:latest -t "{$DOCKER_USERNAME}"/slacklinegroups:latest -t $DOCKER_USERNAME/slacklinegroups:v"{$SEMAPHORE_WORKFLOW_ID}" --build-arg RAILS_ENV=production --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
+            - 'docker build --cache-from="${DOCKER_USERNAME}"/slacklinegroups:latest -t "${DOCKER_USERNAME}"/slacklinegroups:latest -t "${DOCKER_USERNAME}"/slacklinegroups:v"${SEMAPHORE_WORKFLOW_ID}" --build-arg RAILS_ENV=production --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
             - 'docker push $DOCKER_USERNAME/slacklinegroups'
       secrets:
         - name: dockerhub
