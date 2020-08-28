@@ -5,7 +5,7 @@ This project is hosted on DigitalOcean via Kubernetes. The steps below outline h
 
 ### Prerequisites
 
-- A `secrets.yaml` file containing your digital ocean API token (see `secrets.yaml.example`)
+- A `secrets.yaml` file (see `secrets.yaml.example`)
 - [doctl](https://github.com/digitalocean/doctl) installed and authenticated with your cluster
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed
 
@@ -18,14 +18,16 @@ Once you know your tag version, run the following command to build a production 
 ```zsh
 # replace vX with your version tag
 
-$ docker build -t syntaf/slacklinegroups:vX --build-arg RAILS_ENV=production --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 -f ./slacklinegroups/Dockerfile.production ./slacklinegroups
+$ docker build -t <author>/slacklinegroups:vX --build-arg RAILS_ENV=production --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 -f ./slacklinegroups/Dockerfile.production ./slacklinegroups
 ```
 
 Once built, push your production image:
 
 ```
-$ docker push syntaf/slacklinegroups:vX
+$ docker push <author>/slacklinegroups:vX
 ```
+
+_Note:_ Production images are automatically built via Semaphore CI/CD. Go [here](https://hub.docker.com/repository/registry-1.docker.io/syntaf/slacklinegroups/tags?page=1) to see the latest tags.
 
 ## Initial deployment to K8s
 
