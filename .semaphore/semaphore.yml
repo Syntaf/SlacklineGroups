@@ -40,6 +40,6 @@ blocks:
 
 promotions:
   - name: Productionalize
-    pipline_file: docker-build-prod.yml
+    pipeline_file: docker-build-prod.yml
     auto_promote_on:
       - result: passed
