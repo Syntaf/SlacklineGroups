@@ -1,0 +1,22 @@
+version: v1.0
+name: Productionalize Build
+agent:
+  machine:
+    type: es-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Push Production Images
+    task:
+      jobs:
+        - name: Build slacklinegroups
+          commands:
+            'docker pull $DOCKER_USERNAME/slacklinegroups:latest || true'
+            'docker build --cache-from=$DOCKER_USERNAME/slacklinegroups_test:latest -t $DOCKER_USERNAME/slacklinegroups:latest -t $DOCKER_USERNAME/slacklinegroups:v$SEMAPHORE_WORKFLOW_ID --build-arg RAILS_ENV=production --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 -f ./slacklinegroups/Dockerfile.production ./slacklinegroups'
+            'docker push $DOCKER_USERNAME/slacklinegroups'
+      secrets:
+        - name: dockerhub
+      prologue:
+        commands:
+          - checkout
+          - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+      env_vars: []
