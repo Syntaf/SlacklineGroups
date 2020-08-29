@@ -22,12 +22,7 @@ module RailsAdmin
           proc do
             groups_to_approve = list_entries(@model_config)
 
-            if groups_to_approve.update(approved: true)
-              groups_to_approve.each do |group|
-                SubmitterMailer.with(group: group)
-                               .approved_email
-                               .deliver_later
-              end
+            if bulk_approve(groups_to_approve)
               flash[:notice] = 'Selected groups successfully approved'
             else
               flash[:error] = 'Something went wrong :('
@@ -35,6 +30,16 @@ module RailsAdmin
 
             redirect_to index_path
           end
+        end
+
+        private
+
+        def bulk_approve(groups)
+          groups.each do |group|
+            return false unless GroupApprover.call(group: group)
+          end
+
+          true
         end
       end
     end
