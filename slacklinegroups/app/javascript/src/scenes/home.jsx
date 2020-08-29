@@ -12,7 +12,7 @@ import MapControlsContainer from '../components/map/MapControlsContainer';
 import MapResetButton from '../components/navigation/MapResetButton';
 import SyntheticGroupClickEvent from '../lib/map/events/SyntheticGroupClickEvent';
 
-const Home = ({dispatch, isFetching, groups, assets}) => {
+const Home = ({dispatch, isFetching, groups, initialGroup, assets}) => {
   const [mapRef, mapManager] = useMap();
 
   const flyToGroup = (group) => {
@@ -32,6 +32,10 @@ const Home = ({dispatch, isFetching, groups, assets}) => {
               .with(new ClusterLayer())
               .with(new ClusterLabelLayer())
               .with(new GroupMarkerLayer());
+
+    if (initialGroup) {
+      flyToGroup(initialGroup);
+    }
 
   }, [mapManager, groups]);
 

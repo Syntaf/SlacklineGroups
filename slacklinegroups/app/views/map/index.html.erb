@@ -1,1 +1,5 @@
-<%= react_component('containers/homeContainer', assets: {}) %>
+<%= react_component(
+  'containers/homeContainer',
+  assets: {},
+  initialGroup: GroupSerializer.new(@group))
+%>
