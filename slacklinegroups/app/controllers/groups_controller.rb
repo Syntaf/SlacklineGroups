@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  respond_to :json, only: %i[index show create]
+  respond_to :json, only: %i[index create]
   respond_to :html, only: %i[new]
 
   # TO-DO: Consider reworking frontend to paginate this once the response
@@ -26,9 +26,12 @@ class GroupsController < ApplicationController
   end
 
   def show
-    group = Group.find_by!({ slug: params[:slug] })
+    @group = Group.find_by!({ slug: params[:slug] })
 
-    render json: group
+    respond_to do |format|
+      format.html { render template: 'map/index' }
+      format.json { render json: group }
+    end
   end
 
   def edit; end
