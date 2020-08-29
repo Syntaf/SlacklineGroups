@@ -37,7 +37,7 @@ class GroupMarkerLayer extends Layer
   }
 
   handleClick(map, event) {
-    if (this.groupTile) this.groupTile.remove();
+    if (this.groupTile) this._removeGroupTile();
 
     const feature = event.features[0];
     const lngLat = [feature.properties.lng, feature.properties.lat];
@@ -59,6 +59,8 @@ class GroupMarkerLayer extends Layer
         properties: feature.properties
       }
     );
+
+    this._updateUrl(`/groups/${feature.properties.slug}`);
   }
 
   handleZoomEnd(map, event) {
@@ -87,7 +89,18 @@ class GroupMarkerLayer extends Layer
       ))
       .addTo(map);
 
-    map.once(GroupMarkerLayer.CLEAR_GROUP_TILES, () => { this.groupTile.remove(); });
+    this.groupTile.on('close', () => { this._updateUrl('/'); });
+
+    map.once(GroupMarkerLayer.CLEAR_GROUP_TILES, this._removeGroupTile.bind(this));
+  }
+
+  _removeGroupTile() {
+    this.groupTile.remove();
+    this._updateUrl('/');
+  }
+
+  _updateUrl(url) {
+    window.history.replaceState({}, '', url);
   }
 
   /**

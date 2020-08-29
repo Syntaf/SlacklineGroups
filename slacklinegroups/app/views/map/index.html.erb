@@ -1,5 +1,5 @@
 <%= react_component(
   'containers/homeContainer',
   assets: {},
-  initialGroup: GroupSerializer.new(@group))
+  initialGroup: @group ? GroupSerializer.new(@group) : nil)
 %>

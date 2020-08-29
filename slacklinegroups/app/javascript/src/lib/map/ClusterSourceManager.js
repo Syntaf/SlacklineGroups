@@ -40,6 +40,7 @@ class ClusterSourceManager
         'title': group.name,
         'type': this._formatGroupType(group.type),
         'link': group.info?.link,
+        'slug': group.slug,
         'is_regional': group.info?.is_regional,
         'lat': group.location?.lat,
         'lng': group.location?.lon

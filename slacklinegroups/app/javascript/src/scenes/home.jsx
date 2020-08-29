@@ -12,7 +12,7 @@ import MapControlsContainer from '../components/map/MapControlsContainer';
 import MapResetButton from '../components/navigation/MapResetButton';
 import SyntheticGroupClickEvent from '../lib/map/events/SyntheticGroupClickEvent';
 
-const Home = ({dispatch, isFetching, groups, initialGroup, assets}) => {
+const Home = ({dispatch, isFetching, groups, initialGroup, _assets}) => {
   const [mapRef, mapManager] = useMap();
 
   const flyToGroup = (group) => {

@@ -14,7 +14,8 @@ class SyntheticGroupClickEvent
     return {
       title: this.group.name,
       type: this._formatGroupType(this.group.type),
-      link: this.group?.info.link,
+      link: this.group.info?.link,
+      slug: this.group.slug,
       is_regional: this.group.info?.is_regional,
       lat: this.group.location?.lat,
       lng: this.group.location?.lon
