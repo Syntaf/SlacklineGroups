@@ -1,6 +1,6 @@
 # vigilant-broccoli ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
 
-Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch
+Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch.
 
 <img src="docs/img/rails.png" width="150"><img src="docs/img/react.png" width="50"><img src="docs/img/sidekiq.png" width="50"><img src="docs/img/redis.png" width="140"><img src="docs/img/sass.png" width="50"><img src="docs/img/psql.png" width="50"><img src="docs/img/elasticsearch.png" width="50">
 
@@ -11,6 +11,8 @@ Table of contents:
     - [Installing New Dependencies](#Installing-new-dependencies)
   - [Deploying to K8s](/docs/DEPLOYING.md)
   - [Monitoring Logs](/docs/LOGS.md)
+
+[Semaphore (CI/CD) Project Link](https://syntaf.semaphoreci.com/projects/vigilant-broccoli)
 
 ## Getting Started
 ----
