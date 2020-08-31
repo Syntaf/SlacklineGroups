@@ -8,6 +8,15 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_packs_with_chunks_tag 'application' %>
+
+    <script type="text/javascript">   
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};   
+      <% if Rails.env.development? %>
+        heap.load('1457913094');
+      <% else %>
+        heap.load('113661234');
+      <% end %>
+    </script>
   </head>
   <body data-controller="<%= controller_name %>">
     <%= yield %>
