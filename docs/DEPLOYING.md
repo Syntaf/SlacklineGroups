@@ -37,14 +37,13 @@ If you're hosting this project on a brand new cluster (digital ocean), you'll wa
 
 ```zsh
 # Create custom resource definitions for certificate management
-$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.0/cert-manager.crds.yaml
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.16.1/cert-manager.crds.yaml
 
 # Add jetstack repository
 helm repo add jetstack https://charts.jetstack.io
 
 # Install cert-manager under a separate namespace
-# feature gate: https://github.com/jetstack/cert-manager/issues/2712
-$ helm install --set featureGates=ExperimentalCertificateControllers=true cert-manager --namespace cert-manager jetstack/cert-manager
+$ helm install cert-manager --namespace cert-manager jetstack/cert-manager
 
 # Create issuers for cert challengers & management
 $ kubectl apply -f k8s/issuers
@@ -53,7 +52,7 @@ $ kubectl apply -f k8s/issuers
 Afterwards, you can install the helm chart for slacklinegroups
 
 ```zsh
-$ helm install -f secrets.yaml slacklinegroups k8s/slacklinegroups
+$ helm install -f secrets.yaml -n slacklinegroups slacklinegroups k8s/slacklinegroups
 ```
 
 ## Upgrading previous deployments on K8s
