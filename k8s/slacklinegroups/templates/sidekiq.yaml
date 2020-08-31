@@ -32,6 +32,11 @@ spec:
             - "-q"
             - "mailers"
           env:
+            - name: RAILS_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-rails-master-key
+                  key: key
             - name: REDIS_URL
               value: "redis://slacklinegroups-redis-master:6379/0"
             - name: JOB_WORKER_URL
