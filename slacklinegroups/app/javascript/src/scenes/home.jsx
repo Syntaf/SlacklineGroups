@@ -10,6 +10,8 @@ import Map from '../components/map/Map';
 import MapNavigationBar from '../components/navigation/MapNavigationBar';
 import MapControlsContainer from '../components/map/MapControlsContainer';
 import MapResetButton from '../components/navigation/MapResetButton';
+import SearchInput from '../components/search/SearchInput';
+import SideBarButton from '../components/sidebar/SideBarButton';
 import SyntheticGroupClickEvent from '../lib/map/events/SyntheticGroupClickEvent';
 
 const Home = ({dispatch, isFetching, groups, initialGroup, _assets}) => {
@@ -42,7 +44,10 @@ const Home = ({dispatch, isFetching, groups, initialGroup, _assets}) => {
   return (
     <Map ref={mapRef} >
       <MapControlsContainer>
-        <MapNavigationBar disabled={isFetching} groups={groups} onGroupSelect={flyToGroup} />
+        <MapNavigationBar>
+          <SideBarButton />
+          <SearchInput disabled={isFetching} groups={groups} onGroupSelect={flyToGroup} />
+        </MapNavigationBar>
         <MapResetButton mapManager={mapManager} />
       </MapControlsContainer>
     </Map>
