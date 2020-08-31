@@ -14,7 +14,9 @@ import SearchInput from '../components/search/SearchInput';
 import SideBarButton from '../components/sidebar/SideBarButton';
 import SyntheticGroupClickEvent from '../lib/map/events/SyntheticGroupClickEvent';
 
-const Home = ({dispatch, isFetching, groups, initialGroup, _assets}) => {
+const Home = ({dispatch, isFetching, groups, selectedGroup, pageConfig}) => {
+  const hidden = pageConfig.hidden || [];
+
   const [mapRef, mapManager] = useMap();
 
   const flyToGroup = (group) => {
@@ -35,8 +37,8 @@ const Home = ({dispatch, isFetching, groups, initialGroup, _assets}) => {
               .with(new ClusterLabelLayer())
               .with(new GroupMarkerLayer());
 
-    if (initialGroup) {
-      flyToGroup(initialGroup);
+    if (selectedGroup) {
+      flyToGroup(selectedGroup);
     }
 
   }, [mapManager, groups]);
@@ -45,7 +47,7 @@ const Home = ({dispatch, isFetching, groups, initialGroup, _assets}) => {
     <Map ref={mapRef} >
       <MapControlsContainer>
         <MapNavigationBar>
-          <SideBarButton />
+          {hidden.includes('sidebar') ? null : <SideBarButton /> }
           <SearchInput disabled={isFetching} groups={groups} onGroupSelect={flyToGroup} />
         </MapNavigationBar>
         <MapResetButton mapManager={mapManager} />

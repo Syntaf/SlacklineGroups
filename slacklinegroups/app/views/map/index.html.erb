@@ -1,5 +1,7 @@
-<%= react_component(
-  'containers/homeContainer',
-  assets: {},
-  initialGroup: @group || nil)
+<%= 
+  react_component(
+    'containers/homeContainer',
+    selectedGroup: @group || nil,
+    pageConfig: @page_config || {}
+  )
 %>
