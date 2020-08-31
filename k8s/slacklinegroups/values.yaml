@@ -62,19 +62,24 @@ ingress:
       gzip on;
       gzip_types text/plain text/html application/json;
 
-      server_name gstwwtm.com www.gstwwtm.com;
+      server_name api.gstwwtm.com gstwwtm.com www.gstwwtm.com;
 
-      if ($host != "gstwwtm.com") {
+      if ($host = "www.gstwwtm.com") {
         return 301 $scheme://gstwwtm.com$request_uri;
       }
   hosts:
     - host: gstwwtm.com
       paths:
         - /
+      
+    - host: api.gstwwtm.com
+      paths:
+        - /
   tls:
     - secretName: slacklinegroups-cert
       hosts:
-        - gstwwtm.com
+        - 'gstwwtm.com'
+        - '*.gstwwtm.com'
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
