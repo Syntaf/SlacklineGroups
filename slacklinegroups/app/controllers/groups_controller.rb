@@ -27,6 +27,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by!({ slug: params[:slug] })
+    @map_config = MapConfig.for_params(params) if embeded_view?
 
     respond_to do |format|
       format.html { render template: 'map/index', assigns: { group: GroupSerializer.new(@group) } }

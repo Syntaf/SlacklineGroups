@@ -17,6 +17,16 @@ class MapConfig
     )
   end
 
+  def self.defaults()
+    MapConfig.new(
+      true,
+      false,
+      true,
+      nil,
+      nil
+    )
+  end
+
   def initialize(show_search_bar, show_side_bar, show_home_button, map_center, zoom_level)
     @show_search_bar = show_search_bar
     @show_side_bar = show_side_bar

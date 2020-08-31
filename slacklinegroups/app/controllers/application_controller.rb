@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def embeded_view?
+    request.subdomain == 'api'
+  end
+
   def reload_rails_admin
     RailsAdmin::Config.reset
 
