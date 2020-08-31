@@ -9,6 +9,9 @@ Rails.application.configure do
   # Whitelist Docker Host on development
   config.hosts << 'slacklinegroups'
 
+  # Enable subdomains on development  
+  config.action_dispatch.tld_length = 0
+
   # Configure email for development
   config.action_mailer.perform_deliveries = false
   config.action_mailer.delivery_method = :smtp

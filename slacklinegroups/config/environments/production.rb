@@ -8,6 +8,9 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  # Enable api subdomain  
+  config.action_dispatch.tld_length = 2
+
   # Configure email for production
   config.action_mailer.perform_deliveries = true 
   config.action_mailer.delivery_method = :smtp
