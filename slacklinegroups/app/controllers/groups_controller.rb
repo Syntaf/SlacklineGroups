@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
     @group = Group.find_by!({ slug: params[:slug] })
 
     respond_to do |format|
-      format.html { render template: 'map/index' }
+      format.html { render template: 'map/index', assigns: { group: GroupSerializer.new(@group) } }
       format.json { render json: group }
     end
   end
