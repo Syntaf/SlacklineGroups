@@ -8,11 +8,11 @@ import MapManagerFactory from '../lib/map/MapManagerFactory';
  * 
  * @returns {Array}
  */
-const useMap = () => {
+const useMap = (mapCenter, zoomLevel) => {
   const mapRef = useRef(null);
   const [mapManager, setMapManager] = useState(null);
 
-  useEffect(() => { setMapManager(MapManagerFactory.create(mapRef)) }, []);
+  useEffect(() => { setMapManager(MapManagerFactory.create(mapRef, mapCenter, zoomLevel)) }, []);
 
   return [mapRef, mapManager];
 };

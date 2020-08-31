@@ -17,13 +17,20 @@ class MapManagerFactory
    *
    * @param {React.MutableRefObject} mapContainer
    */
-  static create(mapContainer) {
+  static create(mapContainer, mapCenter, zoomLevel) {
     mapboxgl.accessToken = MapManagerFactory.ACCESS_TOKEN;
   
+    const customView = {};
+
+    if (mapCenter) customView.center = mapCenter;
+    if (zoomLevel) customView.zoom = zoomLevel;
+
+    console.log(customView);
+
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: MapManagerFactory.STYLE_URL,
-      ...MapManager.defaultView 
+      ...Object.assign(MapManager.defaultView, customView)
     });
 
     return new MapManager(

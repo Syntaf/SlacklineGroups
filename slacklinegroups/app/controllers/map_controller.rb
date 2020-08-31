@@ -2,7 +2,7 @@
 
 class MapController < ApplicationController
   def index
-    @page_config = MapConfig.for_params(params) if embeded?
+    @map_config = MapConfig.for_params(params) if embeded?
   end
 
   private

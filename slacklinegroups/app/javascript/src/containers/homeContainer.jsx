@@ -6,9 +6,9 @@ import Home from '../scenes/home';
 
 const store = configureStore();
 
-const HomeContainer = ({ selectedGroup, pageConfig }) => (
+const HomeContainer = ({ selectedGroup, mapConfig }) => (
   <Provider store={store}>
-    <Home selectedGroup={selectedGroup} pageConfig={pageConfig} />
+    <Home selectedGroup={selectedGroup} mapConfig={mapConfig} />
   </Provider>
 );
 
