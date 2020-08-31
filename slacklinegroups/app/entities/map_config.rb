@@ -20,7 +20,7 @@ class MapConfig
   def self.defaults()
     MapConfig.new(
       true,
-      false,
+      true,
       true,
       nil,
       nil
