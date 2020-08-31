@@ -5,7 +5,7 @@ ARG USER_ID
 ARG GROUP_ID
 ARG RAILS_ENV
 
-ENV RAILS_ENV=$RAILS_EN
+ENV RAILS_ENV=$RAILS_ENV
 
 RUN addgroup --gid $GROUP_ID user
 RUN adduser --disabled-password --gecos "" --uid $USER_ID --gid $GROUP_ID user
@@ -40,5 +40,5 @@ RUN chown user:user tmp
 RUN chown -R user:user /opt/app
 USER $USER_ID
 
-EXPOSE 3000
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+EXPOSE 3001
+CMD ["bundle", "exec", "rails", "server", "-p", "3001", "-b", "0.0.0.0"]
