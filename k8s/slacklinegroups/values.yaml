@@ -20,7 +20,7 @@ image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v173"
+  tag: "v177"
 
 imagePullSecrets: []
 nameOverride: ""
