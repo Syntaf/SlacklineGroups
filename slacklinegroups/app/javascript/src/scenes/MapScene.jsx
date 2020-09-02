@@ -14,7 +14,7 @@ import SearchInput from '../components/search/SearchInput';
 import SideBarButton from '../components/sidebar/SideBarButton';
 import SyntheticGroupClickEvent from '../lib/map/events/SyntheticGroupClickEvent';
 
-const Home = ({dispatch, isFetching, groups, selectedGroup, mapConfig}) => {
+const MapScene = ({dispatch, isFetching, groups, selectedGroup, mapConfig}) => {
   const { showSearchBar, showSideBar, showHomeButton, mapCenter, zoomLevel} = mapConfig;
   const [mapRef, mapManager] = useMap(mapCenter, zoomLevel);
 
@@ -65,4 +65,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(MapScene);

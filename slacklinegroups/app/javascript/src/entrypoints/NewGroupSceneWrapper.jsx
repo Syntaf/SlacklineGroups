@@ -2,14 +2,14 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import configureStore from '../configureStore';
-import NewGroup from '../scenes/newgroup';
+import NewGroupScene from '../scenes/NewGroupScene';
 
 const store = configureStore();
 
-const NewGroupContainer = ({ assets, csrf }) => (
+const NewGroupSceneWrapper = ({ assets, csrf }) => (
   <Provider store={store}>
-    <NewGroup assets={assets} csrf={csrf} />
+    <NewGroupScene assets={assets} csrf={csrf} />
   </Provider>
 );
 
-export default NewGroupContainer;
+export default NewGroupSceneWrapper;

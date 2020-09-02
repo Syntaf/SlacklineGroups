@@ -13,7 +13,7 @@ import Header from '../components/header/Header';
 
 import useMap from '../hooks/UseMap';
 
-const NewGroup = ({ dispatch, isFetching, submitted, errors, csrf }) => {
+const NewGroupScene = ({ dispatch, isFetching, submitted, errors, csrf }) => {
   const [mapRef, mapManager] = useMap();
   const [coordinates, setCoordinates] = useState({lng: '', lat: ''});
 
@@ -71,4 +71,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(NewGroup);
+export default connect(mapStateToProps)(NewGroupScene);

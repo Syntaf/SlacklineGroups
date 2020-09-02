@@ -1,4 +1,4 @@
-div[data-react-class="scenes/about"] {
+div[data-react-class="scenes/AboutScene"] {
   font-family: 'Inter', sans-serif;
   background-color: #fff;
 
@@ -193,6 +193,20 @@ div[data-react-class="scenes/about"] {
       p {
         margin: 0;
       }
+    }
+  }
+}
+
+div[data-react-class="scenes/DevelopScene"] {
+  .header .titleTile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a h1 {
+      font-family: 'Oxygen Mono', monospace;
+      font-size: 20px;
+      color: #229977;
     }
   }
 }

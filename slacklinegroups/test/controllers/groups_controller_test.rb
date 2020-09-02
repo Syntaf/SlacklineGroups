@@ -21,12 +21,19 @@ class GroupControllerTest < ActionDispatch::IntegrationTest
     assert_empty response.parsed_body
   end
 
-  test 'verifies expected group format' do
+  test 'gets group as JSON with slug' do
     group = groups(:one)
 
-    get group_path(group)
+    get group_path(group), as: :json
     assert_response :success
     assert_equal expected_serialization_for(group), response.parsed_body
+  end
+
+  test 'gets group as HTML with slug' do
+    group = groups(:one)
+
+    get group_path(group), as: :html
+    assert_response :success
   end
 
   test 'creates group' do

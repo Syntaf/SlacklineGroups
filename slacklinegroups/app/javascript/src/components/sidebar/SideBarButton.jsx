@@ -3,10 +3,11 @@ import React from 'react';
 import Divider from '@material-ui/core/Divider';
 
 import ChatIcon from '@material-ui/icons/Chat';
-import PublicIcon from '@material-ui/icons/Public';
-import MailIcon from '@material-ui/icons/Mail';
-import HelpIcon from '@material-ui/icons/Help';
 import CodeIcon from '@material-ui/icons/Code';
+import FaceIcon from '@material-ui/icons/Face';
+import HelpIcon from '@material-ui/icons/Help';
+import MailIcon from '@material-ui/icons/Mail';
+import PublicIcon from '@material-ui/icons/Public';
 
 import SideBarDrawer from './SideBarDrawer';
 import SideBarLinks from './SideBarLinks';
@@ -43,8 +44,14 @@ const SideBarButton = props => {
       'newTab': true
     },
     {
-      'text': 'About this site',
+      'text': 'Embed this map',
       'icon': <CodeIcon fontSize='small'/>,
+      'link': '/develop',
+      'newTab': false
+    },
+    {
+      'text': 'About this site',
+      'icon': <FaceIcon fontSize='small'/>,
       'link': '/about',
       'newTab': false
     }

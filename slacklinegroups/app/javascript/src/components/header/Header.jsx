@@ -8,9 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import ContentContainer from '../container/ContentContainer';
 
-const Header = ({ showSiteName }) => {
-  const title = showSiteName ? (
-    <a href="/"><h1 className="title">SlacklineGroups</h1></a>
+const Header = ({ title }) => {
+  const titleElement = title ? (
+    <a href="/"><h1 className="title">{title}</h1></a>
   ) : null;
 
   return (
@@ -23,7 +23,7 @@ const Header = ({ showSiteName }) => {
           </Button>
         </Grid>
         <Grid item className="titleTile" sm={4} xs={12}>
-          {title}
+          {titleElement}
         </Grid>
       </Grid>
     </Paper>

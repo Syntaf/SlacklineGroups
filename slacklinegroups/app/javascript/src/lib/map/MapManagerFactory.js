@@ -25,8 +25,6 @@ class MapManagerFactory
     if (mapCenter) customView.center = mapCenter;
     if (zoomLevel) customView.zoom = zoomLevel;
 
-    console.log(customView);
-
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: MapManagerFactory.STYLE_URL,

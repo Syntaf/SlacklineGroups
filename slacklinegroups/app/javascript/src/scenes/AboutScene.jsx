@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import GitHubButton from 'react-github-btn';
 
 import ContentContainer from '../components/container/ContentContainer';
@@ -6,12 +6,9 @@ import Header from '../components/header/Header';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-
-const About = ({ assets }) => {
+const AboutScene = ({ assets }) => {
   const techTiles = assets.tech.map((techAssetUrl) => (
     <Grid item className="techTile" key={techAssetUrl} lg={2} md={3} xs={6}>
       <img src={techAssetUrl} height="50"/>
@@ -20,7 +17,7 @@ const About = ({ assets }) => {
 
   return (
     <React.Fragment>
-      <Header showSiteName={true} />
+      <Header title="SlacklineGroups" />
       <ContentContainer size="medium">
         <div className="heroSection">
           <h1><span>SlacklineGroups</span> is making the world of slack smaller</h1>
@@ -90,4 +87,4 @@ const About = ({ assets }) => {
   );
 };
 
-export default About;
+export default AboutScene;
