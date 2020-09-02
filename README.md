@@ -75,10 +75,3 @@ It's highly recommended that you have [Rubocop](https://github.com/rubocop-hq/ru
 - `Metrics/MethodLength`
 
 If you're using Visual Studio Code, you can get Rubocop by installing the [Ruby Solargraph](https://marketplace.visualstudio.com/items?itemName=castwide.solargraph) extension and enabling linting.
-
-### Installing New Dependencies
-
-If you're adding a new JS dependency to the project, you need to perform the following steps for it to install properly:
-
-  - Bring down all running containers
-  - Run `docker-compose run slacklinegroups yarn add <dependency>`

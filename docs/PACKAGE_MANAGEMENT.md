@@ -1,6 +1,22 @@
 # Package Management
 ----
 
+## Adding a new frontend dependency
+
+1. Execute `/bin/bash` on your `slacklinegroups` container:
+   ```bash
+   $> docker-compose run slacklinegroups /bin/bash
+   ```
+2. Add your yarn dependency
+   ```bash
+   /opt/app/slacklinegroups/> yarn add my-dependency
+   ```
+3. Close your container and re-run build to ensure all other containers now have the desired package
+   ```bash
+   /opt/app/slacklinegroups/> exit
+   $> docker-compose down && docker-compose build
+   ```
+
 ## Upgrading / Downgrading a Gem
 
 This process can be a bit convoluted at the moment, I'm writing this document to that future-me can still perform upgrades/downgrades through docker images. Assuming you have a built development image:
