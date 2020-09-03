@@ -2,11 +2,20 @@
 
 class ApplicationController < ActionController::Base
   before_action :reload_rails_admin, if: :rails_admin_path?
+  after_action :allow_framing, if: :embeded_view?
 
   private
 
   def embeded_view?
     request.subdomain == 'api'
+  end
+
+  def allow_framing
+    response.headers['X-FRAME-OPTIONS'] = 'ALLOWALL'
+  end
+
+  def rails_admin_path?
+    controller_path =~ /rails_admin/ && Rails.env.development?
   end
 
   def reload_rails_admin
@@ -22,9 +31,5 @@ class ApplicationController < ActionController::Base
       file_path = m.to_s.underscore
       load(Rails.root.join("app/models/#{file_path}.rb"))
     end
-  end
-
-  def rails_admin_path?
-    controller_path =~ /rails_admin/ && Rails.env.development?
   end
 end
