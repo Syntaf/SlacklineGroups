@@ -198,6 +198,8 @@ div[data-react-class="scenes/AboutScene"] {
 }
 
 div[data-react-class="scenes/DevelopScene"] {
+  font-family: 'Inter', sans-serif;
+
   .header .titleTile {
     display: flex;
     align-items: center;
@@ -207,6 +209,37 @@ div[data-react-class="scenes/DevelopScene"] {
       font-family: 'Oxygen Mono', monospace;
       font-size: 20px;
       color: #229977;
+    }
+  }
+
+  .heroSection {
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-weight: 200;
+      text-align: center;
+
+      span {
+        font-weight: 900;
+      }
+    }
+
+    h3 {
+      font-weight: 400;
+      color: #586069;
+      text-align: center;
+    }
+  }
+
+  .tutorialSection {
+    h1 {
+      font-weight: normal;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #586069;
     }
   }
 }

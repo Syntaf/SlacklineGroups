@@ -25,6 +25,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "super-react-gist": "^1.0.4",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
