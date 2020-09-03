@@ -20,7 +20,7 @@ image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v178"
+  tag: "v182"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -62,10 +62,14 @@ ingress:
       gzip on;
       gzip_types text/plain text/html application/json;
 
-      server_name api.gstwwtm.com gstwwtm.com www.gstwwtm.com;
+      server_name www.api.gstwwtm.com api.gstwwtm.com gstwwtm.com www.gstwwtm.com;
 
       if ($host = "www.gstwwtm.com") {
         return 301 $scheme://gstwwtm.com$request_uri;
+      }
+
+      if ($host = "www.api.gstwwtm.com") {
+        return 301 $scheme://api.gstwwtm.com$request_uri;
       }
   hosts:
     - host: gstwwtm.com
