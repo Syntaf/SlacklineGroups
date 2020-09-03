@@ -37,6 +37,10 @@
     @media screen and (max-width: $mobileBreakpoint) {
         width: 250px;
     }
+
+    @media screen and (max-width: $miniMobileBreakpoint) {
+        width: 225px;
+    }
 }
 
 .MuiAutocomplete-popper {

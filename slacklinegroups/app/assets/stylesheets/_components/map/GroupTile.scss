@@ -2,7 +2,7 @@
 
 .mapboxgl-popup-content {
   width: 440px;
-  height: 340px;
+  min-height: 340px;
   display: flex;
   flex-direction: column;
   padding: 0 !important;
@@ -10,6 +10,10 @@
 
   @media (max-width: $mobileBreakpoint) {
     width: 300px;
+  }
+
+  @media (max-width: $miniMobileBreakpoint) {
+    width: 250px;
   }
 
   .header {
@@ -44,6 +48,10 @@
           flex-grow: 1;
           font-size: 18px;
           margin: 0;
+
+          @media (max-width: $miniMobileBreakpoint) {
+            font-size: 14px;
+          }
         }
 
         span {
@@ -51,6 +59,10 @@
           font-weight: bold;
           text-transform: capitalize;
           margin: 0;
+
+          @media (max-width: $miniMobileBreakpoint) {
+            font-size: 14px;
+          }
         }
       }
     }
