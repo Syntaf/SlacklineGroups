@@ -235,11 +235,25 @@ div[data-react-class="scenes/DevelopScene"] {
     }
   }
 
-  .tutorialSection {
+  .tutorialSection,
+  .groupViewSection,
+  .optionsSection {
     h1 {
       font-weight: normal;
       padding-bottom: 10px;
       border-bottom: 1px solid #586069;
     }
+
+    .note {
+      display: block;
+      font-style: italic;
+      font-size: 12px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .optionsSection {
+    margin-bottom: 40px;
   }
 }
