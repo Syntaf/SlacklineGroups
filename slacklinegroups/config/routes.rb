@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     devise_for :admins, path: 'admin'
   
     resources :about, only: %i[index]
-    get '/develop', to: 'about#develop'
+    resources :documentation, only: %i[index], path: :develop
   end
   
   resources :map, only: %i[index]

@@ -4,7 +4,7 @@ import Gist from 'super-react-gist';
 import Header from '../components/header/Header';
 import ContentContainer from '../components/container/ContentContainer';
 
-const DevelopScene = () => {
+const DevelopScene = ({ baseApiUrl, exampleGroup }) => {
   return (
     <React.Fragment>
       <Header title="// SlacklineGroups" />
@@ -21,19 +21,19 @@ const DevelopScene = () => {
           example that can be used anywhere to embed SlacklineGroups:
         </p>
         <Gist url='https://gist.github.com/Syntaf/cfe90956f7326f815d5d117539bf62f4' />
-        <span class="note">
-          Note: Don't forget to use <strong>api.slacklinegroups.com</strong> as the src attribute domain
+        <span className="note">
+          Note: Don't forget to use <strong>{baseApiUrl}</strong> as the src attribute domain
         </span>
-        <iframe src="http://api.localhost:3001" width="100%" height="300px" />
+        <iframe src={baseApiUrl} width="100%" height="500px" />
       </ContentContainer>
       <ContentContainer className="groupViewSection" size="small">
         <h1>Showing a specific group</h1>
         <p>
           If you'd like to show a specific group on load, you can use the URL of that group (replacing
-          the domain with <stong>api.slacklinegroups.com</stong>)
+          the domain with <strong>{baseApiUrl}</strong>)
         </p>
         <Gist url='https://gist.github.com/Syntaf/43e9311c954f7690d91917da2989dab9' />
-        <iframe src="http://api.localhost:3001/groups/vegas-slacklife-c0c34124" width="100%" height="300px" />
+        <iframe src={`${baseApiUrl}/groups/${exampleGroup.slug}?showHomeButton=false&showSearchBar=false`} width="100%" height="500px" />
       </ContentContainer>
       <ContentContainer className="optionsSection" size="small">
         <h1>Customizing the map</h1>
@@ -48,7 +48,7 @@ const DevelopScene = () => {
             <p>Sets the visibility of the search bar. When set to <em>false</em>, the home button will be shifted left</p>
           </li>
           <li>
-            <strong>showHome:</strong> <em>[true/false]</em>
+            <strong>showHomeButton:</strong> <em>[true/false]</em>
             <p>default: <em>true</em></p>
             <p>Sets the visibility of the home button</p>
           </li>
