@@ -9,7 +9,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   # Enable api subdomain  
-  config.action_dispatch.tld_length = 2
+  config.action_dispatch.tld_length = 1
 
   # Configure email for production
   config.action_mailer.perform_deliveries = true 
