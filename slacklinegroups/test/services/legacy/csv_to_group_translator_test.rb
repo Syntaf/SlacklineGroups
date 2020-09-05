@@ -19,7 +19,7 @@ module Legacy
     ].freeze
 
     test 'rejects missing headers' do
-      row = CSV::Row.new(%w[id name group_type], [1, 'test', 'facebook group'], true)
+      row = CSV::Row.new(%w[id name group_type], [1, 'test', 'facebook group'])
 
       assert_raises CsvToGroupTranslator::MalformedHeaderError do
         CsvToGroupTranslator.call(row)
@@ -30,7 +30,7 @@ module Legacy
       headers = CsvToGroupTranslator::EXPECTED_HEADERS.dup
       headers[0] = :idzz
 
-      row = CSV::Row.new(headers, EXAMPLE_ROW_VALUES, true)
+      row = CSV::Row.new(headers, EXAMPLE_ROW_VALUES)
 
       assert_raises CsvToGroupTranslator::MalformedHeaderError do
         CsvToGroupTranslator.call(row)
@@ -38,7 +38,7 @@ module Legacy
     end
 
     test 'translates valid row' do
-      row = CSV::Row.new(CsvToGroupTranslator::EXPECTED_HEADERS, EXAMPLE_ROW_VALUES, true)
+      row = CSV::Row.new(CsvToGroupTranslator::EXPECTED_HEADERS, EXAMPLE_ROW_VALUES)
 
       assert_translation EXAMPLE_ROW_VALUES, CsvToGroupTranslator.call(row)
     end
