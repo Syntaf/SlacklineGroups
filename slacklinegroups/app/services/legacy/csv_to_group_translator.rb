@@ -13,7 +13,7 @@ module Legacy
   # @returns [Group] an unsaved active record instance dervied from the CSV row
   #
   class CsvToGroupTranslator < ApplicationService
-    EXPECTED_HEADERS = %i[id name group_type lat lon link members is_regional created_at updated_at].freeze
+    EXPECTED_HEADERS = %w[id name group_type lat lon link members is_regional created_at updated_at].freeze
 
     attr_reader :csv_row
 
@@ -27,17 +27,17 @@ module Legacy
       return false unless headers_valid?
 
       group = Group.new(
-        name: @csv_row[:name],
-        type: text_to_type_enum(@csv_row[:group_type])
+        name: @csv_row['name'],
+        type: text_to_type_enum(@csv_row['group_type'])
       )
       group.location = Location.new(
-        lat: @csv_row[:lat],
-        lon: @csv_row[:lon]
+        lat: @csv_row['lat'],
+        lon: @csv_row['lon']
       )
       group.info = Info.new(
-        link: @csv_row[:link],
-        members: @csv_row[:members],
-        is_regional: @csv_row[:is_regional]
+        link: @csv_row['link'],
+        members: @csv_row['members'],
+        is_regional: @csv_row['is_regional']
       )
 
       group
@@ -46,7 +46,7 @@ module Legacy
     private
 
     def headers_valid?
-      header_differences = EXPECTED_HEADERS.difference(@csv_row.headers)
+      header_differences = self.class::EXPECTED_HEADERS.difference(@csv_row.headers)
 
       return true unless header_differences.any?
 
