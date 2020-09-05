@@ -37,6 +37,12 @@ module Legacy
       end
     end
 
+    test 'translates row' do
+      row = CSV::Row.new(CsvToGroupTranslator::EXPECTED_HEADERS, EXAMPLE_ROW_VALUES, true)
+
+      assert_translation EXAMPLE_ROW_VALUES, CsvToGroupTranslator.call(row)
+    end
+
     test 'accepts additional headers' do
       row = CSV::Row.new(
         [*CsvToGroupTranslator::EXPECTED_HEADERS, :extra_field],
@@ -48,7 +54,7 @@ module Legacy
 
     private
 
-    # 
+    #
     # Manually defines the translation rules that should be enforced by the service
     #
     # @param [Array] values the CSV row passed into the service
