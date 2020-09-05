@@ -9,6 +9,9 @@ module Legacy
     def call
       group = super
 
+      group.approved = false
+      group.submitter = Submitter.new(email: @csv_row['email'])
+
       group
     end
   end
