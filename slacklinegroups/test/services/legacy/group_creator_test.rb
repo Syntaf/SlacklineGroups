@@ -62,7 +62,7 @@ module Legacy
     #
     def assert_translation(values, group)
       expected_name = values[1]
-      expected_type = values[2] == 'website' ? :other : values[2].sub(' ', '_').to_sym
+      expected_type = values[2] == 'website' ? :other : values[2].sub(' ', '_')
       expected_lat = values[3]
       expected_lon = values[4]
       expected_link = values[5]

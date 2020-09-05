@@ -30,9 +30,15 @@ module Legacy
         name: @csv_row[:name],
         type: text_to_type_enum(@csv_row[:group_type])
       )
-
-      group.location = Location.new()
-      group.info = Info.new()
+      group.location = Location.new(
+        lat: @csv_row[:lat],
+        lon: @csv_row[:lon]
+      )
+      group.info = Info.new(
+        link: @csv_row[:link],
+        members: @csv_row[:members],
+        is_regional: @csv_row[:is_regional]
+      )
 
       group
     end
@@ -52,7 +58,9 @@ module Legacy
     end
 
     def text_to_type_enum(text)
+      return :other if text == 'website'
 
+      text.sub(' ', '_').to_sym
     end
   end
 end
