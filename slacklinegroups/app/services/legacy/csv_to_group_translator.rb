@@ -25,6 +25,16 @@ module Legacy
 
     def call
       return false unless headers_valid?
+
+      group = Group.new(
+        name: @csv_row[:name],
+        type: text_to_type_enum(@csv_row[:group_type])
+      )
+
+      group.location = Location.new()
+      group.info = Info.new()
+
+      group
     end
 
     private
@@ -39,6 +49,10 @@ module Legacy
 
     def error_message(differences)
       "Row is missing the following headers: #{differences}"
+    end
+
+    def text_to_type_enum(text)
+
     end
   end
 end

@@ -48,8 +48,28 @@ module Legacy
 
     private
 
+    # 
+    # Manually defines the translation rules that should be enforced by the service
+    #
+    # @param [Array] values the CSV row passed into the service
+    # @param [Group] the returned active record instance from the service
+    #
     def assert_translation(values, group)
-      assert_equals values.second, group.name
+      expected_name = values[1]
+      expected_type = values[2] == 'website' ? :other : values[2].sub(' ', '_').to_sym
+      expected_lat = values[3]
+      expected_lon = values[4]
+      expected_link = values[5]
+      expected_members = values[6]
+      expected_regional = values[7]
+
+      assert_equal expected_name, group.name
+      assert_equal expected_type, group.type
+      assert_equal expected_lat, group.location.lat
+      assert_equal expected_lon, group.location.lon
+      assert_equal expected_link, group.info.link
+      assert_equal expected_members, group.info.members
+      assert_equal expected_regional, group.info.is_regional
     end
   end
 end
