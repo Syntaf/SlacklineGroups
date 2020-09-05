@@ -37,7 +37,7 @@ module Legacy
       end
     end
 
-    test 'translates row' do
+    test 'translates valid row' do
       row = CSV::Row.new(CsvToGroupTranslator::EXPECTED_HEADERS, EXAMPLE_ROW_VALUES, true)
 
       assert_translation EXAMPLE_ROW_VALUES, CsvToGroupTranslator.call(row)
@@ -69,6 +69,7 @@ module Legacy
       expected_members = values[6]
       expected_regional = values[7]
 
+      assert group.approved
       assert_equal expected_name, group.name
       assert_equal expected_type, group.type
       assert_equal expected_lat, group.location.lat

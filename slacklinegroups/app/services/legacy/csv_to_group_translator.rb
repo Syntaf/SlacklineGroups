@@ -28,7 +28,8 @@ module Legacy
 
       group = Group.new(
         name: @csv_row['name'],
-        type: text_to_type_enum(@csv_row['group_type'])
+        type: text_to_type_enum(@csv_row['group_type']),
+        approved: true
       )
       group.location = Location.new(
         lat: @csv_row['lat'],
