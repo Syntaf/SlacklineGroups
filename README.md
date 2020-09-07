@@ -1,4 +1,4 @@
-# vigilant-broccoli ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
+# Slacklinegroups V2 ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
 
 Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch.
 
