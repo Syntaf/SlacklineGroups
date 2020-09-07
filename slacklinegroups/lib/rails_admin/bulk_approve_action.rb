@@ -20,6 +20,14 @@ module RailsAdmin
 
         register_instance_option :controller do
           proc do
+            def bulk_approve(groups)
+              groups.each do |group|
+                return false unless Administration::GroupApprover.call(group)
+              end
+
+              true
+            end
+
             groups_to_approve = list_entries(@model_config)
 
             if bulk_approve(groups_to_approve)
@@ -30,16 +38,6 @@ module RailsAdmin
 
             redirect_to index_path
           end
-        end
-
-        private
-
-        def bulk_approve(groups)
-          groups.each do |group|
-            return false unless GroupApprover.call(group: group)
-          end
-
-          true
         end
       end
     end
