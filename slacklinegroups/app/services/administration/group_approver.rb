@@ -9,6 +9,7 @@ module Administration
     end
 
     def call
+      return true if @group.approved
       return false unless @group.update(approved: true)
 
       SubmitterMailer.with(group: @group)
