@@ -1,39 +1,47 @@
 # frozen_string_literal: true
 
-namespace :legacy_migrate do
+# rubocop:disable Metrics/BlockLength
+
+namespace :legacy do
   desc 'Import exported groups from a legacy Slacklinegroups database in CSV format'
 
-  task :import, %i[groups_file pending_groups_file] => :environment do |_t, args|
+  task :import_approved, %i[groups_file] => :environment do |_t, args|
     require 'csv'
 
-    print_usage and next unless args.group_file
+    unless args.groups_file
+      puts 'Usage: rake legacy_migrate:import[groups_file.csv]'
+      next
+    end
 
-    handle_groups(args.groups_file)
-    handle_pending_groups(args.pending_groups_file) if args.pending_groups_file
-  end
-
-  def handle_groups(group_file_name)
     groups = []
-    csv_file = File.read(group_file_name)
-
-    CSV.parse(csv_file, headers: true).each do |row|
-      groups << CsvToGroupTranslator.call(row)
+    parse_csv(args.groups_file) do |row|
+      groups << Legacy::CsvToGroupTranslator.call(row)
     end
 
-    groups.each(&save!)
-  rescue CsvToGroupTranslator::MalformedHeaderError
-    puts 'Invalid headers detected!'
+    groups.each(&:save!)
   end
 
-  def handle_pending_groups(pending_group_file_name)
-    csv_file = File.read(pending_group_file_name)
+  task :import_pending, %i[pending_groups_file] => :environment do |_t, args|
+    require 'csv'
 
-    CSV.parse(csv_file, headers: true).each do |row|
-      # TODO
+    unless args.pending_groups_file
+      puts 'Usage: rake legacy:import_pending[pending_groups_file.csv]'
+      next
     end
+
+    pending_groups = []
+    parse_csv(args.pending_groups_file) do |row|
+      pending_groups << Legacy::CsvToPendingGroupTranslator.call(row)
+    end
+
+    pending_groups.each(&:save!)
   end
 
-  def print_usage
-    puts 'Usage: rake legacy_migrate:import[groups_file.csv, pending_groups_file.csv || null>]'
+  def parse_csv(file)
+    csv_file = File.read(file)
+
+    CSV.parse(csv_file, headers: true).each { |row| yield row }
   end
 end
+
+# rubocop:enable Metrics/BlockLength
