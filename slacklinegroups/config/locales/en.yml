@@ -36,3 +36,10 @@ en:
           title: 'Mark selected groups as approved'
           bulk_link: 'Mark selected groups as approved'
           breadcrump: 'Mark selected groups as approved'
+  devise:
+    registrations:
+      admin:
+        signed_up_but_not_approved: 'You have signed up successfully but your account has not yet been approved be the administrator'
+    failure:
+        not_approved: 'Your account has not been approved by the administrator yet'
+
