@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  respond_to :json, only: %i[index create]
+  respond_to :json, only: %i[index create update]
   respond_to :html, only: %i[new]
 
   def index
