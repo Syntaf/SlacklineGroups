@@ -14,8 +14,8 @@ Rails.application.configure do
   # Configure email for production
   config.action_mailer.perform_deliveries = true 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.asset_host = 'https://gstwwtm.com'
-  config.action_mailer.default_url_options = { host: 'gstwwtm.com' }
+  config.action_mailer.asset_host = 'https://slacklinegroups.com'
+  config.action_mailer.default_url_options = { host: 'slacklinegroups.com' }
   config.action_mailer.smtp_settings = {
     user_name: 'apikey',
     password: ENV['SENDGRID_PASSWORD'],
