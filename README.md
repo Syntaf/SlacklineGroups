@@ -1,4 +1,4 @@
-# Slacklinegroups V2 ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
+# Slacklinegroups V2 ![CI](https://syntaf.semaphoreci.com/badges/slacklinegroups_v2.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
 
 Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch.
 
@@ -12,19 +12,19 @@ Table of contents:
   - [Deploying to K8s](/docs/DEPLOYING.md)
   - [Monitoring Logs](/docs/LOGS.md)
 
-[Semaphore (CI/CD) Project Link](https://syntaf.semaphoreci.com/projects/vigilant-broccoli)
+[Semaphore (CI/CD) Project Link](https://syntaf.semaphoreci.com/projects/slacklinegroups_v2)
 
 ## Getting Started
 ----
 
 1. Clone the repository
    ```bash
-   $ git clone git@github.com:Syntaf/vigilant-broccoli
+   $ git clone git@github.com:Syntaf/slacklinegroups_v2
    ```
 
 2. Create a new docker volume for persistant database storage
    ```bash
-   $ cd vigilant-broccoli
+   $ cd slacklinegroups_v2
    $ docker volume create slacklinegroups-postgres
    $ docker volume create slacklinegroups-redis
    ```
@@ -62,7 +62,7 @@ Once running you can visit the app at https://localhost:3000 and starting develo
 ## Contributing
 ----
 
-If you're interested in helping out with the project, visit the [issues](https://github.com/Syntaf/vigilant-broccoli/issues) tab for some ideas on where to contribute first. When you're ready to start developing, create a fork and a branch on your fork which describes the work you'll be doing.
+If you're interested in helping out with the project, visit the [issues](https://github.com/Syntaf/slacklinegroups_v2/issues) tab for some ideas on where to contribute first. When you're ready to start developing, create a fork and a branch on your fork which describes the work you'll be doing.
 
 ### Coding Guidelines
 
