@@ -4,10 +4,15 @@ class GroupsController < ApplicationController
   respond_to :json, only: %i[index create]
   respond_to :html, only: %i[new]
 
-  # TO-DO: Consider reworking frontend to paginate this once the response
-  # size grows too large
   def index
-    groups = Group.includes(:info, :location).approved.limit(params[:limit])
+    query = Group.includes(:info, :location).approved.limit(params[:limit])
+
+    # cache_key_with_version will invalidate caches stores with stale data, ensuring
+    # that changes made from the administration side will take effect immedietly
+    groups = Rails.cache.fetch(query.cache_key_with_version) do
+      query.load
+    end
+
     render json: groups
   end
 
