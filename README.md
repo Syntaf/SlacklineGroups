@@ -1,4 +1,4 @@
-# Slacklinegroups V2 ![CI](https://syntaf.semaphoreci.com/badges/slacklinegroups_v2.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
+# Slacklinegroups V2 ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
 
 Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch.
 
@@ -12,7 +12,7 @@ Table of contents:
   - [Deploying to K8s](/docs/DEPLOYING.md)
   - [Monitoring Logs](/docs/LOGS.md)
 
-[Semaphore (CI/CD) Project Link](https://syntaf.semaphoreci.com/projects/slacklinegroups_v2)
+[Semaphore (CI/CD) Project Link](https://syntaf.semaphoreci.com/projects/vigilant-broccoli)
 
 ## Getting Started
 ----
