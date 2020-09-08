@@ -23,10 +23,11 @@ const SearchInput = ({ disabled, groups, onGroupSelect }) => {
   };
 
   const onChange = (e) => {
-    const selectedOption = e.target.getAttribute('data-option-index');
+    const selectedOption = e.target.textContent;
 
     if (selectedOption) {
-      onGroupSelect(groups[selectedOption]);
+      const group = groups.find(g => g.name == selectedOption);
+      onGroupSelect(group);
     }
   }
 
