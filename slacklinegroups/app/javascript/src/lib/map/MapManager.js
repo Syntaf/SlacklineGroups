@@ -105,7 +105,7 @@ class MapManager
    * @param {Number} lat 
    */
   parseCoordinates(lng, lat) {
-    const regex = new RegExp("(\\d+\\.\\d{3})(\\d)");
+    const regex = new RegExp("([\-]?\\d+\\.\\d{0,3})");
 
     return [
       lng.toString().match(regex)[1],
