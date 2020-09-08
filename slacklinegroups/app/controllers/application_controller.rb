@@ -1,10 +1,20 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :set_meta
   before_action :reload_rails_admin, if: :rails_admin_path?
   after_action :allow_framing, if: :embeded_view?
 
   private
+
+  def set_meta
+    @page_title = 'SlacklineGroups - Map'
+    @page_description = 'Search from over 1,400 Slackline communities across the globe and connect with other slackliners and highliners'
+    @page_keywords = 'Slackline, Highline, Community, Map'
+
+    set_meta_tags canonical: request.protocol + request.domain if embeded_view?
+    set_meta_tags index: true
+  end
 
   def embeded_view?
     request.subdomain == 'api'

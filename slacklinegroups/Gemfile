@@ -14,6 +14,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'cancancan'
 # Authentication
 gem 'devise'
+# SEO Optimization
+gem 'meta-tags'
 
 gem 'react-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

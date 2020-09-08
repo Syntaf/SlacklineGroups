@@ -17,6 +17,10 @@ class GroupsController < ApplicationController
   end
 
   def new
+    # SEO
+    @page_description = 'Submit a new slackline community for reviewal'
+    @page_title = 'SlacklineGroups - Submit'
+
     @group = Group.new
   end
 
@@ -33,6 +37,11 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find_by!({ slug: params[:slug] })
     @map_config = MapConfig.for_params(params) if embeded_view?
+
+    # SEO
+    @page_title = @group.name
+    @page_description = "Check out #{@group.name} on the SlacklineGroups global community map"
+    set_meta_tags canonical: request.protocol + request.domain
 
     respond_to do |format|
       format.html { render template: 'map/index', assigns: { group: GroupSerializer.new(@group) } }
