@@ -1,4 +1,4 @@
-# Slacklinegroups V2 ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
+# Slacklinegroups ![CI](https://syntaf.semaphoreci.com/badges/vigilant-broccoli.svg?style=shields) ![BuildID](https://img.shields.io/docker/v/syntaf/slacklinegroups/latest?label=Latest%20build)
 
 Home of slacklinegroups.com - A community project on Rails 6 + React + ElasticSearch.
 
@@ -19,12 +19,12 @@ Table of contents:
 
 1. Clone the repository
    ```bash
-   $ git clone git@github.com:Syntaf/slacklinegroups_v2
+   $ git clone git@github.com:Syntaf/SlacklineGroups
    ```
 
 2. Create a new docker volume for persistant database storage
    ```bash
-   $ cd slacklinegroups_v2
+   $ cd SlacklineGroups
    $ docker volume create slacklinegroups-postgres
    $ docker volume create slacklinegroups-redis
    ```
@@ -62,7 +62,7 @@ Once running you can visit the app at https://localhost:3000 and starting develo
 ## Contributing
 ----
 
-If you're interested in helping out with the project, visit the [issues](https://github.com/Syntaf/slacklinegroups_v2/issues) tab for some ideas on where to contribute first. When you're ready to start developing, create a fork and a branch on your fork which describes the work you'll be doing.
+If you're interested in helping out with the project, visit the [issues](https://github.com/Syntaf/SlacklineGroups/issues) tab for some ideas on where to contribute first. When you're ready to start developing, create a fork and a branch on your fork which describes the work you'll be doing.
 
 ### Coding Guidelines
 
