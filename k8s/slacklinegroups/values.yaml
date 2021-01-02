@@ -20,7 +20,7 @@ image:
   repository: syntaf/slacklinegroups
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v190"
+  tag: "v198"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -110,6 +110,10 @@ tolerations: []
 
 affinity: {}
 
+nginx-ingress:
+  controller:
+    watchNamespace: "slacklinegroups"
+
 external-dns:
   rbac:
     create: true
@@ -132,3 +136,11 @@ postgresql:
 
 redis:
   usePassword: false
+  master:
+    persistence:
+      enabled: false
+  slave:
+    persistence:
+      enabled: false
+  cluster:
+    enabled: false
