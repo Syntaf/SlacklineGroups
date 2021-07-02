@@ -5,7 +5,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '~> 2.7'
 
 # Model Serialization to JSON
 gem 'active_model_serializers', '~> 0.10.0'
